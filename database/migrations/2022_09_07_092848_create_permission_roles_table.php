@@ -27,6 +27,8 @@ return new class extends Migration
                 ->references('id')->on('roles')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+
+            $table->unique(['permission_id', 'role_id']);
         });
     }
 
