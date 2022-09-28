@@ -17,18 +17,18 @@ function classNames(...classes) {
 
 const Header = () => {
     const [loginClient, setLoginClient] = React.useState([]);
-    const domain = window.location.origin + '/';
+    // const domain = window.location.origin + '/';
 
-    navigation.map((nav) => {
-        console.log(nav);
-        const navLink = domain + nav.href
+    // navigation.map((nav) => {
+    //     console.log(nav);
+    //     const navLink = domain + nav.href
 
-        if (window.location.href === navLink) {
-            nav.current = true;
-        } else {
-            nav.current = false;
-        }
-    });
+    //     if (window.location.href === navLink) {
+    //         nav.current = true;
+    //     } else {
+    //         nav.current = false;
+    //     }
+    // });
 
 
     if ("token-client-MST" in localStorage) {
