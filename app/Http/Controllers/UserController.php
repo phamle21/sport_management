@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Image;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\UserRole;
@@ -10,6 +11,11 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        // $this->middleware('auth:api');
+    }
+
     /**
      * @OA\Get(
      *      path="/api/users",
@@ -62,15 +68,21 @@ class UserController extends Controller
 
         // Get all user of role
         if ($request->type === "All") {
-            $list = User::all();
+            $user_list = User::all();
         } else {
-            $list = Role::where('name', $request->type)->first()->users;
+            $user_list = Role::where('name', $request->type)->first()->users;
         }
 
+        foreach ($user_list as $v) {
+            $v->roles;
+            $v->avatar = $v->avatar();
+        }
+
+        // $user_list->avatar;
         $response = [
             'status' => 'success',
             'msg' => 'Lấy thành công danh sách ' . $request->type,
-            'data' => $list
+            'data' => $user_list
         ];
 
         return response()->json($response);
@@ -188,20 +200,34 @@ class UserController extends Controller
         ]);
 
         if ($add) {
-            UserRole::create([
-                'user_id' => $add->id,
-                'role_id' => $request->role_id
+            foreach ($request->roles as $role_id) {
+                UserRole::create([
+                    'user_id' => $add->id,
+                    'role_id' => $role_id
+                ]);
+            }
+
+            Image::create([
+                'type' => 'User',
+                'type_name' => 'avatar',
+                'name' => 'Avatar of ' . $add->name,
+                'path' => '/images/avatar/avatar-default.png',
+                'type_id' => $add->id,
             ]);
 
+            $user = User::find($add->id);
+            $user->roles;
+            $user->avatar = $user->avatar();
+
             $response = [
-                'status' => 'failed',
-                'msg' => 'Add new user completed',
-                'data' => User::find($add->id)->with('roles')
+                'status' => 'success',
+                'msg' => 'Successfully added new user',
+                'data' => $user
             ];
         } else {
             $response = [
                 'status' => 'failed',
-                'msg' => 'Add new user fail',
+                'msg' => 'Add new user failed',
             ];
         }
 
@@ -246,6 +272,7 @@ class UserController extends Controller
         }
 
         $user->roles;
+        $user->avatar = $user->avatar();
 
         return response()->json([
             'status' => 'success',
@@ -354,27 +381,53 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $response = [];
-        $update = User::find($request->user_id)->update([
-            'name' => $request->name,
-            'address' => $request->address,
-            'phone' => $request->phone,
-            'gender' => $request->gender,
-            'birthday' => $request->birthday,
-            'email' => $request->email,
-            'status' => "Active",
-            'password' => Hash::make($request->password)
-        ]);
+
+        if (isset($request->password)) {
+            $update = User::find($id)->update([
+                'name' => $request->name,
+                'address' => $request->address,
+                'phone' => $request->phone,
+                'gender' => $request->gender,
+                'birthday' => $request->birthday,
+                'email' => $request->email,
+                'status' => $request->status,
+                'password' => Hash::make($request->password)
+            ]);
+        } else {
+            $update = User::find($id)->update([
+                'name' => $request->name,
+                'address' => $request->address,
+                'phone' => $request->phone,
+                'gender' => $request->gender,
+                'birthday' => $request->birthday,
+                'email' => $request->email,
+                'status' => $request->status
+            ]);
+        }
 
         if ($update) {
+
+            UserRole::where('user_id', $id)->delete();
+            foreach ($request->roles as $role_id) {
+                UserRole::create([
+                    'user_id' => $id,
+                    'role_id' => $role_id
+                ]);
+            }
+
+            $user = User::find($id);
+            $user->roles;
+            $user->avatar = $user->avatar();
+
             $response = [
-                'status' => 'failed',
-                'msg' => 'Update user completed',
-                'data' => User::find($request->user_id)->with('roles')
+                'status' => 'success',
+                'msg' => 'Update "' . $request->name . '" completed.',
+                'data' => $user
             ];
         } else {
             $response = [
                 'status' => 'failed',
-                'msg' => 'Add new user fail',
+                'msg' => 'Update "' . $request->name . '" failed',
             ];
         }
 
@@ -382,14 +435,48 @@ class UserController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @OA\Get(
+     *      path="/api/users/{id}",
+     *      operationId="deleteUser",
+     *      tags={"Users"},
+     *      summary="delete User",
+     *      description="Returns status delete",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Parameter(
+     *            name="id",
+     *            description="id",
+     *            example="1",
+     *            required=true,
+     *            in="path",
+     *            @OA\Schema(
+     *                type="integer"
+     *            )
+     *        ),
+     *       @OA\Response(response=400, description="Bad request"),
+     *       security={
+     *           {"api_key_security_example": {}}
+     *       }
+     *     )
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $response = [];
+        if ($user->delete()) {
+            $response = [
+                'status' => 'success',
+                'msg' => 'Delete user completed'
+            ];
+        } else {
+            $response = [
+                'status' => 'failed',
+                'msg' => 'Delete user failed'
+            ];
+        }
+        return response()->json($response);
     }
 
     /**
@@ -432,6 +519,7 @@ class UserController extends Controller
     public function checkAccount(Request $request)
     {
         $response = [];
+        $request->type = ucwords($request->type);
         if ($request->type === "Phone") {
             if (User::where('phone', '=', $request->value)->exists()) {
                 $response = [
@@ -460,6 +548,29 @@ class UserController extends Controller
             $response = [
                 'status' => 'Failed',
                 'msg' => 'Type not found',
+            ];
+        }
+
+        return response()->json($response);
+    }
+
+    public function updateField($id, $field, Request $request)
+    {
+        $response = [];
+        $update = User::find($id)->update([
+            $field => $request->value,
+        ]);
+
+        if ($update) {
+            $response = [
+                'status' => 'success',
+                'msg' => 'Update user completed',
+                'data' => User::find($id)->with('roles')
+            ];
+        } else {
+            $response = [
+                'status' => 'failed',
+                'msg' => 'Add new user fail',
             ];
         }
 

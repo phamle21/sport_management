@@ -37,7 +37,6 @@ class RoleController extends Controller
      */
     public function index(Request $request)
     {
-        $request->type = 1;
         $response = [];
         if ($request->type === "All") {
             $response = [
@@ -61,7 +60,7 @@ class RoleController extends Controller
                 'msg' => 'Người dùng không tồn tại'
             ];
         }
-        return response()->json($response);
+        return response()->json($response, 401);
     }
 
     /**

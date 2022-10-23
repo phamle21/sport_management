@@ -16,8 +16,10 @@ return new class extends Migration
         Schema::create('images', function (Blueprint $table) {
             $table->id();
             $table->string('type');
-            $table->string('name');
-            $table->string('url');
+            $table->string('type_name');
+            $table->string('name')->nullable();
+            $table->string('path');
+            $table->unsignedBigInteger('type_id')->nullable();
             $table->timestamps();
         });
     }

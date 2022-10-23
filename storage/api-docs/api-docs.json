@@ -5,6 +5,124 @@
         "version": "1.0.0"
     },
     "paths": {
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Login",
+                "description": "Login",
+                "operationId": "login",
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "query",
+                        "description": "Phone Number",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "0941649826"
+                    },
+                    {
+                        "name": "password",
+                        "in": "query",
+                        "description": "Password",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "admin"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security_example": []
+                    }
+                ]
+            }
+        },
+        "/api/options": {
+            "get": {
+                "tags": [
+                    "Option System"
+                ],
+                "summary": "Get options list by name list",
+                "description": "Returns option list",
+                "operationId": "getOptionList",
+                "parameters": [
+                    {
+                        "name": "name[]",
+                        "in": "query",
+                        "description": "array name",
+                        "required": true,
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        },
+                        "example": "['logo_name', 'logo_path']"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security_example": []
+                    }
+                ]
+            }
+        },
+        "/api/options/{name}": {
+            "get": {
+                "tags": [
+                    "Option System"
+                ],
+                "summary": "Get list of option by name",
+                "description": "Returns option",
+                "operationId": "getOption",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "path",
+                        "description": "logo",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "logo_path"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security_example": []
+                    }
+                ]
+            }
+        },
         "/api/roles": {
             "get": {
                 "tags": [
@@ -25,6 +143,29 @@
                         "example": "All"
                     }
                 ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security_example": []
+                    }
+                ]
+            }
+        },
+        "/api/seasons": {
+            "get": {
+                "tags": [
+                    "Seasons"
+                ],
+                "summary": "Get list of season",
+                "description": "Returns season list",
+                "operationId": "getSeasonList",
                 "responses": {
                     "200": {
                         "description": "Successful operation"
@@ -301,6 +442,41 @@
                             "type": "string"
                         },
                         "example": "phamle21"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "security": [
+                    {
+                        "api_key_security_example": []
+                    }
+                ]
+            }
+        },
+        "/api/users/{id}": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "delete User",
+                "description": "Returns status delete",
+                "operationId": "deleteUser",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "1"
                     }
                 ],
                 "responses": {

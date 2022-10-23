@@ -15,8 +15,47 @@ class AuthController extends Controller
         $this->middleware('auth:api', ['except' => ['login', 'register']]);
     }
 
+    /**
+     * @OA\Post(
+     *      path="/api/login",
+     *      operationId="login",
+     *      tags={"Auth"},
+     *      summary="Login",
+     *      description="Login",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Parameter(
+     *            name="email",
+     *            description="Phone Number",
+     *            example="0941649826",
+     *            required=true,
+     *            in="query",
+     *            @OA\Schema(
+     *                type="string"
+     *            )
+     *        ),
+     *      @OA\Parameter(
+     *            name="password",
+     *            description="Password",
+     *            example="admin",
+     *            required=true,
+     *            in="query",
+     *            @OA\Schema(
+     *                type="string"
+     *            )
+     *        ),
+     *       @OA\Response(response=400, description="Bad request"),
+     *       security={
+     *           {"api_key_security_example": {}}
+     *       }
+     *     )
+     */
+
     public function login(Request $request)
     {
+        $permissionLoginAdmin = ["Admin", "Team Manage"];
         if (isset($request->email)) {
             $request->validate([
                 'email' => 'required|string|email',
@@ -30,17 +69,41 @@ class AuthController extends Controller
             ]);
             $credentials = $request->only('phone', 'password');
         }
+        $credentials['status'] = "Active";
+        $remember = $request->remember ? true : false;
+        $token = Auth::attempt($credentials, $remember);
 
-        $token = Auth::attempt($credentials);
         if (!$token) {
             return response()->json([
                 'status' => 'error',
-                'message' => 'Unauthorized',
-            ], 401);
+                'message' => 'Unauthorized! Please check Email/Phone or Password. Or your account status isn\'t Active',
+            ]);
         }
 
+        $check = false;
 
-        $user = Auth::user();
+        foreach(Auth::user()->roles as $v){
+            if(in_array($v->name,$permissionLoginAdmin)){
+                $check = true;
+            }
+        }
+
+        if (!$check) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Your account is not allowed to access the login Admin page',
+            ]);
+        }
+
+        $user_temp =  Auth::user();
+        $user = (object)[];
+        $user->id = $user_temp->id;
+        $user->name = $user_temp->name;
+        $user->avatar = User::find($user_temp->id)->avatar()->path;
+        $user->email = $user_temp->email;
+        $user->phone = $user_temp->phone;
+        $user->status = $user_temp->status;
+        $user->roles = $user_temp->roles;
         return response()->json([
             'status' => 'success',
             'user' => $user,
@@ -80,6 +143,7 @@ class AuthController extends Controller
     public function logout()
     {
         Auth::logout();
+
         return response()->json([
             'status' => 'success',
             'message' => 'Successfully logged out',
@@ -88,8 +152,15 @@ class AuthController extends Controller
 
     public function me()
     {
-        $user = auth()->user();
-        $user->roles;
+        $user_temp =  Auth::user();
+        $user = (object)[];
+        $user->id = $user_temp->id;
+        $user->name = $user_temp->name;
+        $user->avatar = User::find($user_temp->id)->avatar()->path;
+        $user->email = $user_temp->email;
+        $user->phone = $user_temp->phone;
+        $user->status = $user_temp->status;
+        $user->roles = $user_temp->roles;
         return response()->json($user);
     }
 

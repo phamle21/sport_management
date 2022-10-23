@@ -8,13 +8,29 @@ use Illuminate\Http\Request;
 class SeasonController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * @OA\Get(
+     *      path="/api/seasons",
+     *      operationId="getSeasonList",
+     *      tags={"Seasons"},
+     *      summary="Get list of season",
+     *      description="Returns season list",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *       @OA\Response(response=400, description="Bad request"),
+     *       security={
+     *           {"api_key_security_example": {}}
+     *       }
+     *     )
      */
     public function index()
     {
-        //
+        return response()->json([
+            'status' => 'success',
+            'msg' => 'Get season list completed',
+            'data' => Season::all(),
+        ]);
     }
 
     /**

@@ -28,7 +28,7 @@ return new class extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->unique(['user_id', 'role_id']);
+            // $table->unique(['user_id', 'role_id']);
         });
     }
 
