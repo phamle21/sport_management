@@ -1,7 +1,13 @@
-import { Link as RouterLink } from 'react-router-dom';
+import React from 'react';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
 // @mui
 import { styled } from '@mui/material/styles';
 import { Card, Link, Container, Typography } from '@mui/material';
+// Sweet Alert 2
+import Swal from 'sweetalert2';
+// Store
+import { tokenState } from '../../app/recoil/store';
 // hooks
 import useResponsive from '../../hooks/useResponsive';
 // components
@@ -57,9 +63,25 @@ const ContentStyle = styled('div')(({ theme }) => ({
 // ----------------------------------------------------------------------
 
 export default function Login() {
+
+  const navigate = useNavigate();
+
   const smUp = useResponsive('up', 'sm');
 
   const mdUp = useResponsive('up', 'md');
+
+  const token = localStorage.getItem('accessToken_STM');
+
+  React.useEffect(() => {
+    if (token) {
+      navigate('/admin', { replace: true });
+      Swal.fire(
+        'You are currently logged in',
+        '',
+        'warning'
+      )
+    }
+  }, []);
 
   return (
     <Page title="Login">
@@ -67,20 +89,12 @@ export default function Login() {
         <HeaderStyle>
           <Logo />
 
-          {smUp && (
-            <Typography variant="body2" sx={{ mt: { md: -2 } }}>
-              Don’t have an account? {''}
-              <Link variant="subtitle2" component={RouterLink} to="/register">
-                Get started
-              </Link>
-            </Typography>
-          )}
         </HeaderStyle>
 
         {mdUp && (
           <SectionStyle>
             <Typography variant="h3" sx={{ px: 5, mt: 10, mb: 5 }}>
-              Hi, Welcome Back
+              Chào mừng bạn đến với trang của Quản Trị Viên
             </Typography>
             <img src="/static/illustrations/illustration_login.png" alt="login" />
           </SectionStyle>
@@ -89,23 +103,15 @@ export default function Login() {
         <Container maxWidth="sm">
           <ContentStyle>
             <Typography variant="h4" gutterBottom>
-              Sign in to Minimal
+              Đăng nhập
             </Typography>
 
-            <Typography sx={{ color: 'text.secondary', mb: 5 }}>Enter your details below.</Typography>
+            <Typography sx={{ color: 'text.secondary', mb: 5 }}>Vui lòng nhập thông tin đăng nhập bên dưới.</Typography>
 
-            <AuthSocial />
+            {/* <AuthSocial /> */}
 
             <LoginForm />
 
-            {!smUp && (
-              <Typography variant="body2" align="center" sx={{ mt: 3 }}>
-                Don’t have an account?{' '}
-                <Link variant="subtitle2" component={RouterLink} to="/register">
-                  Get started
-                </Link>
-              </Typography>
-            )}
           </ContentStyle>
         </Container>
       </RootStyle>

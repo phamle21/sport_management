@@ -1,18 +1,20 @@
 import Header from './pages/client/Header';
 import Footer from './pages/client/Footer';
 import Home from './pages/client/Home';
-import CreateClub from './pages/client/CreateClub';
-import CreateTournament from './pages/client/CreateTournament';
-import FindTournament from './pages/client/FindTournament';
-import RegisterNewPlayer from './pages/client/RegisterNewPlayer';
-import Login from './pages/client/Login';
+import CreateTeam from './pages/client/team/CreateTeam';
+import FindTeam from './pages/client/team/FindTeam';
+import CreateTour from './pages/client/tournament/CreateTour';
+import FindTournament from './pages/client/tournament/FindTour';
+import RegisterNewPlayer from './pages/client/user/Register';
+import Login from './pages/client/user/Login';
 
 export {
     Header, 
     Footer, 
     Home,
-    CreateClub,
-    CreateTournament,
+    CreateTeam,
+    FindTeam,
+    CreateTour,
     FindTournament,
     RegisterNewPlayer,
     Login

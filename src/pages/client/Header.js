@@ -2,13 +2,14 @@ import React, { Fragment } from "react";
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { Link } from 'react-router-dom';
+import '../../index_client.css';
 
 const navigation = [
     { name: 'Home', href: 'home', current: false },
     { name: 'Create Tournament', href: 'create_tournament', current: false },
     { name: 'Find Tournament', href: 'find_tournament', current: false },
-    { name: 'Create Club', href: 'create_club', current: false },
-    { name: 'Register New Player', href: 'register_new_player', current: false },
+    { name: 'Find Team', href: 'find_team', current: false },
+    { name: 'Register Team', href: 'register_team', current: false },
 ]
 
 function classNames(...classes) {
@@ -17,25 +18,19 @@ function classNames(...classes) {
 
 const Header = () => {
     const [loginClient, setLoginClient] = React.useState([]);
-    // const domain = window.location.origin + '/';
 
-    // navigation.map((nav) => {
-    //     console.log(nav);
-    //     const navLink = domain + nav.href
+    const domain = `${window.location.origin}/`;
 
-    //     if (window.location.href === navLink) {
-    //         nav.current = true;
-    //     } else {
-    //         nav.current = false;
-    //     }
-    // });
+    navigation.forEach((nav) => {
+        const navLink = domain + nav.href
 
+        if (window.location.href === navLink) {
+            nav.current = true;
+        } else {
+            nav.current = false;
+        }
+    });
 
-    if ("token-client-MST" in localStorage) {
-        setLoginClient(true)
-    }else{
-        console.log('xin chao alert');
-    }
 
     return (
         <Disclosure as="nav" className="bg-gray-800">

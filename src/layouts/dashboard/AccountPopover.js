@@ -1,29 +1,23 @@
-import { useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
+import { useRecoilValue, useResetRecoilState } from 'recoil';
+import Swal from 'sweetalert2';
 // @mui
 import { alpha } from '@mui/material/styles';
 import { Box, Divider, Typography, Stack, MenuItem, Avatar, IconButton } from '@mui/material';
 // components
 import MenuPopover from '../../components/MenuPopover';
-// mocks_
-import account from '../../_mock/account';
+
+import { API_URL } from "../../constant/api_constant";
+
+import { accountState } from '../../app/recoil/store';
 
 // ----------------------------------------------------------------------
 
 const MENU_OPTIONS = [
   {
-    label: 'Home',
-    icon: 'eva:home-fill',
-    linkTo: '/',
-  },
-  {
-    label: 'Profile',
+    label: 'Hồ sơ cá nhân',
     icon: 'eva:person-fill',
-    linkTo: '#',
-  },
-  {
-    label: 'Settings',
-    icon: 'eva:settings-2-fill',
     linkTo: '#',
   },
 ];
@@ -31,10 +25,12 @@ const MENU_OPTIONS = [
 // ----------------------------------------------------------------------
 
 export default function AccountPopover() {
+
   const anchorRef = useRef(null);
 
   const [open, setOpen] = useState(null);
 
+  const resetAccountState = useResetRecoilState(accountState);
   const handleOpen = (event) => {
     setOpen(event.currentTarget);
   };
@@ -42,6 +38,29 @@ export default function AccountPopover() {
   const handleClose = () => {
     setOpen(null);
   };
+
+  const handleLogout = () => {
+    Swal.fire({
+      title: 'Bạn chắc chứ?',
+      text: "Bạn muốn đăng xuất?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Đăng xuất!',
+      cancelButtonText: 'Hủy',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.removeItem('accessToken_STM');
+        resetAccountState();
+        window.location.href = `${window.location.origin}/admin/login`;
+      }
+    })
+
+    handleClose();
+  }
+
+  const account = useRecoilValue(accountState);
 
   return (
     <>
@@ -63,7 +82,7 @@ export default function AccountPopover() {
           }),
         }}
       >
-        <Avatar src={account.photoURL} alt="photoURL" />
+        <Avatar src={account.avatar} alt="photoURL" />
       </IconButton>
 
       <MenuPopover
@@ -82,7 +101,7 @@ export default function AccountPopover() {
       >
         <Box sx={{ my: 1.5, px: 2.5 }}>
           <Typography variant="subtitle2" noWrap>
-            {account.displayName}
+            {account.name}
           </Typography>
           <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
             {account.email}
@@ -101,8 +120,8 @@ export default function AccountPopover() {
 
         <Divider sx={{ borderStyle: 'dashed' }} />
 
-        <MenuItem onClick={handleClose} sx={{ m: 1 }}>
-          Logout
+        <MenuItem onClick={handleLogout} sx={{ m: 1 }}>
+          Đăng xuất
         </MenuItem>
       </MenuPopover>
     </>

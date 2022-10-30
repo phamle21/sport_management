@@ -7,40 +7,35 @@ const getIcon = (name) => <Iconify icon={name} width={22} height={22} />;
 
 const navConfig = [
   {
-    title: 'dashboard',
+    title: 'Tổng quát',
     path: '/admin/dashboard/app',
     icon: getIcon('eva:pie-chart-2-fill'),
   },
   {
-    title: 'user',
-    path: '/admin/dashboard/user',
+    title: 'Người dùng',
+    path: '/admin/dashboard/users',
     icon: getIcon('eva:people-fill'),
   },
   {
-    title: 'product',
-    path: '/admin/dashboard/products',
-    icon: getIcon('eva:shopping-bag-fill'),
+    title: 'Mùa giải',
+    path: '/admin/dashboard/seasons',
+    icon: getIcon('fluent:sport-soccer-16-filled'),
   },
   {
-    title: 'blog',
-    path: '/admin/dashboard/blog',
-    icon: getIcon('eva:file-text-fill'),
+    title: 'Giải đấu',
+    path: '/admin/dashboard/leagues',
+    icon: getIcon('fluent:sport-soccer-16-filled'),
   },
   {
-    title: 'login',
-    path: '/admin/login',
-    icon: getIcon('eva:lock-fill'),
+    title: 'Trận đấu',
+    path: '/admin/dashboard/matches',
+    icon: getIcon('fluent:sport-soccer-16-filled'),
   },
   {
-    title: 'register',
-    path: '/admin/register',
-    icon: getIcon('eva:person-add-fill'),
-  },
-  {
-    title: 'Not found',
-    path: '/404',
-    icon: getIcon('eva:alert-triangle-fill'),
-  },
+    title: 'Người chơi',
+    path: '/admin/dashboard/players',
+    icon: getIcon('fluent:sport-soccer-16-filled'),
+  }
 ];
 
 export default navConfig;

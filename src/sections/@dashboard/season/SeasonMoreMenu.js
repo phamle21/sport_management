@@ -1,5 +1,4 @@
 import { useRef, useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Swal from 'sweetalert2';
 import { useRecoilState, useSetRecoilState } from 'recoil';
@@ -11,7 +10,6 @@ import {
   userListState,
   userListByTypeState,
   statusModelEditUserState,
-  UserEditState,
 } from '../../../app/recoil/store';
 
 // component
@@ -20,7 +18,7 @@ import MenuPopover from '../../../components/MenuPopover';
 
 // ----------------------------------------------------------------------
 
-export default function UserMoreMenu({ userId, status, name, user }) {
+export default function SeasonMoreMenu({ userId, status, name, user }) {
   const [open, setOpen] = useState(false);
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -31,7 +29,7 @@ export default function UserMoreMenu({ userId, status, name, user }) {
 
   const setStatusModelEditUser = useSetRecoilState(statusModelEditUserState);
 
-  const setUserEdit = useSetRecoilState(UserEditState);
+  const setModelEditUser = useSetRecoilState(modelEdit);
 
   const handleOpenMenu = (event) => {
     setOpen(true);
@@ -43,17 +41,19 @@ export default function UserMoreMenu({ userId, status, name, user }) {
   };
 
   const handleEdit = () => {
-    setUserEdit(user);
+    handleCloseMenu();
+    setStatusModelEditUser(true);
+    setModelEditUser(user)
   };
 
   const handleDelete = () => {
     handleCloseMenu();
     Swal.fire({
-      title: 'Xóa người dùng?',
-      html: `Bạn sẽ xóa người dùng "${name}"`,
+      title: 'Delete?',
+      html: `Do you want delete "${name}"`,
       showCancelButton: true,
-      confirmButtonText: 'Xóa',
-      cancelButtonText: 'Không, cảm ơn!',
+      confirmButtonText: 'Delete',
+      cancelButtonText: 'No, thanks!',
       icon: 'warning',
       confirmButtonColor: 'red',
     }).then((result) => {
@@ -70,7 +70,7 @@ export default function UserMoreMenu({ userId, status, name, user }) {
                 arrTemp.splice(objIndex, 1);
               }
 
-              Swal.fire('Thành công!', `"${name}" đã được xóa`, 'success')
+              Swal.fire('Delete!', `"${name}" has been deleted`, 'success')
 
               setUserList(arrTemp)
               setUserListByType(arrTemp)
@@ -84,7 +84,7 @@ export default function UserMoreMenu({ userId, status, name, user }) {
     handleCloseMenu();
     Swal.fire({
       title: 'Active?',
-      html: 'Bạn muốn kích hoạt cho người dùng này?',
+      html: 'Do you want change status to Active?',
       showCancelButton: true,
       confirmButtonText: 'Active',
       icon: 'question',
@@ -101,7 +101,7 @@ export default function UserMoreMenu({ userId, status, name, user }) {
 
               arrTemp[objIndex].status = "Active"
 
-              Swal.fire('Active!', `"${name}" đã được kích hoạt`, 'success')
+              Swal.fire('Active!', `"${name}" has changed status to Active`, 'success')
 
               setUserList(arrTemp)
               setUserListByType(arrTemp)
@@ -115,7 +115,7 @@ export default function UserMoreMenu({ userId, status, name, user }) {
     handleCloseMenu();
     Swal.fire({
       title: 'Inactive?',
-      html: 'Bạn muốn ngưng hoạt động người dùng này?',
+      html: 'Do you want change status to Inactive?',
       showCancelButton: true,
       confirmButtonText: 'Inactive',
       icon: 'question',
@@ -150,9 +150,9 @@ export default function UserMoreMenu({ userId, status, name, user }) {
       onOpen={handleOpenMenu}
       actions={
         <>
-          <MenuItem component={RouterLink} onClick={handleEdit} to={`${userId}/edit`}>
+          <MenuItem onClick={handleEdit}>
             <Iconify icon={'eva:edit-fill'} />
-            Chỉnh sửa
+            Edit
           </MenuItem>
 
           {status === "Active" ? (
@@ -170,7 +170,7 @@ export default function UserMoreMenu({ userId, status, name, user }) {
 
           <MenuItem onClick={handleDelete} sx={{ color: 'error.main' }}>
             <Iconify icon={'eva:trash-2-outline'} />
-            Xóa
+            Delete
           </MenuItem>
         </>
       }

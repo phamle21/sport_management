@@ -19,7 +19,7 @@ import {
 } from '@mui/material';
 
 import Swal from 'sweetalert2';
-import { userListType, roleState, selectedUserState } from '../../../app/recoil/store';
+import { userListType, roleState, selectedSeasonState } from '../../../app/recoil/store';
 // component
 import Iconify from '../../../components/Iconify';
 import apiBase from '../../../app/axios/apiBase';
@@ -48,13 +48,13 @@ const SearchStyle = styled(OutlinedInput)(({ theme }) => ({
 
 // ----------------------------------------------------------------------
 
-UserListToolbar.propTypes = {
+SeasonListToolbar.propTypes = {
   numSelected: PropTypes.number,
   filterName: PropTypes.string,
   onFilterName: PropTypes.func,
 };
 
-export default function UserListToolbar({ numSelected, filterName, onFilterName }) {
+export default function SeasonListToolbar({ numSelected, filterName, onFilterName }) {
   const ref = React.useRef(null);
 
   const [isOpen, setIsOpen] = React.useState(false);
@@ -63,7 +63,7 @@ export default function UserListToolbar({ numSelected, filterName, onFilterName 
 
   const roles = useRecoilValue(roleState);
 
-  const selectedUser = useRecoilValue(selectedUserState);
+  const selectedSeason = useRecoilValue(selectedSeasonState);
 
   const handleFilterRole = (type) => {
     setUserType(type);
@@ -71,17 +71,17 @@ export default function UserListToolbar({ numSelected, filterName, onFilterName 
 
   const handleDeteleUserList = () => {
     Swal.fire({
-      title: 'Xóa tất cả?',
-      html: 'Bạn có chắc muốn xóa tất cả mục được chọn?',
+      title: 'Delete all?',
+      html: 'Are you sure you want to delete the select season?',
       showCancelButton: true,
-      confirmButtonText: 'Xóa',
-      cancelButtonText: 'Không, cảm ơn!',
+      confirmButtonText: 'Delete all',
+      cancelButtonText: 'No, thanks!',
       icon: 'warning',
       confirmButtonColor: 'red',
     }).then((result) => {
       if (result.isConfirmed) {
-        apiBase.post(`/users/delete-all`,
-          JSON.stringify({ user_id_list: selectedUser }))
+        apiBase.post(`/seasons/delete-all`,
+          JSON.stringify({ season_id_list: selectedSeason }))
           .then(res => {
             if (res.data.status === "success") {
               console.log(res.data);
@@ -102,13 +102,13 @@ export default function UserListToolbar({ numSelected, filterName, onFilterName 
     >
       {numSelected > 0 ? (
         <Typography component="div" variant="subtitle1">
-          {numSelected} mục được chọn
+          {numSelected} selected
         </Typography>
       ) : (
         <SearchStyle
           value={filterName}
           onChange={onFilterName}
-          placeholder="Tìm kiếm người dùng..."
+          placeholder="Search season..."
           startAdornment={
             <InputAdornment position="start">
               <Iconify icon="eva:search-fill" sx={{ color: 'text.disabled', width: 20, height: 20 }} />
@@ -118,65 +118,13 @@ export default function UserListToolbar({ numSelected, filterName, onFilterName 
       )}
 
       {numSelected > 0 ? (
-        <Tooltip title="Xóa">
+        <Tooltip title="Delete">
           <IconButton onClick={handleDeteleUserList}>
             <Iconify icon="eva:trash-2-fill" />
           </IconButton>
         </Tooltip>
       ) : (
         <>
-          <Tooltip onClick={() => setIsOpen(true)} title="Filter list">
-            <IconButton ref={ref}>
-              <Iconify icon="ic:round-filter-list" />
-            </IconButton>
-          </Tooltip>
-
-          <Menu
-            open={isOpen}
-            anchorEl={ref.current}
-            onClose={() => setIsOpen(false)}
-            PaperProps={{
-              sx: { width: 200, maxWidth: '100%' },
-            }}
-            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-
-          >
-            <Typography sx={{ m: 1, ml: 1.5 }} component="h6" variant="subtitle1">
-              Lọc theo loại 
-            </Typography>
-
-            {
-              roles.length > 0
-                ?
-                (<div>
-                  <MenuItem sx={{ color: 'text.secondary' }}>
-                    <ListItemIcon>
-                      <Iconify icon="carbon:user-role" width={24} height={24} />
-                    </ListItemIcon>
-                    <ListItemText onClick={() => handleFilterRole('All')} primary={'All'} primaryTypographyProps={{ variant: 'body2' }} />
-                  </MenuItem>
-                  {
-                    roles.map(role => (
-                      <MenuItem key={role.id} sx={{ color: 'text.secondary' }}>
-                        <ListItemIcon>
-                          <Iconify icon="carbon:user-role" width={24} height={24} />
-                        </ListItemIcon>
-                        <ListItemText onClick={() => handleFilterRole(role.name)} primary={role.name} primaryTypographyProps={{ variant: 'body2' }} />
-                      </MenuItem>
-                    ))
-                  }
-                </div>
-
-                )
-                :
-                <Typography sx={{ m: 1, ml: 1.5 }} component="h6">
-                  <CircularProgress />
-                </Typography>
-
-            }
-
-          </Menu>
         </>
 
       )}
