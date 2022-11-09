@@ -21,6 +21,7 @@ class User extends Authenticatable implements JWTSubject
      */
     protected $fillable = [
         'name',
+        'avatar',
         'address',
         'phone',
         'gender',
@@ -104,13 +105,5 @@ class User extends Authenticatable implements JWTSubject
         }
 
         return $img;
-    }
-
-    public function avatar()
-    {
-        return Image::where([
-            ['type', 'User'],
-            ['type_name', 'avatar'],
-        ])->first();
     }
 }

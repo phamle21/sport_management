@@ -23,6 +23,7 @@ Route::resource('clubs', CourseController::class);
 Route::resource('users', UserController::class);
 Route::post('/users/check-account', [UserController::class, 'checkAccount']);
 Route::post('/users/update/{id}/{field}', [UserController::class, 'updateField']);
+Route::post('/users/delete-list', [UserController::class, 'deleteList']);
 
 /** Roles */
 Route::resource('roles', RoleController::class);

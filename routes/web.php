@@ -17,6 +17,10 @@ Route::get('/admin', function () {
     return redirect('/admin/home');
 });
 
+Route::get('/', function () {
+    return redirect('/docs');
+});
+
 Route::get('/{path?}', function () {
     return view('welcome');
 })->where('path', '.*');

@@ -26,26 +26,22 @@ class AuthController extends Controller
      *          response=200,
      *          description="Successful operation"
      *       ),
-     *      @OA\Parameter(
-     *            name="email",
-     *            description="Phone Number",
-     *            example="0941649826",
-     *            required=true,
-     *            in="query",
-     *            @OA\Schema(
-     *                type="string"
-     *            )
-     *        ),
-     *      @OA\Parameter(
-     *            name="password",
-     *            description="Password",
-     *            example="admin",
-     *            required=true,
-     *            in="query",
-     *            @OA\Schema(
-     *                type="string"
-     *            )
-     *        ),
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="id",
+     *                     type="string"
+     *                 ),
+     *                 @OA\Property(
+     *                     property="name",
+     *                     type="string"
+     *                 ),
+     *                 example={"id": "a3fb6", "name": "Jessica Smith", "phone": 12345678}
+     *             )
+     *         )
+     *     ),
      *       @OA\Response(response=400, description="Bad request"),
      *       security={
      *           {"api_key_security_example": {}}
@@ -55,7 +51,12 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
+        if (Auth::check()) {
+            Auth::logout();
+        }
+
         $permissionLoginAdmin = ["Admin", "Team Manage"];
+
         if (isset($request->email)) {
             $request->validate([
                 'email' => 'required|string|email',
@@ -69,6 +70,7 @@ class AuthController extends Controller
             ]);
             $credentials = $request->only('phone', 'password');
         }
+
         $credentials['status'] = "Active";
         $remember = $request->remember ? true : false;
         $token = Auth::attempt($credentials, $remember);
@@ -82,8 +84,8 @@ class AuthController extends Controller
 
         $check = false;
 
-        foreach(Auth::user()->roles as $v){
-            if(in_array($v->name,$permissionLoginAdmin)){
+        foreach (Auth::user()->roles as $v) {
+            if (in_array($v->name, $permissionLoginAdmin)) {
                 $check = true;
             }
         }
@@ -99,7 +101,7 @@ class AuthController extends Controller
         $user = (object)[];
         $user->id = $user_temp->id;
         $user->name = $user_temp->name;
-        $user->avatar = User::find($user_temp->id)->avatar()->path;
+        $user->avatar = $user_temp->avatar;
         $user->email = $user_temp->email;
         $user->phone = $user_temp->phone;
         $user->status = $user_temp->status;
@@ -152,15 +154,29 @@ class AuthController extends Controller
 
     public function me()
     {
+        if (!Auth::check()) {
+            return response()->json([
+                'status' => 'expired',
+                'msg' => 'Xin lỗi bạn chưa đăng nhập, vui lòng đăng nhập lại'
+            ]);
+        }
+
         $user_temp =  Auth::user();
         $user = (object)[];
         $user->id = $user_temp->id;
         $user->name = $user_temp->name;
-        $user->avatar = User::find($user_temp->id)->avatar()->path;
+        $user->avatar = $user_temp->avatar;
         $user->email = $user_temp->email;
         $user->phone = $user_temp->phone;
         $user->status = $user_temp->status;
         $user->roles = $user_temp->roles;
+
+        return response()->json([
+            'status' => 'success',
+            'msg' => 'Authentication',
+            'data' => $user
+        ]);
+
         return response()->json($user);
     }
 

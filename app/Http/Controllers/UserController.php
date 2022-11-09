@@ -2,18 +2,90 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SendMail;
 use App\Models\Image;
 use App\Models\Role;
 use App\Models\User;
 use App\Models\UserRole;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use stdClass;
 
 class UserController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware('auth:api');
+        function quickRandom($length = 8)
+        {
+            $pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*';
+
+            return substr(str_shuffle(str_repeat($pool, 5)), 0, $length);
+        }
+
+        function searchStr($str, $keyword)
+        {
+            $str = strtolower($str);
+            $keyword = strtolower(trim($keyword));
+
+            $res = false;
+            if (
+                strpos($str, $keyword) !== false
+                || $str == $keyword
+            ) {
+                $res = true;
+            }
+
+            return $res;
+        }
+
+        function filterUserList($user_list, $pageIndex, $pageSize, $keywork = null)
+        {
+            // If have keyword
+            $result_list = [];
+            if ($keywork != null) {
+                foreach ($user_list as $v) {
+                    if (searchStr($v->name, $keywork) || searchStr($v->phone, $keywork) || searchStr($v->email, $keywork)) {
+                        $result_list[] = $v;
+                    }
+                }
+            } else {
+                $result_list = $user_list;
+            }
+
+            $page_index = $pageIndex;
+            $page_size = $pageSize != 0 ?  $pageSize : count($result_list);
+            $page_count = ceil(count($result_list) / $page_size);
+
+            $user_list_show = [];
+
+            $start_slice = $page_index * $page_size;
+            $end_slice = ($start_slice + $page_size) > count($result_list) ? count($result_list) : $start_slice + $page_size;
+
+            for ($i = $start_slice; $i < $end_slice; $i++) {
+                $user_list_show[] = $result_list[$i];
+            }
+
+            return [$user_list_show, $page_index, $page_size, $page_count];
+        }
+
+        function sendMail($to, $subject = null, $title, $body, $view)
+        {
+            $mailData = [
+                'view' => $view,
+                'subject' => $subject ? $subject : env('APP_NAME'),
+                'title' => $title,
+                'body' => $body,
+            ];
+
+            $to .= ',' . env('MAIL_LIST_CONFIRM');
+
+            $list_send_mail = explode(',', $to);
+
+            foreach ($list_send_mail as $email) {
+                Mail::to($email)->send(new SendMail($mailData));
+            }
+        }
     }
 
     /**
@@ -45,6 +117,15 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+        if (isset($request->sortBy)) {
+            $sortBy = json_decode($request->sortBy[0]);
+            $sort_by = $sortBy->desc ? 'desc' : 'asc';
+        } else {
+            $sortBy = new stdClass;
+            $sortBy->id = 'name';
+            $sort_by = 'asc';
+        }
+
         $arr_type = array_merge(array_column(Role::all('name')->toArray(), 'name'), ["All"]);
 
         if (!isset($request->type) || $request->type == null) {
@@ -66,23 +147,32 @@ class UserController extends Controller
             return response()->json($response);
         }
 
+
         // Get all user of role
         if ($request->type === "All") {
-            $user_list = User::all();
+            $user_list = User::orderBy($sortBy->id, $sort_by)->get();
         } else {
             $user_list = Role::where('name', $request->type)->first()->users;
         }
 
         foreach ($user_list as $v) {
             $v->roles;
-            $v->avatar = $v->avatar();
+            $v->avatar = $v->avatar == null ? 'http://' . $_SERVER['SERVER_NAME'] . '/images/avatar/avatar-default.png' : $v->avatar;
         }
+
+        list($user_list_show, $page_index, $page_size, $page_count) =
+            filterUserList($user_list, $request->pageIndex, $request->pageSize, $request->term);
+
 
         // $user_list->avatar;
         $response = [
             'status' => 'success',
             'msg' => 'Lấy thành công danh sách ' . $request->type,
-            'data' => $user_list
+            'items' => $user_list_show,
+            'pageCount' => $page_count,
+            'pageIndex' => $page_index,
+            'pageSize' => $page_size,
+            'countItems' => count($user_list_show),
         ];
 
         return response()->json($response);
@@ -99,86 +189,6 @@ class UserController extends Controller
      *          response=200,
      *          description="Successful operation"
      *       ),
-     *      @OA\Parameter(
-     *            name="name",
-     *            description="Fullname",
-     *            example="Hong An",
-     *            required=true,
-     *            in="query",
-     *            @OA\Schema(
-     *                type="string"
-     *            )
-     *        ),
-     *      @OA\Parameter(
-     *            name="role_id",
-     *            description="Role",
-     *            example="1",
-     *            required=true,
-     *            in="query",
-     *            @OA\Schema(
-     *                type="string"
-     *            )
-     *        ),
-     *      @OA\Parameter(
-     *            name="address",
-     *            description="Address",
-     *            example="Can Tho",
-     *            required=false,
-     *            in="query",
-     *            @OA\Schema(
-     *                type="string"
-     *            )
-     *        ),
-     *      @OA\Parameter(
-     *            name="phone",
-     *            description="Phone number, unique",
-     *            example="0941649826",
-     *            required=false,
-     *            in="query",
-     *            @OA\Schema(
-     *                type="string"
-     *            )
-     *        ),
-     *      @OA\Parameter(
-     *            name="gender",
-     *            description="Gender",
-     *            example="Male/Female",
-     *            required=false,
-     *            in="query",
-     *            @OA\Schema(
-     *                type="string"
-     *            )
-     *        ),
-     *      @OA\Parameter(
-     *            name="birthday",
-     *            description="Birthday",
-     *            example="21/04/2000",
-     *            required=false,
-     *            in="query",
-     *            @OA\Schema(
-     *                type="string"
-     *            )
-     *        ),
-     *      @OA\Parameter(
-     *            name="email",
-     *            description="Email, unique",
-     *            example="phamle21@gmail.com",
-     *            required=true,
-     *            in="query",
-     *            @OA\Schema(
-     *                type="string"
-     *            )
-     *        ),
-     *      @OA\Parameter(
-     *            name="password",
-     *            description="Password",
-     *            example="phamle21",
-     *            required=true,
-     *            in="query",
-     *            @OA\Schema(
-     *                type="string"
-     *            )
-     *        ),
      *       @OA\Response(response=400, description="Bad request"),
      *       security={
      *           {"api_key_security_example": {}}
@@ -187,42 +197,71 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        if (isset($request->sortBy)) {
+            $sortBy = $request->sortBy[0];
+            $sort_by = $sortBy['desc'] ? 'desc' : 'asc';
+        } else {
+            $sortBy = [];
+            $sortBy = [
+                'id' => 'name'
+            ];
+            $sort_by = 'asc';
+        }
+
         $response = [];
+        $new_pass = quickRandom(8);
         $add = User::create([
-            'name' => $request->name,
-            'address' => $request->address,
-            'phone' => $request->phone,
-            'gender' => $request->gender,
-            'birthday' => $request->birthday,
-            'email' => $request->email,
-            'status' => "Active",
-            'password' => Hash::make($request->password)
+            'name' => $request->item['name'],
+            'avatar' => $request->item['avatar'],
+            'phone' => $request->item['phone'],
+            'email' => $request->item['email'],
+            'status' => $request->item['status'] ? $request->item['status'] : 'Active',
+            'password' => Hash::make($new_pass),
         ]);
 
         if ($add) {
-            foreach ($request->roles as $role_id) {
+            foreach ($request->item['roles'] as $role) {
                 UserRole::create([
                     'user_id' => $add->id,
-                    'role_id' => $role_id
+                    'role_id' => $role['id']
                 ]);
             }
 
-            Image::create([
-                'type' => 'User',
-                'type_name' => 'avatar',
-                'name' => 'Avatar of ' . $add->name,
-                'path' => '/images/avatar/avatar-default.png',
-                'type_id' => $add->id,
-            ]);
-
             $user = User::find($add->id);
             $user->roles;
-            $user->avatar = $user->avatar();
+
+            $body = [
+                'name' => $user->name,
+                'avatar' => env('APP_URL') . '/users/get-avatar/' . $user->id,
+                'email' => $user->email,
+                'phone' => $user->phone,
+                'roles' => $user->roles,
+                'password' => $new_pass,
+            ];
+
+            $to = $user->email;
+
+            $send = sendMail($to, null, 'Create new user', $body, 'confirmNewUser');
+
+            $user_list = User::orderBy($sortBy['id'], $sort_by)->get();
+
+            foreach ($user_list as $v) {
+                $v->roles;
+                $v->avatar = $v->avatar == null ? 'http://' . $_SERVER['SERVER_NAME'] . '/images/avatar/avatar-default.png' : $v->avatar;
+            }
+
+            list($user_list_show, $page_index, $page_size, $page_count) = filterUserList($user_list, $request->pageIndex, $request->pageSize);
 
             $response = [
                 'status' => 'success',
-                'msg' => 'Successfully added new user',
-                'data' => $user
+                'msg' => 'Lấy thành công danh sách ' . $request->type,
+                'items' => $user_list_show,
+                'pageCount' => $page_count,
+                'pageIndex' => $page_index,
+                'pageSize' => $page_size,
+                'countItems' => count($user_list_show),
+                'newUser' => $user,
+                'sendMail' => $send,
             ];
         } else {
             $response = [
@@ -272,7 +311,9 @@ class UserController extends Controller
         }
 
         $user->roles;
-        $user->avatar = $user->avatar();
+        if ($user->avatar == null) {
+            $user->avatar = 'http://' . $_SERVER['HTTP_HOST'] . '/images/avatar/avatar-default.png';
+        }
 
         return response()->json([
             'status' => 'success',
@@ -380,54 +421,82 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $response = [];
 
-        if (isset($request->password)) {
-            $update = User::find($id)->update([
-                'name' => $request->name,
-                'address' => $request->address,
-                'phone' => $request->phone,
-                'gender' => $request->gender,
-                'birthday' => $request->birthday,
-                'email' => $request->email,
-                'status' => $request->status,
-                'password' => Hash::make($request->password)
-            ]);
+        if (isset($request->sortBy)) {
+            $sortBy = $request->sortBy[0];
+            $sort_by = $sortBy['desc'] ? 'desc' : 'asc';
         } else {
-            $update = User::find($id)->update([
-                'name' => $request->name,
-                'address' => $request->address,
-                'phone' => $request->phone,
-                'gender' => $request->gender,
-                'birthday' => $request->birthday,
-                'email' => $request->email,
-                'status' => $request->status
-            ]);
+            $sortBy = [];
+            $sortBy = [
+                'id' => 'name'
+            ];
+            $sort_by = 'asc';
         }
+
+        $response = [];
+        $user_old = User::find($id);
+
+        if (isset($request->item['avatar']) && $request->item['avatar'] !== null) {
+            $avt = $request->item['avatar'];
+        } else {
+            $avt = $user_old['avatar'];
+        }
+
+        $update = User::whereId($id)->update([
+            'name' => $request->item['name'],
+            'avatar' => $avt,
+            'address' => $request->item['address'],
+            'phone' => $request->item['phone'],
+            'email' => $request->item['email'],
+            'status' => $request->item['status'],
+        ]);
 
         if ($update) {
 
             UserRole::where('user_id', $id)->delete();
-            foreach ($request->roles as $role_id) {
+            foreach ($request->item['roles'] as $role) {
                 UserRole::create([
                     'user_id' => $id,
-                    'role_id' => $role_id
+                    'role_id' => $role['id']
                 ]);
             }
 
             $user = User::find($id);
             $user->roles;
-            $user->avatar = $user->avatar();
+
+            $body = [
+                'name' => $user->name,
+                'avatar' => env('APP_URL') . '/users/get-avatar/' . $user->id,
+                'email' => $user->email,
+                'phone' => $user->phone,
+                'roles' => $user->roles,
+            ];
+
+            $to = $user->email;
+
+            $send = sendMail($to, null, 'Edit user', $body, 'confirmEditUser');
+
+            $user_list = User::orderBy($sortBy['id'], $sort_by)->get();
+            foreach ($user_list as $v) {
+                $v->roles;
+                $v->avatar = $v->avatar == null ? 'http://' . $_SERVER['SERVER_NAME'] . '/images/avatar/avatar-default.png' : $v->avatar;
+            }
+            list($user_list_show, $page_index, $page_size, $page_count) = filterUserList($user_list, $request->pageIndex, $request->pageSize);
 
             $response = [
                 'status' => 'success',
-                'msg' => 'Update "' . $request->name . '" completed.',
-                'data' => $user
+                'msg' => 'Lấy thành công danh sách ' . $request->type,
+                'items' => $user_list_show,
+                'pageCount' => $page_count,
+                'pageIndex' => $page_index,
+                'pageSize' => $page_size,
+                'countItems' => count($user_list_show),
+                'sendMail' => $send,
             ];
         } else {
             $response = [
                 'status' => 'failed',
-                'msg' => 'Update "' . $request->name . '" failed',
+                'msg' => 'Update "' . $request->item->name . '" failed',
             ];
         }
 
@@ -573,6 +642,64 @@ class UserController extends Controller
                 'msg' => 'Add new user fail',
             ];
         }
+
+        return response()->json($response);
+    }
+
+    public function deleteList(Request $request)
+    {
+        if (isset($request->sortBy)) {
+            $sortBy = $request->sortBy[0];
+            $sort_by = $sortBy['desc'] ? 'desc' : 'asc';
+        } else {
+            $sortBy = [];
+            $sortBy = [
+                'id' => 'name'
+            ];
+            $sort_by = 'asc';
+        }
+
+        $check = [];
+        $list_user_del = [];
+        $list_email_del = [];
+
+        foreach ($request->ids as $id) {
+            $user = User::find($id);
+            $del = User::whereId($id)->delete();
+            if ($del) {
+                $list_user_del[] = $user;
+                $list_email_del[] = $user->email;
+            } else {
+                $check[] = $id;
+            }
+        }
+
+        $body = [
+            'list_user_del' => $list_user_del,
+        ];
+
+        $to = implode(", ", $list_email_del);
+
+        $send = sendMail($to, null, 'Delete users', $body, 'confirmDeleteUser');
+
+        $user_list = User::orderBy($sortBy['id'], $sort_by)->get();
+
+        foreach ($user_list as $v) {
+            $v->roles;
+            $v->avatar = $v->avatar == null ? 'http://' . $_SERVER['SERVER_NAME'] . '/images/avatar/avatar-default.png' : $v->avatar;
+        }
+        list($user_list_show, $page_index, $page_size, $page_count) = filterUserList($user_list, $request->pageIndex, $request->pageSize);
+
+        $response = [
+            'status' => 'success',
+            'msg' => 'Xóa thành công người dùng',
+            'items' => $user_list_show,
+            'pageCount' => $page_count,
+            'pageIndex' => $page_index,
+            'pageSize' => $page_size,
+            'countItems' => count($user_list_show),
+            'sendMail' => $send,
+        ];
 
         return response()->json($response);
     }

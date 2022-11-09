@@ -34,20 +34,33 @@ class SeasonController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @OA\Post(
+     *      path="/api/seasons",
+     *      operationId="newSeason",
+     *      tags={"Seasons"},
+     *      summary="New Season",
+     *      description="",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="name",
+     *                     type="string"
+     *                 ),
+     *                 example={"name": "2023",}
+     *             )
+     *         )
+     *     ),
+     *       @OA\Response(response=400, description="Bad request"),
+     *       security={
+     *           {"api_key_security_example": {}}
+     *       }
+     *     )
      */
     public function store(Request $request)
     {
@@ -55,35 +68,71 @@ class SeasonController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Season  $season
-     * @return \Illuminate\Http\Response
+     * @OA\Get(
+     *      path="/api/seasons/{id}",
+     *      operationId="getSeasonDetails",
+     *      tags={"Seasons"},
+     *      summary="show Season",
+     *      description="",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Parameter(
+     *            name="id",
+     *            description="season_id",
+     *            example="1",
+     *            required=false,
+     *            in="path",
+     *            @OA\Schema(
+     *                type="integer"
+     *            )
+     *        ),
+     *       @OA\Response(response=400, description="Bad request"),
+     *       security={
+     *           {"api_key_security_example": {}}
+     *       }
+     *     )
      */
     public function show(Season $season)
     {
-        //
+        return response()->json([
+            'status' => 'success',
+            'msg' => 'Season details',
+            'data' => $season
+        ]);
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Season  $season
-     * @return \Illuminate\Http\Response
+     * @OA\Patch(
+     *      path="/api/seasons/{id}",
+     *      operationId="updateSeason",
+     *      tags={"Seasons"},
+     *      summary="Update Season",
+     *      description="",
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\RequestBody(
+     *         @OA\MediaType(
+     *             mediaType="application/json",
+     *             @OA\Schema(
+     *                 @OA\Property(
+     *                     property="name",
+     *                     type="string"
+     *                 ),
+     *                 example={"name": "2023",}
+     *             )
+     *         )
+     *     ),
+     *       @OA\Response(response=400, description="Bad request"),
+     *       security={
+     *           {"api_key_security_example": {}}
+     *       }
+     *     )
      */
-    public function edit(Season $season)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Season  $season
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Season $season)
+    public function update(Request $request, $id)
     {
         //
     }
