@@ -213,5 +213,6 @@ const vnMessages = {
   'user.check.success.email': 'Email có thể sử dụng',
   'user.check.success.name': 'Họ và tên hợp lệ',
 
+  'menu.roles': 'Loại người dùng',
 };
 export default vnMessages;

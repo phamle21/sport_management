@@ -211,5 +211,6 @@ const enMessages = {
   'user.check.success.email': 'Usable phone number',
   'user.check.success.name': 'Usable fullname',
 
+  'menu.roles': 'Roles',
 };
 export default enMessages;
