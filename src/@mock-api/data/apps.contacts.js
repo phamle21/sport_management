@@ -1,4 +1,6 @@
+import apiBase from 'app/axios/apiBase';
 import { SERVICE_URL } from 'config';
+import React from 'react';
 import api from '../api';
 
 const contactsAppData = [
@@ -8,7 +10,7 @@ const contactsAppData = [
     position: 'Project Manager',
     email: 'me@blainecottrell.com',
     phone: '+6443884455',
-    group: 'Work',
+    roles: ['abc', 'abc'],
     thumb: '/img/profile/profile-1.webp',
   },
   {
@@ -17,7 +19,7 @@ const contactsAppData = [
     position: 'Accounting',
     email: 'contact@kirbypeters.com',
     phone: '+643451134',
-    group: 'Work',
+    roles: ['Work'],
     thumb: '/img/profile/profile-2.webp',
   },
   {
@@ -26,7 +28,7 @@ const contactsAppData = [
     position: 'Client Relations Lead',
     email: 'olli_hawkins@gmail.com',
     phone: '+648751212',
-    group: 'Personal',
+    roles: ['Personal'],
     thumb: '/img/profile/profile-3.webp',
   },
   {
@@ -35,7 +37,7 @@ const contactsAppData = [
     position: 'UX Designer',
     email: 'joissekaycee@gmail.com',
     phone: '+649023571',
-    group: 'Work',
+    roles: ['Work'],
     thumb: '/img/profile/profile-4.webp',
   },
   {
@@ -44,7 +46,7 @@ const contactsAppData = [
     position: 'Frontend Developer',
     email: 'zaynhartley@zaynhartley.com',
     phone: '+642359205',
-    group: 'Personal',
+    roles: ['Personal'],
     thumb: '/img/profile/profile-5.webp',
   },
   {
@@ -53,7 +55,7 @@ const contactsAppData = [
     position: 'Project Manager',
     email: 'esperanzalodge@msn.com',
     phone: '+649332310',
-    group: 'Work',
+    roles: ['Work'],
     thumb: '/img/profile/profile-6.webp',
   },
   {
@@ -62,7 +64,7 @@ const contactsAppData = [
     position: 'Executive Team Leader',
     email: 'kathrynmengel@gmail.com',
     phone: '+644924420',
-    group: 'Work',
+    roles: ['Work'],
     thumb: '/img/profile/profile-7.webp',
   },
   {
@@ -71,7 +73,7 @@ const contactsAppData = [
     position: 'Development Lead',
     email: 'me@cherish.com',
     phone: '+649371222',
-    group: 'Personal',
+    roles: ['Personal'],
     thumb: '/img/profile/profile-8.webp',
   },
   {
@@ -80,7 +82,7 @@ const contactsAppData = [
     position: 'Mechanics Lead',
     email: 'winry@winryrockbell.com',
     phone: '+643449073',
-    group: 'Work',
+    roles: ['Work'],
     thumb: '/img/profile/profile-9.webp',
   },
   {
@@ -89,7 +91,7 @@ const contactsAppData = [
     position: '3D Designer',
     email: 'elsie@elsiepernilla.com',
     phone: '+644429098',
-    group: 'Personal',
+    roles: ['Personal'],
     thumb: '/img/profile/profile-3.webp',
   },
   {
@@ -98,7 +100,7 @@ const contactsAppData = [
     position: 'Project Manager',
     email: 'Gresham@Jeanette.com',
     phone: '+649073732',
-    group: 'Work',
+    roles: ['Work'],
     thumb: '/img/profile/profile-8.webp',
   },
   {
@@ -107,7 +109,7 @@ const contactsAppData = [
     position: 'UX Designer Lead',
     email: 'me@sixtetera.com',
     phone: '+641084211',
-    group: 'Work',
+    roles: ['Work'],
     thumb: '/img/profile/profile-5.webp',
   },
   {
@@ -116,7 +118,7 @@ const contactsAppData = [
     position: 'Tester',
     email: 'aliciashannah@msn.com',
     phone: '+647843431',
-    group: 'Work',
+    roles: ['Work'],
     thumb: '/img/profile/profile-7.webp',
   },
   {
@@ -125,7 +127,7 @@ const contactsAppData = [
     position: 'Tester',
     email: 'hi@emiliaantoine.com',
     phone: '+641294829',
-    group: 'Personal',
+    roles: ['Personal'],
     thumb: '/img/profile/profile-1.webp',
   },
   {
@@ -134,7 +136,7 @@ const contactsAppData = [
     position: 'Developer Intern',
     email: 'mickeyfianna@elsiepernilla.com',
     phone: '+649873209',
-    group: 'Personal',
+    roles: ['Personal'],
     thumb: '/img/profile/profile-9.webp',
   },
   {
@@ -143,14 +145,17 @@ const contactsAppData = [
     position: 'Client Relations',
     email: 'kathleenbertha@outlook.com',
     phone: '+643452345',
-    group: 'Work',
+    roles: ['Work'],
     thumb: '/img/profile/profile-4.webp',
   },
 ];
+
 api.onGet(`${SERVICE_URL}/apps/contacts`).reply((config) => {
   const { term, sortBy, pageSize, pageIndex } = config.params;
 
-  let dataList = [...contactsAppData];
+  let dataList = [];
+
+  dataList = [...contactsAppData];
 
   if (term && term.length > 1) {
     dataList = contactsAppData.filter(
@@ -159,7 +164,7 @@ api.onGet(`${SERVICE_URL}/apps/contacts`).reply((config) => {
         data.position.toLowerCase().includes(term.toLowerCase()) ||
         data.email.toLowerCase().includes(term.toLowerCase()) ||
         data.phone.toLowerCase().includes(term.toLowerCase()) ||
-        data.group.toLowerCase().includes(term.toLowerCase())
+        data.roles.toLowerCase().includes(term.toLowerCase())
     );
   }
 
@@ -186,6 +191,7 @@ api.onGet(`${SERVICE_URL}/apps/contacts`).reply((config) => {
 
   return [200, { ...data }];
 });
+
 api.onPost(`${SERVICE_URL}/apps/contacts`).reply((config) => {
   const requestData = JSON.parse(config.data);
   const { item, sortBy, pageSize, pageIndex } = requestData;
@@ -217,6 +223,7 @@ api.onPost(`${SERVICE_URL}/apps/contacts`).reply((config) => {
 
   return [200, { ...data }];
 });
+
 api.onPut(`${SERVICE_URL}/apps/contacts`).reply((config) => {
   const requestData = JSON.parse(config.data);
   const { item, sortBy, pageSize, pageIndex } = requestData;
@@ -247,6 +254,7 @@ api.onPut(`${SERVICE_URL}/apps/contacts`).reply((config) => {
 
   return [200, { ...data }];
 });
+
 api.onDelete(`${SERVICE_URL}/apps/contacts`).reply((config) => {
   const { ids, sortBy, pageSize, pageIndex } = config;
 

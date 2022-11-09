@@ -1,4 +1,6 @@
 const vnMessages = {
+  'system.name': 'Quản lý các giải đấu thể thao',
+
   'menu.dashboards': 'Bảng điều khiển',
   'menu.default': 'Mặc định',
   'menu.visual': 'Trực quan',
@@ -52,7 +54,7 @@ const vnMessages = {
   'menu.button-group': 'Nhóm các nút',
   'menu.card': 'Thẻ',
   'menu.close-button': 'Nút đóng',
-  'menu.collapse': 'Biến thể/tan rã', 
+  'menu.collapse': 'Biến thể/tan rã',
   'menu.dropdowns': 'Thả xuống',
   'menu.list-group': 'Nhóm các danh sách',
   'menu.modal': 'Phương thức',
@@ -62,7 +64,7 @@ const vnMessages = {
   'menu.popovers': 'Cửa sổ bật lên',
   'menu.progress': 'Tiến trình',
   'menu.spinners': 'Con quay',
-  'menu.toasts': 'Toasts', 
+  'menu.toasts': 'Toasts',
   'menu.tooltips': 'Chú giải công cụ',
   'menu.forms': 'Biểu mẫu',
   'menu.layouts': 'Bố cục',
@@ -173,5 +175,43 @@ const vnMessages = {
   'menu.player': 'Người chơi',
   'menu.material': 'Tài liệu',
   'menu.syllabus': 'Giáo trình',
+  'menu.create': 'Tạo mới',
+
+  // User
+  'user.title_list': 'Danh sách người dùng',
+  'user.table_head_name': 'Họ và tên',
+  'user.search': 'Tìm kiếm',
+  'user.adduser': 'Thêm người dùng',
+  'user.delete': 'Xóa',
+  'user.model_delete_title': 'Xác nhận',
+  'user.model_delete_content': 'sẽ bị xóa. Bạn có chắc không?',
+  'user.model_delete_yes': 'Đồng ý',
+  'user.model_delete_no': 'Không',
+  'user.model_delete_item': 'mục',
+  'user.create_success': 'Tạo người dùng mới thành công',
+  'user.edit_success': 'Chỉnh sửa người dùng thành công',
+  'user.delete_success': 'Xóa người dùng mới thành công',
+  'user.create_err': 'New user creation failed',
+  'user.edit_err': 'New user edit failed',
+  'user.delete_err': 'New user deletion failed',
+  'user.submit_false_title': 'Xảy ra lỗi!',
+  'user.submit_false_html': 'Hãy kiểm tra và chắc chắn đã điền hết các trường!',
+
+  'user.check.err.avatar': 'Chưa có avatar',
+  'user.check.err.status': 'Chưa chọn status',
+  'user.check.err.name': 'Tên không hợp lệ',
+  'user.check.err.email': 'Email không hợp lệ',
+  'user.check.err.email_exists': 'Email đã tồn tại',
+  'user.check.err.phone': 'Invalid phone number',
+  'user.check.err.phone_exists': 'Số điện thoại đã tồn tại',
+  'user.check.err.roles': 'Vui lòng chọn roles',
+
+  'user.check.warning.phone': 'Đang kiểm tra...',
+  'user.check.warning.email': 'Đang kiểm tra...',
+
+  'user.check.success.phone': 'Số điện thoại có thể sử dụng',
+  'user.check.success.email': 'Email có thể sử dụng',
+  'user.check.success.name': 'Họ và tên hợp lệ',
+
 };
 export default vnMessages;

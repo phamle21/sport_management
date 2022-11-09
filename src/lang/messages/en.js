@@ -1,4 +1,5 @@
 const enMessages = {
+  'system.name': 'Sports Tournaments Management',
   'menu.dashboards': 'Dashboards',
   'menu.default': 'Default',
   'menu.visual': 'Visual',
@@ -173,5 +174,42 @@ const enMessages = {
   'menu.player': 'Player',
   'menu.material': 'Material',
   'menu.syllabus': 'Syllabus',
+  'menu.create': 'Create',
+
+  // User
+  'user.title_list': 'User List',
+  'user.table_head_name': 'Name',
+  'user.search': 'Search',
+  'user.adduser': 'Add User',
+  'user.delete': 'Delete',
+  'user.model_delete_title': 'Confirmation',
+  'user.model_delete_content': 'will be deleted. Are you sure?',
+  'user.model_delete_yes': 'Yes',
+  'user.model_delete_no': 'No',
+  'user.create_success': 'Successfully created new user',
+  'user.edit_success': 'Successfully edited user',
+  'user.delete_success': 'Successfully deleted user',
+  'user.create_err': 'New user creation failed',
+  'user.edit_err': 'New user edit failed',
+  'user.delete_err': 'New user deletion failed',
+  'user.submit_false_title': 'STOP!',
+  'user.submit_false_html': 'Please check all fields input!',
+
+  'user.check.err.avatar': 'Invalid avatar',
+  'user.check.err.status': 'Invalid status',
+  'user.check.err.name': 'Invalid name',
+  'user.check.err.email': 'Invalid email',
+  'user.check.err.email_exists': 'Email already exists',
+  'user.check.err.phone': 'Invalid phone number',
+  'user.check.err.phone_exists': 'Phone number already exists',
+  'user.check.err.roles': 'Please select roles',
+
+  'user.check.warning.phone': 'Checking...',
+  'user.check.warning.email': 'Checking...',
+
+  'user.check.success.phone': 'Usable email',
+  'user.check.success.email': 'Usable phone number',
+  'user.check.success.name': 'Usable fullname',
+
 };
 export default enMessages;

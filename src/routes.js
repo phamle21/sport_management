@@ -9,6 +9,9 @@ const dashboards = {
   visual: lazy(() => import('views/dashboards/DashboardsVisual')),
   analytic: lazy(() => import('views/dashboards/DashboardsAnalytic')),
 };
+const users = {
+  list: lazy(() => import('views/users/Users')),
+};
 const apps = {
   index: lazy(() => import('views/apps/Apps')),
   calendar: lazy(() => import('views/apps/calendar/Calendar')),
@@ -46,7 +49,7 @@ const pages = {
   },
   portfolio: {
     index: lazy(() => import('views/pages/portfolio/Portfolio')),
-    home:  lazy(() => import('views/pages/portfolio/PortfolioHome')),
+    home: lazy(() => import('views/pages/portfolio/PortfolioHome')),
     detail: lazy(() => import('views/pages/portfolio/PortfolioDetail')),
   },
   profile: {
@@ -149,7 +152,7 @@ const interfaces = {
     typography: lazy(() => import('views/interface/content/Typography')),
     menu: {
       index: lazy(() => import('views/interface/content/menu/Menu')),
-      horizontal:  lazy(() => import('views/interface/content/menu/Horizontal')),
+      horizontal: lazy(() => import('views/interface/content/menu/Horizontal')),
       vertical: lazy(() => import('views/interface/content/menu/Vertical')),
       verticalHidden: lazy(() => import('views/interface/content/menu/VerticalHidden')),
       verticalNoHidden: lazy(() => import('views/interface/content/menu/VerticalNoHidden')),
@@ -174,10 +177,21 @@ const routesAndMenuItems = {
       component: dashboards.index,
       label: 'menu.dashboards',
       icon: 'home',
-       subs: [
+      subs: [
         { path: '/default', label: 'menu.default', component: dashboards.default },
         { path: '/visual', label: 'menu.visual', component: dashboards.visual },
         { path: '/analytic', label: 'menu.analytic', component: dashboards.analytic },
+      ],
+    },
+    {
+      path: `${appRoot}/users`,
+      label: 'menu.users',
+      icon: 'screen',
+      exact: true,
+      redirect: true,
+      to: `${appRoot}/users/list`,
+      subs: [
+        { path: '/list', label: 'menu.users', component: users.list },
       ],
     },
     {

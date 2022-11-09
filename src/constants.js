@@ -47,4 +47,4 @@ export const USER_ROLE = {
   Editor: 'editor',
 };
 
-export const API_URL = 'http://localhost:8000';
+export const API_URL = 'http://sport_management.local';

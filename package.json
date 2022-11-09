@@ -39,6 +39,7 @@
     "react-albus": "^2.0.0",
     "react-autosuggest": "^10.1.0",
     "react-bootstrap": "^2.0.0-rc.0",
+    "react-bootstrap-multiselect": "^2.4.1",
     "react-circular-progressbar": "^2.0.4",
     "react-contexify": "^5.0.0",
     "react-countdown": "^2.3.2",
@@ -66,6 +67,7 @@
     "recoil": "^0.7.6",
     "reduxjs-toolkit-persist": "^7.0.1",
     "sortablejs": "^1.14.0",
+    "sweetalert2": "^11.6.5",
     "web-vitals": "^0.2.4",
     "yup": "^0.32.9"
   },
