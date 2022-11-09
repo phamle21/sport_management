@@ -1,10 +1,10 @@
-import React from 'react';
-import { Button, Row, Col, Card, ProgressBar } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
-import Rating from 'react-rating';
-import HtmlHead from 'components/html-head/HtmlHead';
 import BreadcrumbList from 'components/breadcrumb-list/BreadcrumbList';
+import HtmlHead from 'components/html-head/HtmlHead';
 import CsLineIcons from 'cs-line-icons/CsLineIcons';
+import React from 'react';
+import { Button, Card, Col, ProgressBar, Row } from 'react-bootstrap';
+import Rating from 'react-rating';
+import { NavLink } from 'react-router-dom';
 
 const DashboardsVisual = () => {
   const title = 'Visual Dasboard';
@@ -14,6 +14,7 @@ const DashboardsVisual = () => {
     { to: '', text: 'Home' },
     { to: 'dashboards', text: 'Dashboards' },
   ];
+  
 
   return (
     <>

@@ -1,7 +1,7 @@
 /* eslint-disable */
-import { lazy } from 'react';
-import { USER_ROLE } from 'constants.js';
 import { DEFAULT_PATHS } from 'config.js';
+import { USER_ROLE } from 'constants.js';
+import { lazy } from 'react';
 
 const dashboards = {
   index: lazy(() => import('views/dashboards/Dashboards')),
@@ -19,6 +19,9 @@ const apps = {
   contacts: lazy(() => import('views/apps/contacts/Contacts')),
   mailbox: lazy(() => import('views/apps/mailbox/Mailbox')),
   tasks: lazy(() => import('views/apps/tasks/Tasks')),
+};
+const roles = {
+  index: lazy(() => import('views/roles/RoleList')),
 };
 const pages = {
   index: lazy(() => import('views/pages/Pages')),
@@ -162,6 +165,7 @@ const interfaces = {
   },
 };
 
+
 const appRoot = DEFAULT_PATHS.APP.endsWith('/') ? DEFAULT_PATHS.APP.slice(1, DEFAULT_PATHS.APP.length) : DEFAULT_PATHS.APP;
 
 const routesAndMenuItems = {
@@ -190,7 +194,16 @@ const routesAndMenuItems = {
       to: `${appRoot}/users/list`,
       subs: [
         { path: '/list', label: 'menu.users', component: users.list },
-      ],
+      ]
+    },
+    {
+      path: `${appRoot}/roles`,
+      component: roles.index,
+      label: 'menu.roles',
+      icon: 'user',
+       subs: [
+        { path: '/list', label: 'menu.list', component: roles.index },
+      ]
     },
     {
       path: `${appRoot}/apps`,

@@ -47,4 +47,4 @@ export const USER_ROLE = {
   Editor: 'editor',
 };
 
-export const API_URL = 'http://sport_management.local';
+export const API_URL = 'http://948a-113-178-237-38.ngrok.io';
