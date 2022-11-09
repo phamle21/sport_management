@@ -207,8 +207,8 @@ const enMessages = {
   'user.check.warning.phone': 'Checking...',
   'user.check.warning.email': 'Checking...',
 
-  'user.check.success.phone': 'Usable email',
-  'user.check.success.email': 'Usable phone number',
+  'user.check.success.email': 'Usable email',
+  'user.check.success.phone': 'Usable phone number',
   'user.check.success.name': 'Usable fullname',
 
 };

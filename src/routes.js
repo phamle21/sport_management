@@ -178,8 +178,6 @@ const routesAndMenuItems = {
       label: 'menu.dashboards',
       icon: 'home',
       subs: [
-        { path: '/default', label: 'menu.default', component: dashboards.default },
-        { path: '/visual', label: 'menu.visual', component: dashboards.visual },
         { path: '/analytic', label: 'menu.analytic', component: dashboards.analytic },
       ],
     },
