@@ -4,12 +4,16 @@ import React, { useState } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'react-toastify/dist/ReactToastify.css';
+import { useRecoilState } from 'recoil';
+import { roleListState } from 'store_recoil';
 
-const ModalAddRole = ({show, onHide, setRoleList}) => {
+const ModalAddRole = ({show, onHide}) => {
 
     const [roleName, setRoleName] = useState();
 
     const [roleDes, setRoleDes] = useState();
+
+    const [roleList, setRoleList] = useRecoilState(roleListState);
 
     const hanldeSave = () => {
         apiBase.post('/roles', {

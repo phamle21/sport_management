@@ -4,6 +4,8 @@ import HtmlHead from 'components/html-head/HtmlHead';
 import CsLineIcons from 'cs-line-icons/CsLineIcons';
 import React, { useEffect, useState } from 'react';
 import { Card, Col, Row } from 'react-bootstrap';
+import { useRecoilState } from 'recoil';
+import { roleListState } from 'store_recoil';
 import ModalAddRole from './components/ModalAddRole';
 import ModalEditRole from './components/ModalEditRole';
 
@@ -16,7 +18,7 @@ const RoleList = () => {
         { to: 'roles', text: 'Loại người dùng' },
     ];
 
-    const [roleList, setRoleList] = useState();
+    const [roleList, setRoleList] = useRecoilState(roleListState);
 
     const [role, setRole] = useState();
     
@@ -36,9 +38,11 @@ const RoleList = () => {
     const hanldeHideEditModal = () => setShowEditModal(false);
 
     useEffect(() => {
-        apiBase.get('/roles').then((res) => {
-            setRoleList(res.data.data);
-        }).catch((err) => console.log(err));
+        if(roleList.length < 1) {
+            apiBase.get('/roles').then((res) => {
+                setRoleList(res.data.data);
+            }).catch((err) => console.log(err));
+        }
     },[]);
 
     return (
@@ -106,7 +110,7 @@ const RoleList = () => {
 
         { 
             // Modal Add Start
-            <ModalEditRole show={showEditModal} setRoleList={setRoleList()} onHide={hanldeHideEditModal} data={role}/>
+            <ModalEditRole show={showEditModal} onHide={hanldeHideEditModal} data={role}/>
             // Modal Add End
         }
        </>
