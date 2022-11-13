@@ -11,4 +11,8 @@ class HomeController extends Controller
     {
         return view('client.index.index');
     }
+
+    public function contact(){
+        return view('client.contact');
+    }
 }

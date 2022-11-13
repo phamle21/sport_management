@@ -48,12 +48,12 @@
     <!-- ==========Header Section Ends Here========== -->
 
 
-
-
-
     <!-- ================ Body Content =============== -->
-    @yield('body_content')
+    <div id="body-content">
+        @yield('body_content')
+    </div>
     <!-- ================ /Body Content =============== -->
+
 
 
 
@@ -254,7 +254,6 @@
     <script src="{{ asset('assets/js/vendor/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/plugins.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
-    @yield('js')
 
     <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
     <script>
@@ -270,6 +269,12 @@
     </script>
     <script src="https://www.google-analytics.com/analytics.js" async></script>
 
+    {{-- // Calulator height header --}}
+    <script>
+        $('#body-content').css('padding-top', $('.header-section').innerHeight());
+    </script>
+
+    @yield('js')
 </body>
 
 </html>

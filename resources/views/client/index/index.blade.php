@@ -2,7 +2,7 @@
 
 @section('body_content')
     <!-- ===========Banner Section start Here========== -->
-    <section class="banner-section" style="background-image: url(assets/images/banner/bg.jpg);">
+    <section class="banner-section" id="banner-index" style="background-image: url(assets/images/banner/bg.jpg);">
         <div class="container">
             <div class="">
                 <div class="banner-content text-center">
@@ -21,7 +21,8 @@
                                 alt="banner-thumb"></a>
                     </div>
                     <div class="banner-thumb-vs">
-                        <img src="https://png.pngtree.com/png-vector/20220914/ourmid/pngtree-red-blue-vs-glowing-metal-transparent-font-png-image_6174880.png" style="max-width: 250px" alt="banner-thumb">
+                        <img src="https://png.pngtree.com/png-vector/20220914/ourmid/pngtree-red-blue-vs-glowing-metal-transparent-font-png-image_6174880.png"
+                            style="max-width: 250px" alt="banner-thumb">
                     </div>
                     <div class="banner-thumb-img mr-xl-50-none">
                         <a href="team-single.html"><img
@@ -1258,4 +1259,10 @@
         </div>
     </div>
     <!-- ===========Testimonial Section Ends Here========== -->
+@endsection
+
+@section('js')
+    <script>
+        $('#body-content').css('padding-top', 0);
+    </script>
 @endsection

@@ -4,7 +4,7 @@
         $('.preloader').fadeOut(1000);
     });
 
-    // lightcase 
+    // lightcase
     $('a[data-rel^=lightcase]').lightcase();
 
     $(document).ready(function () {
@@ -75,12 +75,20 @@
                         'opacity': '1',
                         'transition': 'all .5s ease'
                     });
+                    $('#header-logo').css({
+                        'width': '100px',
+                        'max-witdh': '100px',
+                    });
                 } else {
                     $('.scrollToTop').css({
                         'bottom': '-30%',
                         'opacity': '0',
                         'transition': 'all .5s ease'
-                    })
+                    });
+                    $('#header-logo').css({
+                        'width': '200px',
+                        'max-witdh': '200px',
+                    });
                 }
             });
 
@@ -162,7 +170,7 @@
                 itemSelector: '.gameListItem',
                 layoutMode: 'fitRows',
             });
-            
+
             // filter functions
             var filterFns = {
                 // show if number is greater than 50
@@ -171,7 +179,7 @@
                 return parseInt( number, 10 ) > 50;
                 },
             };
-            
+
             // bind filter button click
             $('.collection-filter-button-group').on( 'click', 'li', function() {
                 var filterValue = $( this ).attr('data-filter');
@@ -179,8 +187,8 @@
                 filterValue = filterFns[ filterValue ] || filterValue;
                 $grid.isotope({ filter: filterValue });
             });
-            
-            
+
+
             // change is-checked class on buttons
             $('.collection-filter-button-group').each( function( i, buttonGroup ) {
                 var $buttonGroup = $( buttonGroup );
@@ -198,7 +206,7 @@
                 itemSelector: '.matchlistitem',
                 layoutMode: 'fitRows',
             });
-            
+
             // filter functions
             var filterFns = {
                 // show if number is greater than 50
@@ -207,7 +215,7 @@
                 return parseInt( number, 10 ) > 50;
                 },
             };
-            
+
             // bind filter button click
             $('.match-filter-button-group').on( 'click', 'li', function() {
                 var filterValue = $( this ).attr('data-filter');
@@ -215,8 +223,8 @@
                 filterValue = filterFns[ filterValue ] || filterValue;
                 $grid.isotope({ filter: filterValue });
             });
-            
-            
+
+
             // change is-checked class on buttons
             $('.match-filter-button-group').each( function( i, buttonGroup ) {
                 var $buttonGroup = $( buttonGroup );
@@ -238,7 +246,7 @@
                     columnWidth: 0,
                 }
             });
-            
+
             // filter functions
             var filterFns = {
                 // show if number is greater than 50
@@ -247,7 +255,7 @@
                 return parseInt( number, 10 ) > 50;
                 },
             };
-            
+
             // bind filter button click
             $('.gallery-filter').on( 'click', 'li', function() {
                 var filterValue = $( this ).attr('data-filter');
@@ -255,8 +263,8 @@
                 filterValue = filterFns[ filterValue ] || filterValue;
                 $grid.isotope({ filter: filterValue });
             });
-            
-            
+
+
             // change is-checked class on buttons
             $('.gallery-filter').each( function( i, buttonGroup ) {
                 var $buttonGroup = $( buttonGroup );
@@ -302,7 +310,7 @@
 
 
         // shop sidebar menu
-        
+
         $(".shop-menu>li>ul").parent("li").addClass("catmenu-item-has-children");
         $('.shop-menu li a').on('click', function (e) {
             var element = $(this).parent('li');
@@ -365,7 +373,7 @@
                 },
             });
         });
-        
+
         //Review Tabs
         $('ul.review-nav').on('click', 'li', function (e) {
             e.preventDefault();

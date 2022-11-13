@@ -28,3 +28,6 @@ Route::get('/languages/{language}', function ($language) {
 
 // Home
 Route::get('/', [HomeController::class, 'index']);
+
+// Contact
+Route::get('/contact', [HomeController::class, 'contact']);

@@ -4,7 +4,7 @@
             <div class="brand-logo d-none d-lg-inline-block">
                 <div class="logo">
                     <a href="/">
-                        <img src="{{ asset('assets/images/logo.png') }}" style="max-width: 200px" alt="logo">
+                        <img id="header-logo" src="{{ asset('assets/images/logo.png') }}" style="max-width: 200px" alt="logo">
                     </a>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                 <div class="header-bottom">
                     <div class="header-wrapper justify-content-lg-end">
                         <div class="mobile-logo d-lg-none">
-                            <a href="index.html"><img src="{{ asset('assets/images/logo/logo.png') }}"
+                            <a href="index"><img src="{{ asset('assets/images/logo/logo.png') }}"
                                     alt="logo"></a>
                         </div>
                         <div class="menu-area">
@@ -45,21 +45,21 @@
                                 <li>
                                     <a href="#0">Features</a>
                                     <ul class="submenu">
-                                        <li><a href="about.html">About</a></li>
-                                        <li><a href="gallery.html">gallery</a></li>
+                                        <li><a href="/about">About</a></li>
+                                        <li><a href="/gallery">gallery</a></li>
                                         <li>
                                             <a href="#0">games</a>
                                             <ul class="submenu">
-                                                <li><a href="game-list.html">game list 1</a></li>
-                                                <li><a href="game-list2.html">game list 2</a></li>
+                                                <li><a href="/game-list">game list 1</a></li>
+                                                <li><a href="/game-list2">game list 2</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="partners.html">partners</a></li>
+                                        <li><a href="/partners">partners</a></li>
                                         <li>
                                             <a href="#0">teams</a>
                                             <ul class="submenu">
-                                                <li><a href="team.html">team</a></li>
-                                                <li><a href="team-single.html">team single</a></li>
+                                                <li><a href="/team">team</a></li>
+                                                <li><a href="/team-single">team single</a></li>
                                             </ul>
                                         </li>
                                         <li>
@@ -72,30 +72,33 @@
                                         <li>
                                             <a href="#0">Shop</a>
                                             <ul class="submenu">
-                                                <li><a href="shop.html">shop</a></li>
-                                                <li><a href="shop-single.html">Shop Details</a></li>
-                                                <li><a href="cart-page.html">Cart Page</a></li>
+                                                <li><a href="/shop">shop</a></li>
+                                                <li><a href="/shop-single">Shop Details</a></li>
+                                                <li><a href="/cart-page">Cart Page</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="404.html">404 Page</a></li>
+                                        <li><a href="/404">404 Page</a></li>
 
                                     </ul>
                                 </li>
-                                <li><a href="achievements.html">achievement</a></li>
+                                <li><a href="/achievements">achievement</a></li>
                                 <li>
                                     <a href="#0">Blog</a>
                                     <ul class="submenu">
-                                        <li><a href="blog.html">Blog</a></li>
-                                        <li><a href="blog-2.html">Blog 2</a></li>
-                                        <li><a href="blog-single.html">Blog Single</a></li>
+                                        <li><a href="/blog">Blog</a></li>
+                                        <li><a href="/blog-2">Blog 2</a></li>
+                                        <li><a href="/blog-single">Blog Single</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="contact.html">Contact</a></li>
+                                <li><a href="/contact">Contact</a></li>
                             </ul>
-                            <a href="login.html" class="login"><i class="icofont-user"></i> <span>LOG IN</span>
+                            <a href="login" class="login">
+                                <i class="icofont-user"></i>
+                                <span>{{ __('message.login') }}</span>
                             </a>
-                            <a href="signup.html" class="signup"><i class="icofont-users"></i> <span>SIGN
-                                    UP</span></a>
+                            <a href="signup" class="signup">
+                                <i class="icofont-users"></i>
+                                <span>{{ __('message.register') }}</span></a>
 
                             <!-- toggle icons -->
                             <div class="header-bar d-lg-none">
