@@ -1,5 +1,6 @@
 const enMessages = {
   'system.name': 'Sports Tournaments Management',
+  'client.homepage': 'Go to user page',
   'menu.dashboards': 'Dashboards',
   'menu.default': 'Default',
   'menu.visual': 'Visual',

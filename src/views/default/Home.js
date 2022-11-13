@@ -1,5 +1,8 @@
 import React from 'react';
+import { API_URL } from 'config';
 
-const Home = () => <>This is HomePage.</>;
+const Home = () => {
+    window.location.href = API_URL;
+};
 
 export default Home;

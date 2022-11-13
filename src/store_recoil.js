@@ -5,6 +5,15 @@ const roleListState = atom({
     default: [],
 })
 
+const editRoleState = atom({
+    key: 'editRoleState',
+    default: {
+        name: "",
+        description: " ",
+    }
+})
+
 export {
+    editRoleState,
     roleListState,
 }

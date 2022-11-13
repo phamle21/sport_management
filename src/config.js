@@ -12,7 +12,7 @@ export const REACT_HELMET_PROPS = {
 };
 
 export const DEFAULT_PATHS = {
-  APP: '/',
+  APP: '/admin',
   LOGIN: '/login',
   REGISTER: '/register',
   FORGOT_PASSWORD: '/forgot-password',
@@ -42,3 +42,5 @@ export const DEFAULT_USER = {
 }
 
 export const REDUX_PERSIST_KEY = 'classic-dashboard';
+
+export const API_URL = 'http://sport_management.local';

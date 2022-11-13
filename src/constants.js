@@ -47,4 +47,3 @@ export const USER_ROLE = {
   Editor: 'editor',
 };
 
-export const API_URL = 'http://948a-113-178-237-38.ngrok.io';

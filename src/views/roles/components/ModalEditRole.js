@@ -1,20 +1,51 @@
+import apiBase from 'app/axios/apiBase';
 import CsLineIcons from 'cs-line-icons/CsLineIcons';
 import React, { useState } from 'react';
 import { Button, Form, Modal } from 'react-bootstrap';
 import 'react-datepicker/dist/react-datepicker.css';
 import 'react-toastify/dist/ReactToastify.css';
+import { useRecoilState } from 'recoil';
+import { editRoleState, roleListState } from 'store_recoil';
+import Swal from 'sweetalert2';
 
-const ModalEditRole = ({show, onHide, data}) => {
+const ModalEditRole = ({ show, onHide, data }) => {
 
-    const [roleName, setRoleName] = useState();
+    const [editRole, setEditRole] = useRecoilState(editRoleState);
 
-    const [roleDes, setRoleDes] = useState();
+    const [roleList, setRoleList] = useRecoilState(roleListState);
+
+    const handleEdit = () => {
+        apiBase.patch(`/roles/${data.id}`, {
+            name: editRole.name,
+            description: editRole.description,
+        }).then(res => {
+            if (res.data.status === 'success') {
+                setRoleList(res.data.roleList);
+                Swal.fire('Success', '', 'success');
+            } else {
+                Swal.fire('Error', '', 'error');
+            }
+            onHide();
+        })
+    }
+
+    const handleDelete = () => {
+        apiBase.delete(`/roles/${data.id}`).then(res => {
+            if (res.data.status === 'success') {
+                setRoleList(res.data.roleList);
+                Swal.fire('Success', '', 'success');
+            } else {
+                Swal.fire('Error', '', 'error');
+            }
+            onHide();
+        })
+    }
 
     return (
         <>
             <Modal show={show} onHide={onHide}>
                 <Modal.Header closeButton>
-                <Modal.Title>Cập Nhật Loại Người Dùng</Modal.Title>
+                    <Modal.Title>Cập Nhật Loại Người Dùng</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
@@ -22,31 +53,31 @@ const ModalEditRole = ({show, onHide, data}) => {
                             <CsLineIcons icon="pepper" />
                             <Form.Control
                                 autoFocus
-                                value={data && data.name}
+                                value={editRole && editRole.name}
                                 // placeholder='Tên loại người dùng'
-                                onChange={(e) => setRoleName(e.target.value)}
+                                onChange={(e) => setEditRole({ ...editRole, name: e.target.value })}
                             />
                         </div>
                         <div className="mb-4 filled">
                             <CsLineIcons icon="content" />
                             <Form.Control
-                                value={data && data.description}
+                                value={editRole && editRole.description}
                                 placeholder='Mô tả loại người dùng'
-                                onChange={(e) => setRoleDes(e.target.value)}
+                                onChange={(e) => setEditRole({ ...editRole, description: e.target.value })}
                             />
                         </div>
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                <Button variant="secondary" onClick={onHide}>
-                    Hủy
-                </Button>
-                <Button variant="danger">
-                    Xóa
-                </Button>
-                <Button onClick={() => {}}>Lưu</Button>
+                    <Button variant="secondary" onClick={onHide}>
+                        Hủy
+                    </Button>
+                    <Button onClick={handleDelete} variant="danger">
+                        Xóa
+                    </Button>
+                    <Button onClick={handleEdit}>Lưu</Button>
                 </Modal.Footer>
-            </Modal> 
+            </Modal>
         </>
     )
 }

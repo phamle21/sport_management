@@ -1,5 +1,5 @@
 import { lazy } from 'react';
-import { DEFAULT_PATHS } from 'config.js';
+import { DEFAULT_PATHS, API_URL } from 'config.js';
 
 const NotFound = lazy(() => import('views/default/NotFound'));
 const Login = lazy(() => import('views/default/Login'));
@@ -27,7 +27,9 @@ const defaultRoutes = [
   { path: DEFAULT_PATHS.UNAUTHORIZED, exact: true, component: Unauthorized },
   { path: DEFAULT_PATHS.INVALID_ACCESS, exact: true, component: InvalidAccess },
   { path: DEFAULT_PATHS.APP, component: App },
-  { path: '/', exact: true, component: Home },
+  /* ---- Trang nguoi dung ---- */
+  { path: "/", exact: true, component: Home },
+
 ];
 
 export default defaultRoutes;

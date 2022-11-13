@@ -1,6 +1,6 @@
 const vnMessages = {
   'system.name': 'Quản lý các giải đấu thể thao',
-
+  'client.homepage': 'Đi đến trang người dùng',
   'menu.dashboards': 'Bảng điều khiển',
   'menu.default': 'Mặc định',
   'menu.visual': 'Trực quan',

@@ -5,50 +5,61 @@ import { Col, Dropdown, Row } from 'react-bootstrap';
 import { MENU_PLACEMENT } from 'constants.js';
 import CsLineIcons from 'cs-line-icons/CsLineIcons';
 import { layoutShowingNavMenu } from 'layout/layoutSlice';
+import { useIntl } from 'react-intl';
+import { API_URL } from 'config';
 
-const NavUserMenuContent = () => (
-  <div>
-    <Row className="mb-3 ms-0 me-0">
-      <Col xs="12" className="ps-1 mb-2">
-        <div className="text-extra-small text-primary">ACCOUNT</div>
-      </Col>
-      <Col xs="6" className="ps-1 pe-1">
-        <ul className="list-unstyled">
-          <li>
-            <a href="#/!">My Account</a>
-          </li>
-        </ul>
-      </Col>
-      <Col xs="6" className="ps-1 pe-1">
-        <ul className="list-unstyled">
-          <li>
-            <a href="#/!">Change Password</a>
-          </li>
-        </ul>
-      </Col>
-    </Row>
-    <Row className="mb-1 ms-0 me-0">
-      <Col xs="12" className="p-1 mb-3 pt-3">
-        <div className="separator-light" />
-      </Col>
-      <Col xs="6" className="ps-1 pe-1"/>
-      <Col xs="6" className="pe-1 ps-1">
-        <ul className="list-unstyled">
-          <li>
-            <a href="#/!">
-              <CsLineIcons icon="gear" className="me-2" size="17" /> <span className="align-middle">Settings</span>
-            </a>
-          </li>
-          <li>
-            <a href="#/!">
-              <CsLineIcons icon="logout" className="me-2" size="17" /> <span className="align-middle">Logout</span>
-            </a>
-          </li>
-        </ul>
-      </Col>
-    </Row>
-  </div>
-);
+const NavUserMenuContent = () => {
+  const { formatMessage: f } = useIntl();
+  return (
+    <div>
+      <Row className="mb-3 ms-0 me-0">
+        <Col xs="12" className="ps-1 mb-2">
+          <div className="text-extra-small text-primary">ACCOUNT</div>
+        </Col>
+        <Col xs="6" className="ps-1 pe-1">
+          <ul className="list-unstyled">
+            <li>
+              <a href="#/!">My Account</a>
+            </li>
+          </ul>
+        </Col>
+        <Col xs="6" className="ps-1 pe-1">
+          <ul className="list-unstyled">
+            <li>
+              <a href="#/!">Change Password</a>
+            </li>
+          </ul>
+        </Col>
+      </Row>
+      <Row className="mb-1 ms-0 me-0">
+        <Col xs="12" className="p-1 mb-3 pt-3">
+          <div className="separator-light" />
+        </Col>
+        <Col xs="6" className="ps-1 pe-1">
+          <a href={API_URL} className="text-primary">
+            <i><span className="align-middle">{f({ id: 'client.homepage' })}</span></i>
+          </a>
+        </Col>
+
+        <Col xs="6" className="pe-1 ps-1">
+          <ul className="list-unstyled">
+            <li>
+              <a href="#/!">
+                <CsLineIcons icon="gear" className="me-2" size="17" /> <span className="align-middle">Settings</span>
+              </a>
+            </li>
+            <li>
+              <a href="#/!">
+                <CsLineIcons icon="logout" className="me-2" size="17" /> <span className="align-middle">Logout</span>
+              </a>
+            </li>
+          </ul>
+        </Col>
+
+      </Row>
+    </div>
+  )
+};
 
 const NavUserMenuDropdownToggle = React.memo(
   React.forwardRef(({ onClick, expanded = false, user = {} }, ref) => (
