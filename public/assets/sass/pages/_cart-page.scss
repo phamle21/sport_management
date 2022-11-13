@@ -1,0 +1,286 @@
+
+/*@@@@@@@@@@@@@@   Shop Cart Page Start Here  @@@@@@@@@@@@@@@@@*/
+.shop-cart {
+	.section-wrapper {
+		.cart-top {
+            margin-bottom: 40px;
+            box-shadow: 0 0 10px rgba(136, 136, 136, .10);
+            background: $primary-color;
+			@include breakpoint(max-md) {
+				// overflow-x: auto;
+			}
+			table {
+                font-weight: 700;
+                @extend %w-100;
+	    		@include breakpoint(max-md) {
+	    			// width: 720px;
+                }
+                .cat-product {
+                    .p-content {
+                        @include breakpoint(max-md) {
+                            display: none;
+                        }
+                    }
+                }
+                .cat-quantity {
+                    @include breakpoint(max-md) {
+                        .cart-plus-minus {
+                            width: 96px;
+                            .cart-plus-minus-box {
+                                width: 96px;
+                            }
+                            .qtybutton {
+                                width: 30px;
+                            }
+                        }
+                    }
+                }
+                .cat-price {
+                    @include breakpoint(max-md) {
+                        display: none;
+                    }
+                } 
+				thead {
+					tr {
+                        @extend %bg-theme;
+						th {
+					  		color:$white-color;
+					  		padding: 18px;
+                            border: none;
+							text-transform: uppercase;
+                            @include breakpoint(max-sm) {
+                                font-size: 14px;
+					  		    padding: 10px;
+                            }
+					  		&:nth-child(3) {
+					  			@extend %text-center;
+					  		}
+					  		&:last-child {
+					  			text-align: right;
+					  		}
+						}
+					}
+				}
+				tbody {
+					tr {
+						border-bottom: 1px solid rgba($white-color, $alpha: .1);
+					 	border-right: none;
+					    border-left: none;
+					    border-top: none;
+					    &:last-child {
+					    	border-bottom: none;
+					    }
+						td {
+							padding: 10px;
+                            border: none;
+                            @include breakpoint(md) {
+                                padding: 20px;
+                            }
+	  						&:last-child {
+	  							text-align: right;
+	  						}
+							&.product-item {
+	  							align-items:center;
+	  							@extend %flex;
+								.p-thumb {
+                                    width: 50px;
+                                    margin: auto;
+                                    @include breakpoint(md) {
+                                        width: 85px;
+                                    }
+								}
+								.p-content {
+									width: calc(100% - 85px);
+                                    padding-left: 10px;  
+                                    @include breakpoint(max-md) {
+                                        display: none;
+                                    }
+									a {
+										@extend %white-color;
+										@include transition($transition);
+										text-transform: uppercase;
+										font-family: $oswald;
+										&:hover {
+											@extend %theme-color;
+										}
+									}
+								}
+                            }
+                            &.cat-toprice, &.cat-edit {
+                                @include breakpoint(max-md) {
+                                    text-align: center;
+                                    font-size: 14px;
+                                }
+                            }
+							input {
+								background: $white-color;
+							}
+						}
+					}
+				}
+			}
+		}
+		.cart-bottom {
+            @extend %mb-15;
+            box-shadow: 0 0 10px rgba(136, 136, 136, .10);
+            @extend %hidden;
+            background: $primary-color;
+			.cart-checkout-box {
+			    padding: 30px;
+			    @extend %justify-between;
+			    @extend %align-items-center;
+			    @extend %flex;
+				.coupon {
+					max-width: 340px;
+					display: flex;
+					input {
+                        padding: 18px 10px;
+                        @extend %mb-0;
+	    				border: 1px solid $border-color;
+                        @include border-radius(3px 0 0 3px);
+                        @extend %bg-white;
+					}
+					input[type="submit"] {
+                        color: $white-color;
+                        font-weight: 500;
+                        margin-left: -10px;
+                        cursor: pointer;
+                        @extend %bg-theme;
+                        @include border-radius(0 3px 3px 0);
+					}
+				}
+				.cart-checkout {
+					@extend %w-100;
+				    margin-top: 30px;
+				    @extend %justify-between;
+				    @extend %flex;
+					@include breakpoint(lg) {
+						max-width: 390px;
+					    text-align: right;
+					    margin-top: 0;
+					}
+					input {
+						@extend %bg-white;
+                        @extend %black-color;
+                        @include border-radius(3px);
+					}
+					input[type="submit"] {
+					    padding: 10px 30px;
+                        border: 1px solid $border-color;
+                        width: auto;
+                        cursor: pointer;
+                        @include transition($transition);
+					    @include breakpoint(max-sm) {
+							width: 100%;
+							margin-bottom: 15px;
+	    					&:last-child {
+								margin-bottom: 0;
+	    					}
+                        }
+                        &:hover {
+							@extend %theme-color;
+							border-color: $theme-color;
+                        }
+					}
+				}
+			}
+			.shiping-box {
+				padding: 30px 20px;
+				border-top: 1px solid rgba($white-color, $alpha: .1);
+				.calculate-shiping {
+					@include breakpoint(max-md) {
+						margin-bottom: 30px;
+					}
+					h3 {
+						@extend %mb-30;
+					}
+					
+					input {
+						@extend %bg-white;
+					}
+					.outline-select {
+	    				margin-bottom: 20px;
+    					position: relative;
+						@extend %bg-white;
+						select {
+						    @extend %w-100;
+						    padding: 18px 20px;
+						    background: transparent;
+						    z-index: 1;
+						    -webkit-appearance: none;
+	    					-moz-appearance: none;
+	    					border: 1px solid $border-color;
+                            position: relative;
+                            outline: none;
+                            @include border-radius(3px);
+						}
+						&.shipping-select {
+							@extend %w-100;
+							@include breakpoint(lg) {
+								width: 50%;
+								float: left;
+							}
+						}
+						.select-icon {
+						    top: 0;
+						    right: 0;
+						    padding: 15px 20px;
+                            color: $white-color;
+                            border: 1px solid $border-color;
+						    border-radius: 0px 3px 3px 0px;
+                            @extend %bg-theme;
+						    @extend %abs;
+                            @include border-radius(0 3px 3px 0);
+						}
+					}
+					.cart-page-input-text {
+                        @extend %w-100;
+					    float: right;
+					    padding: 19px 20px;
+                        font-size: 14px;
+                        margin-bottom: 22px;
+					    border: 1px solid $border-color;
+                        @include border-radius(3px);
+					    @include breakpoint(lg) {
+					    	width: 45%;
+					    }
+					}
+					button {
+                        border: none;
+                        outline: none;
+                        cursor: pointer;
+                        @include border-radius(3px);
+						line-height: 56px;
+						@extend %mt-10;
+					}
+				}
+				.cart-overview {
+					h3 {
+						@extend %mb-30;
+					}
+					ul {
+						@extend %m-0;
+						li {
+						    list-style: none;
+						    @extend %align-items-center;
+						    @extend %justify-between;
+						    border: 1px solid $border-color;
+						    padding: 15px 20px;
+						    @extend %mb-15;
+						    @extend %bg-white;
+						    @extend %flex;
+                            @include border-radius(3px);
+                            span {
+                                color: $black-color;
+                            }
+							.pull-right {
+								@extend %mb-0;
+								color: $theme-color;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

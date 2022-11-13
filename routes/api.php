@@ -1,12 +1,12 @@
 <?php
 
-use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\OptionController;
-use App\Http\Controllers\RoleController;
-use App\Http\Controllers\SeasonController;
+use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\OptionController;
+use App\Http\Controllers\API\RoleController;
+use App\Http\Controllers\API\SeasonController;
+use App\Http\Controllers\API\UserController;
 
 Route::controller(AuthController::class)->group(function () {
     Route::post('login', 'login');

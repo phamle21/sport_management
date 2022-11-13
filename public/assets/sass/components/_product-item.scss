@@ -1,0 +1,30 @@
+.product-item {
+    .product-inner {
+        @extend %p-10;
+        background: $primary-color;
+        @include transition($transition);
+        &:hover {
+            background: $theme-color;
+            .product-thumb {
+                img {
+                    @include transform(scale(1.2) rotate(5deg));
+                }
+            }
+        }
+        .product-thumb {
+            @extend %hidden;
+            img {
+                @include transition($transition);
+            }
+        }
+        .product-content {
+            h5 {
+                &.product-title {}
+                &.product-price {}
+            }
+            .rating {
+                i {}
+            }
+        }
+    }
+}

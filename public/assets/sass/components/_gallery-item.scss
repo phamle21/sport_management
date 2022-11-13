@@ -1,0 +1,110 @@
+.gallery-item {
+    text-align: center;
+    border-width: 8px;
+    box-shadow: 0px 2px 4px 0px rgba(79, 63, 82, 0.06);
+    max-width: 400px;
+    margin: 0 auto;
+    @extend %rel;
+    &:hover {
+        &::after, .gallery-content {
+            opacity: 1;
+        }
+        .gallery-thumb {
+            img {
+                @include transform(scale(1.1));
+            }
+        }
+    }
+    &::after {
+        width: 96%;
+        height: 96%;
+        top: 50%;
+        left: 50%;
+        background: rgba($color: $black-color, $alpha:.5);
+        opacity: .7;
+        @extend %abs;
+        @include transform(translate(-50%, -50%));
+        opacity: 0;
+        @include transition($transition);
+        @include border-radius(8px);
+    }
+    .gallery-thumb {
+        overflow: hidden;
+        @include border-radius(8px);
+        img {
+            width: 100%;
+            @include transition($transition);
+        }
+        a {
+            display: block;
+        }
+    }
+    .gallery-content {
+        width: 100%;
+        z-index: 1;
+        @extend %center;
+        opacity: 0;
+        @include transition($transition);
+        .title {
+            font-size: 20px;
+            margin-bottom: 5px;
+            a {
+                display: block;
+            }
+        }
+        span {}
+        .img-pop {
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            color: $white-color;
+            background: $theme-color;
+            @include border-radius(50%);
+            margin-bottom: 15px;
+        }
+    }
+}
+
+.gallery-filter {
+    @extend %flex;
+    justify-content: center;
+    margin: -5px;
+    margin-bottom: 30px;
+    li {
+        border-radius: 4px;
+        padding: 5px 20px;
+        font-size: 14px;
+        font-weight: 700;
+        color: $black-color;
+        text-transform: uppercase;
+        margin: 5px;
+        cursor: pointer;
+        @extend %rel;
+        background: $white-color;
+        &.is-checked {
+            background: $theme-color;
+            .category {
+                color: $white-color;
+            }
+            .itemcount {
+                background: $white-color;
+                color: $theme-color;
+            }
+        }
+        .itemcount {
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            @extend %text-center;
+            @include border-radius(50%);
+            background: $theme-color;
+            color: $white-color;
+            display: inline-block;
+            @extend %ml-10;
+        }
+    }
+    @include breakpoint(md) {
+        margin-bottom: 35px;
+    }
+}

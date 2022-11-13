@@ -1,0 +1,64 @@
+.video-item {
+    .video-inner {
+        border: 10px solid #232a5c;
+        .video-thumb {
+            img {}
+            .video-icon {
+                
+            }
+        }
+        .video-content {
+            @extend %p-30;
+            a {
+                padding: 8px 17px;
+                @extend %bg-theme;
+                @extend %white-color;
+                @include border-radius(3px);
+                @extend %text-bold;
+                @extend %text-uppercase;
+                @extend %mb-10;
+                @include breakpoint(max-sm) {
+                    display: none;
+                }
+            }
+            h3 {
+                @extend %text-uppercase;
+                font-weight: 500;
+                @extend %text-clamp-1;
+                @extend %mb-0;
+            }
+        }
+    }
+}
+.abs-video-content {
+    @extend %abs;
+    left: 0px;
+    bottom: 0px;
+    @extend %w-100;
+}
+.video-icon {
+    @extend %abs;
+    @extend %center;
+    z-index: 1;
+    a {
+        @extend %d-inline-block;
+    }
+    i {
+        @include font-size(60px);
+        z-index: 1;
+        @extend %rel;
+        @extend %bg-theme;
+        @extend %white-color;
+        @extend %d-inline-block;
+        @include border-radius(100%);
+    }
+}
+.video-overlay {
+    @extend %rel;
+    &::after {
+        @extend %center;
+        @extend %w-100;
+        @extend %h-100;
+        background-image: linear-gradient(to top, #000000e8, #3b3b3ba6, #77777759, #b9b9b900, #ffffff00);
+    }
+}

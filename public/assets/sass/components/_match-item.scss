@@ -1,0 +1,124 @@
+//=============================
+//match item style css
+//=============================
+
+
+.match-content {
+    padding: 20px 15px;
+
+    @include breakpoint(lg) {
+        padding: 20px 30px;
+    }
+}
+
+.match-header {
+    background-color: $theme-color;
+    padding: 10px 15px;
+
+    @include breakpoint(lg) {
+        padding: 10px 30px;
+    }
+
+    p {
+        @extend %mb-0;
+        @include font-size(18px);
+        font-family: $oswald;
+        text-transform: uppercase;
+    }
+}
+
+.match-game-info {
+    @extend %text-center;
+
+    @include breakpoint(md) {
+        text-align: start;
+    }
+
+    h4 {
+        a {
+            color: $black-color;
+            text-transform: uppercase;
+
+            &:hover {
+                color: $theme-color;
+            }
+        }
+
+    }
+
+    p {
+        @extend %mb-0;
+        color: $grey-color;
+        gap: 30px;
+
+
+        span {
+            &:first-child {
+                @extend %rel;
+
+                &::after {
+                    @extend %abs;
+                    right: -15px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    height: 70%;
+                    width: 3px;
+                    background: #d4d4d4;
+                }
+            }
+        }
+    }
+}
+
+.match-team-list {
+    gap: 15px;
+
+    @include breakpoint(sm) {
+        gap: 30px;
+    }
+}
+
+.match-team-thumb {
+    a {
+        img {
+            transition: .4s linear;
+        }
+
+        &:hover {
+            img {
+                transform: rotateY(360deg);
+            }
+        }
+    }
+}
+
+.match-social-list {
+    gap: 10px;
+
+    a {
+        transition: .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+        &:hover {
+            transform: translateY(-2px);
+            filter: drop-shadow(0 3px 2px rgba(0, 0, 0, 0.301));
+        }
+    }
+    .default-button {
+        line-height: 50px;
+        @extend %ml-15;
+    }
+}
+
+
+.match-item-2 {
+    .match-social-list {
+        @extend %mt-15;
+        @extend %mb-0;
+    }
+}
+
+.upcome-match-header {
+    @extend %text-center;
+    padding: 20px 10px;
+    text-transform: uppercase;
+}

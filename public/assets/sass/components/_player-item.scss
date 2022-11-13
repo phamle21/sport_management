@@ -1,0 +1,154 @@
+//=============================
+//player item style css
+//=============================
+
+.player-item {
+
+    @extend %p-10;
+    // @extend %d-inline-block;
+    background-color: $primary-color;
+
+    &:hover {
+        .player-thumb {
+            img {
+                transform: scale(1.1)
+            }
+        }
+        .player-content {
+            bottom: 30px;
+        }
+        .player-inner {
+            &::after {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+    }
+
+}
+
+.player-inner {
+    @extend %rel;
+    @extend %w-100;
+    color: $white-color !important;
+    @extend %hidden;
+    &::after {
+        @extend %abs;
+        @extend %w-100;
+        height: 90%;
+        bottom: 0;
+        left: 0;
+        transition: .3s cubic-bezier(0.215, 0.610, 0.355, 1);
+        background-image: -moz-linear-gradient(90deg, rgb(0, 0, 82) 0%, rgba(255, 0, 82, 0) 100%);
+        background-image: -webkit-linear-gradient(90deg, rgb(0, 0, 82) 0%, rgba(255, 0, 82, 0) 100%);
+        background-image: -ms-linear-gradient(90deg, rgb(0, 0, 82) 0%, rgba(255, 0, 82, 0) 100%);
+        transform: translateY(10px) scale(0);
+        transform-origin: bottom;
+        opacity: 0
+    }
+}
+
+.player-thumb {
+    @extend %hidden;
+
+    img {
+        @extend %w-100;
+        @extend %h-100;
+        transition: $transition;
+    }
+
+}
+
+.player-content {
+    @extend %abs;
+    padding: 10px;
+    bottom: -100%;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    @include transition($transition);
+    .match-social-list {
+        li {
+            list-style: none;
+            @extend %mt-20;
+        }
+    }
+}
+
+.player-team-icon {
+    max-width: 90px;
+}
+
+//=============================
+//player item 2 style css
+//=============================
+
+.player-item-2 {
+    background-size: cover;
+    @extend %p-10;
+    // @extend %d-inline-block;
+    background-color: $primary-color;
+    border: 10px solid $primary-color;
+
+    &:hover {
+        .player-thumb-2 {
+            img {
+                transform: rotateY(360deg);
+            }
+        }
+        .player-content-2 {
+            @include transform(scale(1.1));
+        }
+        .player-inner-2 {
+            &::after {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+        }
+    }
+
+}
+
+.player-inner-2 {
+    padding: 118px 0 40px;
+}
+
+.player-thumb-2 {
+    @extend %mb-30;
+    img {
+        @include transition(all .9s linear);
+    }
+
+}
+
+.player-content-2 {
+    @include transition($transition);
+    // @include transform(scale(0));
+    h2 {
+        @extend %mb-20;
+        text-transform: uppercase;
+        @include font-size(24px);
+    }
+}
+
+// 
+
+
+.player-meta {
+    li {
+        padding: 10px 20px;
+        background: $primary-color;
+        border: 1px solid rgba($white-color, $alpha: .1);
+        @include border-radius(4px);
+        margin: 5px;
+        .left {
+            i {
+                @include font-size($fs-h2);
+            }
+        }
+        .right {
+            font-family: $oswald;
+            @extend %text-bold;
+        }
+    }
+}

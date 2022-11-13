@@ -1,0 +1,104 @@
+.contact-item {
+    padding: 50px 30px;
+    background: $primary-color;
+    @include border-radius(4px);
+    .contact-thumb {
+        @extend %rel;
+        width: 70px;
+        height: 70px;
+        display: grid;
+        place-items: center;
+        border-radius: 100%;
+        background-color: $theme-color;
+        margin: 0 auto 30px;
+        &:before,
+        &:after {
+            @extend %abs;
+            // animation-play-state: paused;
+            opacity: 1;
+            z-index: 1 !important;
+            border-color: $theme-color !important;
+
+        }
+
+        &:before {
+            @include ripple(2s, 0s);
+            border-width: 25px;
+        }
+
+        &:after {
+            @include ripple(2s, .3s);
+            border-width: 15px;
+        }
+        img {
+            @extend %rel;
+            z-index: 2;
+        }
+    }
+    .contact-content {
+        .title {}
+        p {
+            @extend %mb-0;
+        }
+    }
+}
+
+// contact-form
+.contact-form {
+    @extend %flex;
+    justify-content: space-between;
+    margin-bottom: -30px;
+    .form-group {
+        margin-bottom: 30px;
+        width: 100%;
+        @include breakpoint(sm) {
+            width: calc(50% - 15px);
+        }
+        input {
+            border: 1px solid rgba($white-color, $alpha: .1);
+            border-radius: 4px;
+            box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.06);   
+            height: 57px;
+            padding: 0 25px;
+            background: rgba($primary-color, $alpha: .5);
+            color: $white-color;
+            &::placeholder {
+                color: rgba($white-color, $alpha: .7);
+            }
+        }
+        textarea {
+            border: 1px solid rgba($white-color, $alpha: .1);
+            border-radius: 4px;
+            box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.06);
+            padding: 25px;
+            background: rgba($primary-color, $alpha: .5);
+            color: $white-color;
+            &::placeholder {
+                color: rgba($white-color, $alpha: .7);
+            }
+        }
+        button {
+            height: 55px;
+        }
+    }
+    @include breakpoint(max-sm) {
+        margin-bottom: -20px;
+        .form-group {
+            margin-bottom: 20px;
+        }
+    }
+}
+
+// form-message
+.form-message {
+    @extend %m-0;
+    font-size: $fs-base;
+    &.success {
+        color: $white-color;
+        @extend %mt-30;
+    }
+    &.error {
+        color: $theme-color;
+        @extend %mt-30;
+    }
+}

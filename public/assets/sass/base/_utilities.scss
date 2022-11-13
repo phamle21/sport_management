@@ -1,0 +1,82 @@
+// -----------------------------------------------------------------------------
+// This file contains CSS helper classes.
+// -----------------------------------------------------------------------------
+
+/**
+ * Clear inner floats
+ */
+.clearfix::after {
+  clear: both;
+  content: '';
+  display: table;
+}
+
+/**
+ * Main content containers
+ * 1. Make the container full-width with a maximum width
+ * 2. Center it in the viewport
+ * 3. Leave some space on the edges, especially valuable on small screens
+ */
+.container {
+  max-width: $max-container;
+  margin: 0 auto;
+  padding-inline: 20px;
+  width: 100%;
+}
+
+.hide-text {
+  overflow: hidden;
+  padding: 0;
+  /* 1 */
+  text-indent: 101%;
+  white-space: nowrap;
+}
+
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+
+ul {
+  li {
+    list-style: none;
+    @extend %ml-0;
+  }
+}
+
+
+//====================================
+// Gradient BG utilities
+//====================================
+
+.gradient-bg-yellow {
+  background-image: -moz-radial-gradient(50% 50%, circle closest-side, rgb(255, 255, 255) 100%, #ffd46c 340%);
+  background-image: -webkit-radial-gradient(50% 50%, circle closest-side, rgb(255, 255, 255) 100%, #ffd46c 340%);
+  background-image: -ms-radial-gradient(50% 50%, circle closest-side, rgb(255, 255, 255) 100%, #ffd46c 340%);
+}
+
+.gradient-bg-pink {
+  background-image: -moz-radial-gradient(50% 50%, circle closest-side, rgb(255, 255, 255) 100%, rgb(250, 165, 126) 340%);
+  background-image: -webkit-radial-gradient(50% 50%, circle closest-side, rgb(255, 255, 255) 100%, rgb(250, 165, 126) 340%);
+  background-image: -ms-radial-gradient(50% 50%, circle closest-side, rgb(255, 255, 255) 100%, rgb(250, 165, 126) 340%);
+}
+
+.gradient-bg-blue {
+  background-image: -moz-radial-gradient(50% 50%, circle closest-side, rgb(255, 255, 255) 100%, rgb(109, 199, 156) 340%);
+  background-image: -webkit-radial-gradient(50% 50%, circle closest-side, rgb(255, 255, 255) 100%, rgb(109, 199, 156) 340%);
+  background-image: -ms-radial-gradient(50% 50%, circle closest-side, rgb(255, 255, 255) 100%, rgb(109, 199, 156) 340%);
+}
+
+
+.gradient-bg-orange {
+  background-image: -moz-radial-gradient(50% 50%, circle closest-side, rgb(255, 255, 255) 100%, rgb(214, 212, 68) 340%);
+  background-image: -webkit-radial-gradient(50% 50%, circle closest-side, rgb(255, 255, 255) 100%, rgb(214, 212, 68) 340%);
+  background-image: -ms-radial-gradient(50% 50%, circle closest-side, rgb(255, 255, 255) 100%, rgb(214, 212, 68) 340%);
+}

@@ -1,0 +1,74 @@
+// -----------------------------------------------------------------------------
+// This file contains all application-wide Sass variables.
+// -----------------------------------------------------------------------------
+
+// Colors
+
+$theme-color: #ff0052;
+$primary-color:#232a5c;
+$body-color:#080e37;
+$border-color: #ecf0f3;
+$white-color: #fff;
+$black-color:#000;
+$ash-color: #f9f9f9;
+
+$grey-color:#555;
+
+// social-media color
+$facebook: #3b5998;
+$twitter: #55acee;
+$linkedin: #007bb5;
+$skype: #2fb7df;
+$youtube: #cd201f;
+$google: #dd4b39;
+$camera: #e4405f;
+$instagram: #e4405f;
+$tumblr: #34465d;
+$behance: #1769ff;
+$dribble:#ea4c89;
+$dribbble:#ea4c89;
+$twitch:#6441a5 ;
+$star: #e9ba17;
+$green: #0be881;
+$green-h: #0fbcf9;
+$red: #f53b57;
+$yellow: #dec32b;
+$nell: #212fb4;
+$navy: #d8e0f3;
+$plaseholder: #a0a6bc;
+$pinterest : #bd081c;
+$basketball : #e94c89;
+$globe : #ff5e9c;
+$vimeo : #3b5998;
+
+//== Typography
+
+
+$barlow: 'Barlow',
+sans-serif;
+
+$oswald: 'Oswald',
+sans-serif;
+
+
+// font-size
+$fs-base: 1rem !default;
+$fs-small: 0.875rem; //14px
+$fs-h1:5.625rem; //90px;
+$fs-h2: 2.5rem; //40px;	
+$fs-h3:1.5rem; //24px;		
+$fs-h4: 1.25rem; //20px;	
+$fs-h5: 1.125rem; //18px;		
+$fs-h6: 1rem; //16px;		
+
+
+// Description line height
+$lh-p: 1.5;
+
+
+
+$transition:.3s all linear;
+
+// * Container size 
+
+$max-container:1170px;

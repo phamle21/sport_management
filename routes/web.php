@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MVC\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,14 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/admin', function () {
-    return redirect('/admin/home');
+Route::get('/sport-admin', function () {
+    return redirect()->to('http://localhost:2104/admin');
 });
 
-Route::get('/', function () {
-    return redirect('/docs');
-});
+Route::get('/', [HomeController::class, 'index']);
 
-Route::get('/{path?}', function () {
-    return view('welcome');
-})->where('path', '.*');

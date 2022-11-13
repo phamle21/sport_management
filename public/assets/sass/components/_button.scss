@@ -1,0 +1,90 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the button component.
+// -----------------------------------------------------------------------------
+.default-button {
+    @extend %d-inline-block;
+    @extend %rel;
+    @include font-size(18px);
+    color: $theme-color;
+    font-weight: 700;
+    transition: .3s cubic-bezier(.79, .14, .15, .86);
+    padding: 0 1rem;
+    line-height: 3rem;
+    font-family: $oswald;
+    text-transform: uppercase;
+    line-height: 60px;
+    @include border-radius(3px);
+    span {
+        position: inherit;
+        z-index: 2;
+    }
+
+
+
+
+    &:after,
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        transition: .3s cubic-bezier(.79, .14, .15, .86);
+        height: 100%;
+        width: 100%;
+        border-radius: 4px;
+    }
+
+    &:before {
+        background-color: $white-color;
+        z-index: 1;
+        box-shadow: 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.2);
+    }
+
+    &:after {
+        background-color: $theme-color;
+        transform: translate(4px, 4px);
+        z-index: 0;
+    }
+
+    &:hover {
+        transform: translate(4px, 4px);
+        color: $white-color;
+
+        &:before {
+            background-color: $theme-color;
+        }
+
+        &:after {
+            background-color: $white-color;
+            transform: translate(-4px, -4px);
+        }
+    }
+
+    &.reverse-effect {
+        color: $white-color;
+
+        &::before {
+            background-color: $theme-color;
+        }
+
+        &::after {
+            background-color: $white-color;
+        }
+
+        &:hover {
+            color: $theme-color;
+
+            &::before {
+                background-color: $white-color;
+            }
+
+            &:after {
+                background-color: $theme-color;
+            }
+        }
+    }
+}
+button {
+    outline: none;
+    border: none;
+}

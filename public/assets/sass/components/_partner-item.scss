@@ -1,0 +1,67 @@
+.accordion-item {
+    background: $primary-color;
+    .accordion-header {
+        .accordion-button {
+            background: $theme-color;
+            box-shadow: none;
+            padding: 1rem 1.5rem;
+            @include transition($transition);
+            border-bottom: 1px solid rgba($white-color, $alpha: .5);
+            &.collapsed {
+                background: $primary-color;
+                border-bottom: none;
+                &::after {
+                    display: block;
+                }
+                &::before {
+                    display: none;
+                }
+            }
+            &::after {
+                background-image: none;
+                content: "\efc2";
+                color: $white-color;
+                @include font-size($fs-h5);
+                display: none;
+                font-family: IcoFont!important;
+            }
+            &::before {
+                flex-shrink: 0;
+                width: 1.25rem;
+                height: 1.25rem;
+                content: "\ef9a";
+                transition: transform .2s ease-in-out;
+                right: 25px;
+                position: absolute;
+                color: $white-color;
+                @include font-size($fs-h5);
+                font-family: IcoFont!important;
+            }
+            .accor-header-inner {
+                .accor-thumb {
+                    @extend %mr-15;
+                    width: 80px;
+                    height: 80px;
+                    line-height: 80px;
+                    img {}
+                }
+                .accor-title {
+                    @extend %text-midium;
+                    @include font-size($fs-h3);
+                    @extend %white-color;
+                    font-family: $oswald;
+                    text-transform: uppercase;
+                }
+            }
+        }
+    }
+    .accordion-collapse {
+        background: $white-color;
+        .accordion-body {
+            p {
+                color: $black-color;
+                @extend %mb-0;
+            }
+        }
+    }
+}

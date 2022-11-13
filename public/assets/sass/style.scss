@@ -1,0 +1,86 @@
+/*!
+Template Name: BigGamer
+Template URI: https://themeforest.net/user/labartisan
+Author: labartisan.net
+Author URI: https://themeforest.net/user/labartisan
+Description: Description
+Version: 1.0.0
+Text Domain: BigGamer
+Tags: gaming, sport, esports, gaming website, gaming template, html5, bootstrap ,game,Saas, app landing, event.
+
+*/
+/*--------------------------------------------------------------
+>>> TABLE OF CONTENTS:
+----------------------------------------------------------------
+# Normalize
+# Typography
+# Global CSS
+# Header CSS
+	*Style-1
+	*Style-2
+	*Mobile Header
+# Page Header
+# Banner
+	*Style-1
+	*Style-2
+# Main
+    *home + all common section
+# Blog
+	*Style-1
+	*Blog Single
+# Blog Widget
+# Contact Us
+#Footer
+--------------------------------------------------------------*/
+
+
+
+
+
+@charset "UTF-8";
+
+// 1. Configuration and helpers
+@import 'abstracts/variables',
+'abstracts/mixins';
+
+// 2. Vendors
+@import 'vendors/normalize',
+'vendors/rfs';
+
+// 3. Base stuff
+@import 'base/fonts',
+'base/typography',
+'base/animation',
+'base/extend',
+'base/utilities';
+
+// 4. Layout-related sections
+@import 'layout/global',
+'layout/header',
+'layout/banner',
+'layout/footer';
+
+// 5. Components
+@import 'components/button',
+'components/game-item',
+'components/player-item',
+'components/match-item',
+'components/video-item',
+'components/product-item',
+'components/testmonial-item',
+'components/gallery-item',
+'components/blog-item',
+'components/partner-item',
+'components/contact-item';
+
+// 6. Page-specific styles
+@import 'pages/home';
+@import 'pages/shop';
+@import 'pages/shop-single';
+@import 'pages/cart-page';
+@import 'pages/achievement';
+@import 'pages/accounts';
+@import 'pages/fore-zere';
+
+// 7. Themes
+@import 'themes/default';

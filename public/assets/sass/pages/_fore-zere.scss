@@ -1,0 +1,31 @@
+/*====== Error page start here ======*/
+.fore-zero {
+    .section-wrapper {
+        .zero-item {
+            padding: 60px;
+            @extend %text-center;
+            background: $primary-color;
+            box-shadow: 0px 0px 10px 0px rgba($theme-color, $alpha: .20);
+            border-radius: 5px;
+
+
+            .zero-content {
+                @extend %mt-20;
+
+                p {
+                    @extend %mb-30;
+                }
+
+                .lab-btn {
+                    @extend %bg-theme;
+                    color: $white-color;
+                    font-weight: 700;
+
+                    span {
+                        color: $white-color;
+                    }
+                }
+            }
+        }
+    }
+}

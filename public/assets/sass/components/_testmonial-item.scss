@@ -1,0 +1,99 @@
+.testimonial-item {
+    .testimonial-inner {
+        background: $primary-color;
+        @extend %p-30;
+        @include transition($transition);
+        @include border-radius(6px);
+        &:hover {
+            @include transform(translateY(-5px));
+            .testimonial-head {
+                a {
+                    img {
+                        @include transform(rotateY(360deg));
+                    }
+                }
+            }
+        }
+        .testimonial-head {
+            @extend %flex;
+            @extend %pb-20;
+            @extend %mb-20;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba($border-color, $alpha: .1);
+            .testi-top {
+                @extend %flex;
+            }
+            .testimonial-thumb {
+                width: 60px;
+                height: 60px;
+                @include border-radius(100%);
+                @extend %hidden;
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            .name-des {
+                @extend %pl-20;
+                h5 {
+                    font-weight: 600;
+                }
+                p {
+                    @extend %mp-0;
+                    @include font-size(18px);
+                }
+            }
+            a {
+                img {
+                    @include transition($transition);
+                }
+            }
+        }
+        .testimonial-body {
+            p {}
+        }
+        .testimonial-footer {
+            @extend %flex;
+            @extend %justify-start;
+            @extend %align-items-center;
+            ul {
+                @extend %flex;
+                @extend %mp-0;
+                li {
+                    padding: 5px 10px;
+                    background: #00b67a;
+                    @extend %mr-5;
+                    @include border-radius(3px);
+                    i {
+                        color: $white-color;
+                    }
+                }
+            }
+            h5 {
+                @extend %mb-0;
+                @extend %ml-10;
+                color: #00b67a;
+            }
+        }
+    }
+}
+
+
+.swiper-slide.swiper-slide-next {
+    .testimonial-item {
+        .testimonial-inner {
+            .testimonial-footer {
+                ul {
+                    li {
+                        background: #f06a22;
+                        @include border-radius(100%);
+                    }
+                }
+                h5 {
+                    color: #f06a22;
+                }
+            }
+        }
+    }
+}

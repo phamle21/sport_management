@@ -1,0 +1,287 @@
+// -----------------------------------------------------------------------------
+// This file contains styles that are specific to the home page.
+// -----------------------------------------------------------------------------
+
+
+//* About sectin start here
+//=========================================
+.about-section {
+    padding-bottom: 110px;
+
+    .section-wrapper {
+        border-top: 1px solid rgba($white-color, $alpha: .10);
+    }
+
+    .section-header {
+        @extend %mb-20;
+        text-align: left;
+
+
+        @include breakpoint(lg) {
+            max-width: 80%;
+        }
+    }
+}
+
+.about-wrapper {
+    @include breakpoint(md) {
+        padding-left: 30px;
+    }
+}
+
+.about-item {
+    gap: 20px;
+
+    &:not(&:last-child) {
+        margin-bottom: 25px;
+    }
+
+    .about-item-thumb {
+        @extend %rel;
+        width: 70px;
+        height: 70px;
+        display: grid;
+        place-items: center;
+        border-radius: 100%;
+        background-color: $theme-color;
+
+        &:before,
+        &:after {
+            @extend %abs;
+            animation-play-state: paused;
+            opacity: 1;
+
+        }
+
+        &:before {
+            @include ripple(2s, 0s);
+            border-width: 25px;
+        }
+
+        &:after {
+            @include ripple(2s, .3s);
+            border-width: 15px;
+        }
+
+    }
+
+    .about-item-content {
+        width: calc(100% - 90px);
+
+        p {
+            @extend %mb-0;
+        }
+    }
+
+    &:hover {
+        .about-item-thumb {
+
+            &:before,
+            &:after {
+                animation-play-state: running;
+            }
+        }
+    }
+}
+
+.about-content {
+    >p {
+        @extend %mb-30;
+    }
+}
+
+
+
+
+//* Match section start here
+//=========================================
+.match-section {
+    background-size: cover;
+    background-position: center;
+}
+
+
+
+
+//* Player section start here
+//=========================================
+.player-slider {
+    overflow: hidden;
+    margin: 0 -.75rem;
+}
+
+
+//* Testimonial Section start here
+//=========================================
+.testimonial-section {
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+
+// blog single
+.blog-single {
+    .section-wrapper {
+        .post-item-2 {
+            .post-inner {
+                &:hover {
+                    @include transform(translateY(0));
+                }
+
+                .post-content {
+
+                    p,
+                    img {
+                        margin-bottom: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+// 
+
+/* @@@@@@@@@@@@@  Contact Us Section Start Here  @@@@@@@@@@@@@@ */
+
+.location-map {
+    @include breakpoint(max-lg) {
+        margin-bottom: 15px;
+    }
+
+    #map {
+        height: 435px;
+        width: 100%;
+
+        iframe {
+            height: 100%;
+            width: 100%;
+            border: none;
+        }
+    }
+}
+
+.contact-form-wrapper {
+    .contact-form {
+        p {
+            max-width: 610px;
+        }
+
+        h5 {
+            
+        }
+
+        form {
+            &.comment-form {
+                @extend %flex;
+                @extend %justify-between;
+                @extend %mt-0;
+                @extend %w-100;
+
+                input[type="text"],
+                [type="email"] {
+                    border: 1px solid $border-color;
+                    background: $white-color;
+                    @extend %p-15;
+                    @extend %w-100;
+                    @extend %mb-30;
+                    @include border-radius(4px);
+
+                    @include breakpoint(sm) {
+                        width: calc(100% / 2 - 15px);
+                    }
+                }
+
+                textarea {
+                    background: $white-color;
+                    border: 1px solid $border-color;
+                    padding: 10px 15px;
+                    @extend %w-100;
+                    @include border-radius(4px);
+                }
+                input, textarea {
+                    outline: none;
+                    border: none;
+                }
+
+                button {
+                    &.default-button {
+                        @extend %mt-30;
+                        outline: none;
+                        border: none;
+                        @include border-radius(3px);
+                        @extend %pointer;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.contact-info-wrapper {
+    padding-left: 30px;
+
+    @include breakpoint(max-lg) {
+        margin-top: 50px;
+        padding-left: 0;
+    }
+
+    .contact-info-title {
+        h5 {
+            
+        }
+
+        p {
+            max-width: 280px;
+            margin-bottom: 30px;
+        }
+    }
+
+    .contact-info-content {
+        @include breakpoint(max-lg) {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .contact-info-item {
+            @include breakpoint(max-lg) {
+                margin-right: 30px;
+                margin-bottom: 30px;
+            }
+
+            @include breakpoint (lg) {
+                margin-bottom: 30px;
+
+                &:last-child {
+                    margin-bottom: 0;
+                }
+            }
+
+            .contact-info-inner {
+                @include breakpoint(max-lg) {
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-items: center;
+
+                    .contact-info-thumb {
+                        margin-bottom: 0;
+                        margin-right: 15px;
+                    }
+                }
+
+                .contact-info-thumb {
+                    margin-bottom: 15px;
+                }
+
+                .contact-info-details {
+                    span {
+                        color: $black-color;
+                    }
+                }
+            }
+        }
+    }
+
+}
