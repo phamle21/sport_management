@@ -3,8 +3,8 @@
         <div class="header-holder d-flex flex-wrap justify-content-between align-items-center">
             <div class="brand-logo d-none d-lg-inline-block">
                 <div class="logo">
-                    <a href="index.html">
-                        <img src="{{ asset('assets/images/logo/logo.png') }}" alt="logo">
+                    <a href="/">
+                        <img src="{{ asset('assets/images/logo.png') }}" style="max-width: 200px" alt="logo">
                     </a>
                 </div>
             </div>
@@ -16,11 +16,16 @@
                                 <i class="icofont-ui-call"></i> <span>+84 94 164 9826</span>
                             </li>
                             <li>
-                                <i class="icofont-location-pin"></i> Can Tho
+                                <i class="icofont-location-pin"></i> {{ __('message.address') }}
                             </li>
                         </ul>
                         <ul class="social-icons d-flex align-items-center">
+                            <li><a>&nbsp;</a></li>
                             <li>
+                                <a href="{!! route('settings.change-language', ['en']) !!}">En</a>
+                            </li>
+                            <li>
+                                <a href="{!! route('settings.change-language', ['vi']) !!}">Vi</a>
                             </li>
                         </ul>
                     </div>
@@ -34,7 +39,7 @@
                         <div class="menu-area">
                             <ul class="menu">
                                 <li>
-                                    <a href="/">Home</a>
+                                    <a href="/">{{ __('message.header.home') }}</a>
                                 </li>
 
                                 <li>
@@ -60,8 +65,8 @@
                                         <li>
                                             <a href="#0">accounts</a>
                                             <ul class="submenu">
-                                                <li><a href="login.html">login</a></li>
-                                                <li><a href="signup.html">signup</a></li>
+                                                <li><a href="/login">{{ __('message.login') }}</a></li>
+                                                <li><a href="/register">{{ __('message.register') }}</a></li>
                                             </ul>
                                         </li>
                                         <li>

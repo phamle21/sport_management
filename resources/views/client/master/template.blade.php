@@ -3,11 +3,11 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Quản lý các giải đấu thể</title>
+    <title>{{ __('message.title') }} </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- site favicon -->
-    <link rel="icon" type="image/png" href="{{ asset('assets/images/favicon.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.png') }}">
     <!-- Place favicon.ico in the root directory -->
 
     <!-- All stylesheet and icons css  -->
