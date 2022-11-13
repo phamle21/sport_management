@@ -4,7 +4,7 @@
             <div class="brand-logo d-none d-lg-inline-block">
                 <div class="logo">
                     <a href="index.html">
-                        <img src="assets/images/logo/logo.png" alt="logo">
+                        <img src="{{ asset('assets/images/logo/logo.png') }}" alt="logo">
                     </a>
                 </div>
             </div>
@@ -13,27 +13,14 @@
                     <div class="header-top-area">
                         <ul class="left">
                             <li>
-                                <i class="icofont-ui-call"></i> <span>+800-123-4567 6587</span>
+                                <i class="icofont-ui-call"></i> <span>+84 94 164 9826</span>
                             </li>
                             <li>
-                                <i class="icofont-location-pin"></i> Beverley, New York 224 USA
+                                <i class="icofont-location-pin"></i> Can Tho
                             </li>
                         </ul>
                         <ul class="social-icons d-flex align-items-center">
                             <li>
-                                <a href="#" class="fb"><i class="icofont-facebook-messenger"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="vimeo"><i class="icofont-vimeo"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="skype"><i class="icofont-skype"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="rss"><i class="icofont-rss-feed"></i></a>
                             </li>
                         </ul>
                     </div>
@@ -41,16 +28,13 @@
                 <div class="header-bottom">
                     <div class="header-wrapper justify-content-lg-end">
                         <div class="mobile-logo d-lg-none">
-                            <a href="index.html"><img src="assets/images/logo/logo.png" alt="logo"></a>
+                            <a href="index.html"><img src="{{ asset('assets/images/logo/logo.png') }}"
+                                    alt="logo"></a>
                         </div>
                         <div class="menu-area">
                             <ul class="menu">
                                 <li>
-                                    <a href="#0" class="active">Home</a>
-                                    <ul class="submenu">
-                                        <li><a href="index.html" class="active">Home One</a></li>
-                                        <li><a href="index-2.html">Home Two</a></li>
-                                    </ul>
+                                    <a href="/">Home</a>
                                 </li>
 
                                 <li>

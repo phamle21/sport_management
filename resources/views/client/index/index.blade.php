@@ -7,7 +7,7 @@
             <div class="">
                 <div class="banner-content text-center">
                     <h4 class="fw-normal theme-color mb-4">TODAY BIG MATCHE</h4>
-                    <img src="assets/images/banner/01.png" alt="banner text thumb" class="mb-4">
+                    <img src="https://labartisan.net/demo/bigamer/assets/images/banner/01.png" alt="banner text thumb" class="mb-4">
                     <p>Time : 08:30Pm - 30 December 2021</p>
                     <a href="https://www.youtube.com/embed/g5eQgEuiFC8" class="default-button reverse-effect"
                         data-rel="lightcase"><span>Watch Now <i class="icofont-play-alt-1"></i></span> </a>
@@ -15,13 +15,13 @@
                 <div
                     class="banner-thumb d-flex flex-wrap justify-content-center justify-content-between align-items-center align-items-lg-end">
                     <div class="banner-thumb-img ml-xl-50-none">
-                        <a href="team-single.html"><img src="assets/images/banner/02.png" alt="banner-thumb"></a>
+                        <a href="team-single.html"><img src="https://labartisan.net/demo/bigamer/assets/images/banner/02.png" alt="banner-thumb"></a>
                     </div>
                     <div class="banner-thumb-vs">
-                        <img src="assets/images/banner/vs.png" alt="banner-thumb">
+                        <img src="https://labartisan.net/demo/bigamer/assets/images/banner/vs.png" alt="banner-thumb">
                     </div>
                     <div class="banner-thumb-img mr-xl-50-none">
-                        <a href="team-single.html"><img src="assets/images/banner/03.png" alt="banner-thumb"></a>
+                        <a href="team-single.html"><img src="https://labartisan.net/demo/bigamer/assets/images/banner/03.png" alt="banner-thumb"></a>
                     </div>
                 </div>
             </div>
@@ -43,7 +43,7 @@
                         <div class="game-item item-layer">
                             <div class="game-item-inner bg-1">
                                 <div class="game-thumb">
-                                    <img src="assets/images/game/01.png" alt="game-img">
+                                    <img src="https://labartisan.net/demo/bigamer/assets/images/game/01.png" alt="game-img">
                                 </div>
                                 <div class="game-overlay">
                                     <h4><a href="team-single.html">Witch Sports Team</a> </h4>
@@ -62,7 +62,7 @@
                         <div class="game-item item-layer">
                             <div class="game-item-inner bg-2">
                                 <div class="game-thumb">
-                                    <img src="assets/images/game/02.png" alt="game-img">
+                                    <img src="https://labartisan.net/demo/bigamer/assets/images/game/02.png" alt="game-img">
                                 </div>
                                 <div class="game-overlay">
                                     <h4><a href="team-single.html">Wolves Sports Team</a> </h4>
@@ -81,7 +81,7 @@
                         <div class="game-item item-layer">
                             <div class="game-item-inner bg-3">
                                 <div class="game-thumb">
-                                    <img src="assets/images/game/03.png" alt="game-img">
+                                    <img src="https://labartisan.net/demo/bigamer/assets/images/game/03.png" alt="game-img">
                                 </div>
                                 <div class="game-overlay">
                                     <h4><a href="team-single.html">Robot Team</a> </h4>
@@ -100,7 +100,7 @@
                         <div class="game-item item-layer">
                             <div class="game-item-inner bg-4">
                                 <div class="game-thumb">
-                                    <img src="assets/images/game/04.png" alt="game-img">
+                                    <img src="https://labartisan.net/demo/bigamer/assets/images/game/04.png" alt="game-img">
                                 </div>
                                 <div class="game-overlay">
                                     <h4><a href="team-single.html">Dragon Pro</a> </h4>
@@ -133,7 +133,7 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="about-image">
-                            <img src="assets/images/about/01.png" alt="about-image">
+                            <img src="https://labartisan.net/demo/bigamer/assets/images/about/01.png" alt="about-image">
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-10">
@@ -149,7 +149,7 @@
                                 <ul class="about-list">
                                     <li class="about-item d-flex flex-wrap">
                                         <div class="about-item-thumb">
-                                            <img src="assets/images/about/icon-1.png" alt="Icon">
+                                            <img src="https://labartisan.net/demo/bigamer/assets/images/about/icon-1.png" alt="Icon">
                                         </div>
                                         <div class="about-item-content">
                                             <h5>103k Community Earning</h5>
@@ -159,7 +159,7 @@
                                     </li>
                                     <li class="about-item d-flex flex-wrap">
                                         <div class="about-item-thumb">
-                                            <img src="assets/images/about/icon-2.png" alt="Icon">
+                                            <img src="https://labartisan.net/demo/bigamer/assets/images/about/icon-2.png" alt="Icon">
                                         </div>
                                         <div class="about-item-content">
                                             <h5>34m+ Registered Players</h5>
@@ -169,7 +169,7 @@
                                     </li>
                                     <li class="about-item d-flex flex-wrap">
                                         <div class="about-item-thumb">
-                                            <img src="assets/images/about/icon-3.png" alt="Icon">
+                                            <img src="https://labartisan.net/demo/bigamer/assets/images/about/icon-3.png" alt="Icon">
                                         </div>
                                         <div class="about-item-content">
                                             <h5>240k Streams Complete</h5>
@@ -213,12 +213,12 @@
                                                 <ul
                                                     class="match-team-list d-flex flex-wrap align-items-center justify-content-center">
                                                     <li class="match-team-thumb"><a href="team-single.html"><img
-                                                                src="assets/images/match/team-1.png" alt="team-img"></a>
+                                                                src="https://labartisan.net/demo/bigamer/assets/images/match/team-1.png" alt="team-img"></a>
                                                     </li>
                                                     <li class="text-center"><img class="w-75 w-md-100"
-                                                            src="assets/images/match/vs.png" alt="vs"></li>
+                                                            src="https://labartisan.net/demo/bigamer/assets/images/match/vs.png" alt="vs"></li>
                                                     <li class="match-team-thumb"><a href="team-single.html"><img
-                                                                src="assets/images/match/team-2.png" alt="team-img"></a>
+                                                                src="https://labartisan.net/demo/bigamer/assets/images/match/team-2.png" alt="team-img"></a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -237,11 +237,11 @@
                                             <div class="match-game-social">
                                                 <ul
                                                     class="match-social-list d-flex flex-wrap align-items-center justify-content-center justify-content-xl-start">
-                                                    <li><a href="#"><img src="assets/images/match/social-1.png"
+                                                    <li><a href="#"><img src="https://labartisan.net/demo/bigamer/assets/images/match/social-1.png"
                                                                 alt="vimeo"></a></li>
-                                                    <li><a href="#"><img src="assets/images/match/social-2.png"
+                                                    <li><a href="#"><img src="https://labartisan.net/demo/bigamer/assets/images/match/social-2.png"
                                                                 alt="youtube"></a></li>
-                                                    <li><a href="#"><img src="assets/images/match/social-3.png"
+                                                    <li><a href="#"><img src="https://labartisan.net/demo/bigamer/assets/images/match/social-3.png"
                                                                 alt="twitch"></a></li>
                                                     <li><a href="#"
                                                             class="default-button reverse-effect"><span>Watch
@@ -275,18 +275,18 @@
                                                     <div class="col-md-2 col-5 p-0">
                                                         <div class="match-team-thumb text-center">
                                                             <a href="team-single.html" class="text-center"><img
-                                                                    src="assets/images/match/teamsm/teamsm-1.png"
+                                                                    src="https://labartisan.net/demo/bigamer/assets/images/match/teamsm/teamsm-1.png"
                                                                     alt="team-img"></a>
                                                         </div>
 
                                                     </div>
                                                     <div class="col-2 d-md-none">
-                                                        <img src="assets/images/match/vs.png" alt="vs">
+                                                        <img src="https://labartisan.net/demo/bigamer/assets/images/match/vs.png" alt="vs">
                                                     </div>
                                                     <div class="col-md-2 col-5 order-md-3 p-0">
                                                         <div class="match-team-thumb text-center">
                                                             <a href="team-single.html"><img
-                                                                    src="assets/images/match/teamsm/teamsm-2.png"
+                                                                    src="https://labartisan.net/demo/bigamer/assets/images/match/teamsm/teamsm-2.png"
                                                                     alt="team-img"></a>
                                                         </div>
                                                     </div>
@@ -302,13 +302,13 @@
                                                             <ul
                                                                 class="match-social-list d-flex flex-wrap align-items-center justify-content-center">
                                                                 <li><a href="#"><img
-                                                                            src="assets/images/match/social-1.png"
+                                                                            src="https://labartisan.net/demo/bigamer/assets/images/match/social-1.png"
                                                                             alt="vimeo"></a></li>
                                                                 <li><a href="#"><img
-                                                                            src="assets/images/match/social-2.png"
+                                                                            src="https://labartisan.net/demo/bigamer/assets/images/match/social-2.png"
                                                                             alt="youtube"></a></li>
                                                                 <li><a href="#"><img
-                                                                            src="assets/images/match/social-3.png"
+                                                                            src="https://labartisan.net/demo/bigamer/assets/images/match/social-3.png"
                                                                             alt="twitch"></a></li>
                                                             </ul>
                                                         </div>
@@ -333,18 +333,18 @@
                                                     <div class="col-md-2 col-5 p-0">
                                                         <div class="match-team-thumb text-center">
                                                             <a href="team-single.html" class="text-center"><img
-                                                                    src="assets/images/match/teamsm/teamsm-3.png"
+                                                                    src="https://labartisan.net/demo/bigamer/assets/images/match/teamsm/teamsm-3.png"
                                                                     alt="team-img"></a>
                                                         </div>
 
                                                     </div>
                                                     <div class="col-2 d-md-none">
-                                                        <img src="assets/images/match/vs.png" alt="vs">
+                                                        <img src="https://labartisan.net/demo/bigamer/assets/images/match/vs.png" alt="vs">
                                                     </div>
                                                     <div class="col-md-2 col-5 order-md-3 p-0">
                                                         <div class="match-team-thumb text-center">
                                                             <a href="team-single.html"><img
-                                                                    src="assets/images/match/teamsm/teamsm-4.png"
+                                                                    src="https://labartisan.net/demo/bigamer/assets/images/match/teamsm/teamsm-4.png"
                                                                     alt="team-img"></a>
                                                         </div>
                                                     </div>
@@ -360,13 +360,13 @@
                                                             <ul
                                                                 class="match-social-list d-flex flex-wrap align-items-center justify-content-center">
                                                                 <li><a href="#"><img
-                                                                            src="assets/images/match/social-1.png"
+                                                                            src="https://labartisan.net/demo/bigamer/assets/images/match/social-1.png"
                                                                             alt="vimeo"></a></li>
                                                                 <li><a href="#"><img
-                                                                            src="assets/images/match/social-2.png"
+                                                                            src="https://labartisan.net/demo/bigamer/assets/images/match/social-2.png"
                                                                             alt="youtube"></a></li>
                                                                 <li><a href="#"><img
-                                                                            src="assets/images/match/social-3.png"
+                                                                            src="https://labartisan.net/demo/bigamer/assets/images/match/social-3.png"
                                                                             alt="twitch"></a></li>
                                                             </ul>
                                                         </div>
@@ -391,18 +391,18 @@
                                                     <div class="col-md-2 col-5 p-0">
                                                         <div class="match-team-thumb text-center">
                                                             <a href="team-single.html" class="text-center"><img
-                                                                    src="assets/images/match/teamsm/teamsm-5.png"
+                                                                    src="https://labartisan.net/demo/bigamer/assets/images/match/teamsm/teamsm-5.png"
                                                                     alt="team-img"></a>
                                                         </div>
 
                                                     </div>
                                                     <div class="col-2 d-md-none">
-                                                        <img src="assets/images/match/vs.png" alt="vs">
+                                                        <img src="https://labartisan.net/demo/bigamer/assets/images/match/vs.png" alt="vs">
                                                     </div>
                                                     <div class="col-md-2 col-5 order-md-3 p-0">
                                                         <div class="match-team-thumb text-center">
                                                             <a href="team-single.html"><img
-                                                                    src="assets/images/match/teamsm/teamsm-6.png"
+                                                                    src="https://labartisan.net/demo/bigamer/assets/images/match/teamsm/teamsm-6.png"
                                                                     alt="team-img"></a>
                                                         </div>
                                                     </div>
@@ -418,13 +418,13 @@
                                                             <ul
                                                                 class="match-social-list d-flex flex-wrap align-items-center justify-content-center">
                                                                 <li><a href="#"><img
-                                                                            src="assets/images/match/social-1.png"
+                                                                            src="https://labartisan.net/demo/bigamer/assets/images/match/social-1.png"
                                                                             alt="vimeo"></a></li>
                                                                 <li><a href="#"><img
-                                                                            src="assets/images/match/social-2.png"
+                                                                            src="https://labartisan.net/demo/bigamer/assets/images/match/social-2.png"
                                                                             alt="youtube"></a></li>
                                                                 <li><a href="#"><img
-                                                                            src="assets/images/match/social-3.png"
+                                                                            src="https://labartisan.net/demo/bigamer/assets/images/match/social-3.png"
                                                                             alt="twitch"></a></li>
                                                             </ul>
                                                         </div>
@@ -456,18 +456,18 @@
                                                     <div class="col-md-2 col-5 p-0">
                                                         <div class="match-team-thumb text-center">
                                                             <a href="team-single.html" class="text-center"><img
-                                                                    src="assets/images/match/teamsm/teamsm-7.png"
+                                                                    src="https://labartisan.net/demo/bigamer/assets/images/match/teamsm/teamsm-7.png"
                                                                     alt="team-img"></a>
                                                         </div>
 
                                                     </div>
                                                     <div class="col-2 d-md-none">
-                                                        <img src="assets/images/match/vs.png" alt="vs">
+                                                        <img src="https://labartisan.net/demo/bigamer/assets/images/match/vs.png" alt="vs">
                                                     </div>
                                                     <div class="col-md-2 col-5 order-md-3 p-0">
                                                         <div class="match-team-thumb text-center">
                                                             <a href="team-single.html"><img
-                                                                    src="assets/images/match/teamsm/teamsm-8.png"
+                                                                    src="https://labartisan.net/demo/bigamer/assets/images/match/teamsm/teamsm-8.png"
                                                                     alt="team-img"></a>
                                                         </div>
                                                     </div>
@@ -483,14 +483,14 @@
                                                             <ul
                                                                 class="match-social-list d-flex flex-wrap align-items-center justify-content-center">
                                                                 <li><a href="#"><img
-                                                                            src="assets/images/match/social-1.png"
+                                                                            src="https://labartisan.net/demo/bigamer/assets/images/match/social-1.png"
                                                                             alt="vimeo"></a>
                                                                 </li>
                                                                 <li><a href="#"><img
-                                                                            src="assets/images/match/social-2.png"
+                                                                            src="https://labartisan.net/demo/bigamer/assets/images/match/social-2.png"
                                                                             alt="youtube"></a></li>
                                                                 <li><a href="#"><img
-                                                                            src="assets/images/match/social-3.png"
+                                                                            src="https://labartisan.net/demo/bigamer/assets/images/match/social-3.png"
                                                                             alt="twitch"></a></li>
                                                             </ul>
                                                         </div>
@@ -515,18 +515,18 @@
                                                     <div class="col-md-2 col-5 p-0">
                                                         <div class="match-team-thumb text-center">
                                                             <a href="team-single.html" class="text-center"><img
-                                                                    src="assets/images/match/teamsm/teamsm-9.png"
+                                                                    src="https://labartisan.net/demo/bigamer/assets/images/match/teamsm/teamsm-9.png"
                                                                     alt="team-img"></a>
                                                         </div>
 
                                                     </div>
                                                     <div class="col-2 d-md-none">
-                                                        <img src="assets/images/match/vs.png" alt="vs">
+                                                        <img src="https://labartisan.net/demo/bigamer/assets/images/match/vs.png" alt="vs">
                                                     </div>
                                                     <div class="col-md-2 col-5 order-md-3 p-0">
                                                         <div class="match-team-thumb text-center">
                                                             <a href="team-single.html"><img
-                                                                    src="assets/images/match/teamsm/teamsm-10.png"
+                                                                    src="https://labartisan.net/demo/bigamer/assets/images/match/teamsm/teamsm-10.png"
                                                                     alt="team-img"></a>
                                                         </div>
                                                     </div>
@@ -542,14 +542,14 @@
                                                             <ul
                                                                 class="match-social-list d-flex flex-wrap align-items-center justify-content-center">
                                                                 <li><a href="#"><img
-                                                                            src="assets/images/match/social-1.png"
+                                                                            src="https://labartisan.net/demo/bigamer/assets/images/match/social-1.png"
                                                                             alt="vimeo"></a>
                                                                 </li>
                                                                 <li><a href="#"><img
-                                                                            src="assets/images/match/social-2.png"
+                                                                            src="https://labartisan.net/demo/bigamer/assets/images/match/social-2.png"
                                                                             alt="youtube"></a></li>
                                                                 <li><a href="#"><img
-                                                                            src="assets/images/match/social-3.png"
+                                                                            src="https://labartisan.net/demo/bigamer/assets/images/match/social-3.png"
                                                                             alt="twitch"></a></li>
                                                             </ul>
                                                         </div>
@@ -574,18 +574,18 @@
                                                     <div class="col-md-2 col-5 p-0">
                                                         <div class="match-team-thumb text-center">
                                                             <a href="team-single.html" class="text-center"><img
-                                                                    src="assets/images/match/teamsm/teamsm-11.png"
+                                                                    src="https://labartisan.net/demo/bigamer/assets/images/match/teamsm/teamsm-11.png"
                                                                     alt="team-img"></a>
                                                         </div>
 
                                                     </div>
                                                     <div class="col-2 d-md-none">
-                                                        <img src="assets/images/match/vs.png" alt="vs">
+                                                        <img src="https://labartisan.net/demo/bigamer/assets/images/match/vs.png" alt="vs">
                                                     </div>
                                                     <div class="col-md-2 col-5 order-md-3 p-0">
                                                         <div class="match-team-thumb text-center">
                                                             <a href="team-single.html"><img
-                                                                    src="assets/images/match/teamsm/teamsm-12.png"
+                                                                    src="https://labartisan.net/demo/bigamer/assets/images/match/teamsm/teamsm-12.png"
                                                                     alt="team-img"></a>
                                                         </div>
                                                     </div>
@@ -601,14 +601,14 @@
                                                             <ul
                                                                 class="match-social-list d-flex flex-wrap align-items-center justify-content-center">
                                                                 <li><a href="#"><img
-                                                                            src="assets/images/match/social-1.png"
+                                                                            src="https://labartisan.net/demo/bigamer/assets/images/match/social-1.png"
                                                                             alt="vimeo"></a>
                                                                 </li>
                                                                 <li><a href="#"><img
-                                                                            src="assets/images/match/social-2.png"
+                                                                            src="https://labartisan.net/demo/bigamer/assets/images/match/social-2.png"
                                                                             alt="youtube"></a></li>
                                                                 <li><a href="#"><img
-                                                                            src="assets/images/match/social-3.png"
+                                                                            src="https://labartisan.net/demo/bigamer/assets/images/match/social-3.png"
                                                                             alt="twitch"></a></li>
                                                             </ul>
                                                         </div>
@@ -650,7 +650,7 @@
                                 style="background-image: url(assets/images/team/1.jpg);">
                                 <div class="player-inner-2">
                                     <div class="player-thumb-2">
-                                        <a href="team-single.html"><img src="assets/images/team/1.png"
+                                        <a href="team-single.html"><img src="https://labartisan.net/demo/bigamer/assets/images/team/1.png"
                                                 alt="team-img"></a>
                                     </div>
                                     <div class="player-content-2">
@@ -659,11 +659,11 @@
                                         </a>
                                         <ul
                                             class="match-social-list d-flex flex-wrap align-items-center justify-content-center">
-                                            <li><a href="#"><img src="assets/images/match/social-1.png"
+                                            <li><a href="#"><img src="https://labartisan.net/demo/bigamer/assets/images/match/social-1.png"
                                                         alt="vimeo"></a></li>
-                                            <li><a href="#"><img src="assets/images/match/social-2.png"
+                                            <li><a href="#"><img src="https://labartisan.net/demo/bigamer/assets/images/match/social-2.png"
                                                         alt="youtube"></a></li>
-                                            <li><a href="#"><img src="assets/images/match/social-3.png"
+                                            <li><a href="#"><img src="https://labartisan.net/demo/bigamer/assets/images/match/social-3.png"
                                                         alt="twitch"></a></li>
                                         </ul>
                                     </div>
@@ -675,7 +675,7 @@
                                 style="background-image: url(assets/images/team/2.jpg);">
                                 <div class="player-inner-2">
                                     <div class="player-thumb-2">
-                                        <a href="team-single.html"><img src="assets/images/team/2.png"
+                                        <a href="team-single.html"><img src="https://labartisan.net/demo/bigamer/assets/images/team/2.png"
                                                 alt="team-img"></a>
                                     </div>
                                     <div class="player-content-2">
@@ -684,11 +684,11 @@
                                         </a>
                                         <ul
                                             class="match-social-list d-flex flex-wrap align-items-center justify-content-center">
-                                            <li><a href="#"><img src="assets/images/match/social-1.png"
+                                            <li><a href="#"><img src="https://labartisan.net/demo/bigamer/assets/images/match/social-1.png"
                                                         alt="vimeo"></a></li>
-                                            <li><a href="#"><img src="assets/images/match/social-2.png"
+                                            <li><a href="#"><img src="https://labartisan.net/demo/bigamer/assets/images/match/social-2.png"
                                                         alt="youtube"></a></li>
-                                            <li><a href="#"><img src="assets/images/match/social-3.png"
+                                            <li><a href="#"><img src="https://labartisan.net/demo/bigamer/assets/images/match/social-3.png"
                                                         alt="twitch"></a></li>
                                         </ul>
                                     </div>
@@ -700,7 +700,7 @@
                                 style="background-image: url(assets/images/team/3.jpg);">
                                 <div class="player-inner-2">
                                     <div class="player-thumb-2">
-                                        <a href="team-single.html"><img src="assets/images/team/3.png"
+                                        <a href="team-single.html"><img src="https://labartisan.net/demo/bigamer/assets/images/team/3.png"
                                                 alt="team-img"></a>
                                     </div>
                                     <div class="player-content-2">
@@ -709,11 +709,11 @@
                                         </a>
                                         <ul
                                             class="match-social-list d-flex flex-wrap align-items-center justify-content-center">
-                                            <li><a href="#"><img src="assets/images/match/social-1.png"
+                                            <li><a href="#"><img src="https://labartisan.net/demo/bigamer/assets/images/match/social-1.png"
                                                         alt="vimeo"></a></li>
-                                            <li><a href="#"><img src="assets/images/match/social-2.png"
+                                            <li><a href="#"><img src="https://labartisan.net/demo/bigamer/assets/images/match/social-2.png"
                                                         alt="youtube"></a></li>
-                                            <li><a href="#"><img src="assets/images/match/social-3.png"
+                                            <li><a href="#"><img src="https://labartisan.net/demo/bigamer/assets/images/match/social-3.png"
                                                         alt="twitch"></a></li>
                                         </ul>
                                     </div>
@@ -725,7 +725,7 @@
                                 style="background-image: url(assets/images/team/4.jpg);">
                                 <div class="player-inner-2">
                                     <div class="player-thumb-2">
-                                        <a href="team-single.html"><img src="assets/images/team/4.png"
+                                        <a href="team-single.html"><img src="https://labartisan.net/demo/bigamer/assets/images/team/4.png"
                                                 alt="team-img"></a>
                                     </div>
                                     <div class="player-content-2">
@@ -734,11 +734,11 @@
                                         </a>
                                         <ul
                                             class="match-social-list d-flex flex-wrap align-items-center justify-content-center">
-                                            <li><a href="#"><img src="assets/images/match/social-1.png"
+                                            <li><a href="#"><img src="https://labartisan.net/demo/bigamer/assets/images/match/social-1.png"
                                                         alt="vimeo"></a></li>
-                                            <li><a href="#"><img src="assets/images/match/social-2.png"
+                                            <li><a href="#"><img src="https://labartisan.net/demo/bigamer/assets/images/match/social-2.png"
                                                         alt="youtube"></a></li>
-                                            <li><a href="#"><img src="assets/images/match/social-3.png"
+                                            <li><a href="#"><img src="https://labartisan.net/demo/bigamer/assets/images/match/social-3.png"
                                                         alt="twitch"></a></li>
                                         </ul>
                                     </div>
@@ -750,7 +750,7 @@
                                 style="background-image: url(assets/images/team/5.jpg);">
                                 <div class="player-inner-2">
                                     <div class="player-thumb-2">
-                                        <a href="team-single.html"><img src="assets/images/team/5.png"
+                                        <a href="team-single.html"><img src="https://labartisan.net/demo/bigamer/assets/images/team/5.png"
                                                 alt="team-img"></a>
                                     </div>
                                     <div class="player-content-2">
@@ -759,11 +759,11 @@
                                         </a>
                                         <ul
                                             class="match-social-list d-flex flex-wrap align-items-center justify-content-center">
-                                            <li><a href="#"><img src="assets/images/match/social-1.png"
+                                            <li><a href="#"><img src="https://labartisan.net/demo/bigamer/assets/images/match/social-1.png"
                                                         alt="vimeo"></a></li>
-                                            <li><a href="#"><img src="assets/images/match/social-2.png"
+                                            <li><a href="#"><img src="https://labartisan.net/demo/bigamer/assets/images/match/social-2.png"
                                                         alt="youtube"></a></li>
-                                            <li><a href="#"><img src="assets/images/match/social-3.png"
+                                            <li><a href="#"><img src="https://labartisan.net/demo/bigamer/assets/images/match/social-3.png"
                                                         alt="twitch"></a></li>
                                         </ul>
                                     </div>
@@ -800,7 +800,7 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="cta-thumb text-end">
-                                <img src="assets/images/cta/01.png" alt="gamer-img">
+                                <img src="https://labartisan.net/demo/bigamer/assets/images/cta/01.png" alt="gamer-img">
                             </div>
                         </div>
                     </div>
@@ -828,7 +828,7 @@
                                     <div class="video-item">
                                         <div class="video-inner position-relative">
                                             <div class="video-thumb position-relative video-overlay">
-                                                <img src="assets/images/video/01.jpg" alt="video-thumb" class="w-100">
+                                                <img src="https://labartisan.net/demo/bigamer/assets/images/video/01.jpg" alt="video-thumb" class="w-100">
                                                 <div class="video-icon">
                                                     <a href="https://www.youtube.com/embed/g5eQgEuiFC8"
                                                         data-rel="lightcase">
@@ -849,7 +849,7 @@
                                     <div class="video-item">
                                         <div class="video-inner position-relative">
                                             <div class="video-thumb position-relative video-overlay">
-                                                <img src="assets/images/video/02.jpg" alt="video-thumb" class="w-100">
+                                                <img src="https://labartisan.net/demo/bigamer/assets/images/video/02.jpg" alt="video-thumb" class="w-100">
                                                 <div class="video-icon">
                                                     <a href="https://www.youtube.com/embed/g5eQgEuiFC8"
                                                         data-rel="lightcase">
@@ -876,7 +876,7 @@
                                     <div class="video-item">
                                         <div class="video-inner position-relative">
                                             <div class="video-thumb position-relative video-overlay">
-                                                <img src="assets/images/video/03.jpg" alt="video-thumb" class="w-100">
+                                                <img src="https://labartisan.net/demo/bigamer/assets/images/video/03.jpg" alt="video-thumb" class="w-100">
                                                 <div class="video-icon">
                                                     <a href="https://www.youtube.com/embed/g5eQgEuiFC8"
                                                         data-rel="lightcase">
@@ -897,7 +897,7 @@
                                     <div class="video-item">
                                         <div class="video-inner position-relative">
                                             <div class="video-thumb position-relative video-overlay">
-                                                <img src="assets/images/video/04.jpg" alt="video-thumb" class="w-100">
+                                                <img src="https://labartisan.net/demo/bigamer/assets/images/video/04.jpg" alt="video-thumb" class="w-100">
                                                 <div class="video-icon">
                                                     <a href="https://www.youtube.com/embed/g5eQgEuiFC8"
                                                         data-rel="lightcase">
@@ -918,7 +918,7 @@
                                     <div class="video-item">
                                         <div class="video-inner position-relative">
                                             <div class="video-thumb position-relative video-overlay">
-                                                <img src="assets/images/video/05.jpg" alt="video-thumb" class="w-100">
+                                                <img src="https://labartisan.net/demo/bigamer/assets/images/video/05.jpg" alt="video-thumb" class="w-100">
                                                 <div class="video-icon">
                                                     <a href="https://www.youtube.com/embed/g5eQgEuiFC8"
                                                         data-rel="lightcase">
@@ -958,7 +958,7 @@
                         <div class="product-item">
                             <div class="product-inner">
                                 <div class="product-thumb">
-                                    <img src="assets/images/product/01.jpg" alt="product-thumb" class="w-100">
+                                    <img src="https://labartisan.net/demo/bigamer/assets/images/product/01.jpg" alt="product-thumb" class="w-100">
                                 </div>
                                 <div class="product-content text-center p-3">
                                     <a href="#">
@@ -980,7 +980,7 @@
                         <div class="product-item">
                             <div class="product-inner">
                                 <div class="product-thumb">
-                                    <img src="assets/images/product/02.jpg" alt="product-thumb" class="w-100">
+                                    <img src="https://labartisan.net/demo/bigamer/assets/images/product/02.jpg" alt="product-thumb" class="w-100">
                                 </div>
                                 <div class="product-content text-center p-3">
                                     <a href="#">
@@ -1002,7 +1002,7 @@
                         <div class="product-item">
                             <div class="product-inner">
                                 <div class="product-thumb">
-                                    <img src="assets/images/product/03.jpg" alt="product-thumb" class="w-100">
+                                    <img src="https://labartisan.net/demo/bigamer/assets/images/product/03.jpg" alt="product-thumb" class="w-100">
                                 </div>
                                 <div class="product-content text-center p-3">
                                     <a href="#">
@@ -1024,7 +1024,7 @@
                         <div class="product-item">
                             <div class="product-inner">
                                 <div class="product-thumb">
-                                    <img src="assets/images/product/04.jpg" alt="product-thumb" class="w-100">
+                                    <img src="https://labartisan.net/demo/bigamer/assets/images/product/04.jpg" alt="product-thumb" class="w-100">
                                 </div>
                                 <div class="product-content text-center p-3">
                                     <a href="#">
@@ -1065,7 +1065,7 @@
                         <div class="sponsor-item">
                             <div class="sponsor-inner">
                                 <div class="sponsor-thumb text-center">
-                                    <img src="assets/images/sponsor/01.png" alt="sponsor-thumb">
+                                    <img src="https://labartisan.net/demo/bigamer/assets/images/sponsor/01.png" alt="sponsor-thumb">
                                 </div>
                             </div>
                         </div>
@@ -1074,7 +1074,7 @@
                         <div class="sponsor-item">
                             <div class="sponsor-inner">
                                 <div class="sponsor-thumb text-center">
-                                    <img src="assets/images/sponsor/02.png" alt="sponsor-thumb">
+                                    <img src="https://labartisan.net/demo/bigamer/assets/images/sponsor/02.png" alt="sponsor-thumb">
                                 </div>
                             </div>
                         </div>
@@ -1083,7 +1083,7 @@
                         <div class="sponsor-item">
                             <div class="sponsor-inner">
                                 <div class="sponsor-thumb text-center">
-                                    <img src="assets/images/sponsor/03.png" alt="sponsor-thumb">
+                                    <img src="https://labartisan.net/demo/bigamer/assets/images/sponsor/03.png" alt="sponsor-thumb">
                                 </div>
                             </div>
                         </div>
@@ -1092,7 +1092,7 @@
                         <div class="sponsor-item">
                             <div class="sponsor-inner">
                                 <div class="sponsor-thumb text-center">
-                                    <img src="assets/images/sponsor/04.png" alt="sponsor-thumb">
+                                    <img src="https://labartisan.net/demo/bigamer/assets/images/sponsor/04.png" alt="sponsor-thumb">
                                 </div>
                             </div>
                         </div>
@@ -1101,7 +1101,7 @@
                         <div class="sponsor-item">
                             <div class="sponsor-inner">
                                 <div class="sponsor-thumb text-center">
-                                    <img src="assets/images/sponsor/05.png" alt="sponsor-thumb">
+                                    <img src="https://labartisan.net/demo/bigamer/assets/images/sponsor/05.png" alt="sponsor-thumb">
                                 </div>
                             </div>
                         </div>
@@ -1110,7 +1110,7 @@
                         <div class="sponsor-item">
                             <div class="sponsor-inner">
                                 <div class="sponsor-thumb text-center">
-                                    <img src="assets/images/sponsor/06.png" alt="sponsor-thumb">
+                                    <img src="https://labartisan.net/demo/bigamer/assets/images/sponsor/06.png" alt="sponsor-thumb">
                                 </div>
                             </div>
                         </div>
@@ -1119,7 +1119,7 @@
                         <div class="sponsor-item">
                             <div class="sponsor-inner">
                                 <div class="sponsor-thumb text-center">
-                                    <img src="assets/images/sponsor/07.png" alt="sponsor-thumb">
+                                    <img src="https://labartisan.net/demo/bigamer/assets/images/sponsor/07.png" alt="sponsor-thumb">
                                 </div>
                             </div>
                         </div>
@@ -1128,7 +1128,7 @@
                         <div class="sponsor-item">
                             <div class="sponsor-inner">
                                 <div class="sponsor-thumb text-center">
-                                    <img src="assets/images/sponsor/08.png" alt="sponsor-thumb">
+                                    <img src="https://labartisan.net/demo/bigamer/assets/images/sponsor/08.png" alt="sponsor-thumb">
                                 </div>
                             </div>
                         </div>
@@ -1157,7 +1157,7 @@
                         <div class="blog-item">
                             <div class="blog-inner">
                                 <div class="blog-thumb">
-                                    <img src="assets/images/blog/01.jpg" alt="blog-thumb">
+                                    <img src="https://labartisan.net/demo/bigamer/assets/images/blog/01.jpg" alt="blog-thumb">
                                 </div>
                                 <div class="blog-content px-3 py-4">
                                     <a href="blog-single.html">
@@ -1180,7 +1180,7 @@
                         <div class="blog-item">
                             <div class="blog-inner">
                                 <div class="blog-thumb">
-                                    <img src="assets/images/blog/02.jpg" alt="blog-thumb">
+                                    <img src="https://labartisan.net/demo/bigamer/assets/images/blog/02.jpg" alt="blog-thumb">
                                 </div>
                                 <div class="blog-content px-3 py-4">
                                     <a href="blog-single.html">
@@ -1223,14 +1223,14 @@
                                     <div class="testimonial-head">
                                         <div class="testi-top">
                                             <div class="testimonial-thumb">
-                                                <img src="assets/images/testimonial/01.jpg" alt="testimonial">
+                                                <img src="https://labartisan.net/demo/bigamer/assets/images/testimonial/01.jpg" alt="testimonial">
                                             </div>
                                             <div class="name-des">
                                                 <h5>Madley Pondor</h5>
                                                 <p>UI Designer</p>
                                             </div>
                                         </div>
-                                        <a href="team-single.html"><img src="assets/images/testimonial/logo/01.png"
+                                        <a href="team-single.html"><img src="https://labartisan.net/demo/bigamer/assets/images/testimonial/logo/01.png"
                                                 alt="testimonial"></a>
                                     </div>
                                     <div class="testimonial-body">
@@ -1257,14 +1257,14 @@
                                     <div class="testimonial-head">
                                         <div class="testi-top">
                                             <div class="testimonial-thumb">
-                                                <img src="assets/images/testimonial/02.jpg" alt="testimonial">
+                                                <img src="https://labartisan.net/demo/bigamer/assets/images/testimonial/02.jpg" alt="testimonial">
                                             </div>
                                             <div class="name-des">
                                                 <h5>Oliver Beddows</h5>
                                                 <p>UI Designer</p>
                                             </div>
                                         </div>
-                                        <a href="team-single.html"><img src="assets/images/testimonial/logo/02.png"
+                                        <a href="team-single.html"><img src="https://labartisan.net/demo/bigamer/assets/images/testimonial/logo/02.png"
                                                 alt="testimonial"></a>
                                     </div>
                                     <div class="testimonial-body">

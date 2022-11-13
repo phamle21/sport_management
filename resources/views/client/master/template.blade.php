@@ -39,7 +39,7 @@
 
     <!-- ==========shape image Starts Here========== -->
     <div class="body-shape">
-        <img src="assets/images/shape/body-shape.png" alt="shape">
+        <img src="{{ asset('assets/images/shape/body-shape.png') }}" alt="shape">
     </div>
     <!-- ==========shape image end Here========== -->
 
