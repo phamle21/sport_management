@@ -5,14 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ClubGroup extends Model
+class LeagueType extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'name',
-        'address',
-        'price',
     ];
 
     protected $hidden = [

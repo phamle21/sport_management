@@ -13,4 +13,9 @@ class UserRole extends Model
         'user_id',
         'role_id'
     ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
 }

@@ -4,6 +4,10 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Imports\GroundsImport;
+use App\Imports\LeagueTypesImport;
+use App\Imports\OptionsImport;
+use App\Imports\UsersImport;
 use App\Models\Image;
 use App\Models\Option;
 use App\Models\Permission;
@@ -14,6 +18,7 @@ use App\Models\UserRole;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DatabaseSeeder extends Seeder
 {
@@ -54,8 +59,6 @@ class DatabaseSeeder extends Seeder
             ]
         ]);
 
-        User::factory(10)->create();
-
         Role::insert([
             ['name' => 'Admin'],
             ['name' => 'Team Manager'],
@@ -87,31 +90,11 @@ class DatabaseSeeder extends Seeder
         ]);
 
         PermissionRole::factory(10)->create();
-        UserRole::factory(10)->create();
 
-        foreach (User::all() as $v) {
-            Image::create([
-                'type' => 'User',
-                'type_name' => 'avatar',
-                'name' => 'Avatar of ' . $v->name,
-                'path' => 'avatar-default.png',
-                'type_id' => $v->id
-            ]);
-        }
+        Excel::import(new OptionsImport, public_path('data-import/options.xlsx'));
+        Excel::import(new UsersImport, public_path('data-import/users.xlsx'));
+        Excel::import(new LeagueTypesImport, public_path('data-import/league_types.xlsx'));
+        Excel::import(new GroundsImport, public_path('data-import/grounds.xlsx'));
 
-        Option::insert([
-            [
-                'name' => 'logo_name',
-                'value' => 'Logo',
-            ],
-            [
-                'name' => 'logo_path',
-                'path' => '/images/system/logo.png'
-            ],
-            [
-                'name' => 'name_site',
-                'value' => 'Sport Management'
-            ]
-        ]);
     }
 }

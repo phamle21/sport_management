@@ -13,14 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('leagues', function (Blueprint $table) {
+        Schema::create('league_types', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('rule');
-            $table->datetime('start');
-            $table->datetime('end');
-            $table->string('prize');
-            $table->unsignedBigInteger('league_type_id');
             $table->timestamps();
         });
     }
@@ -32,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('leagues');
+        Schema::dropIfExists('league_types');
     }
 };

@@ -19,6 +19,9 @@ return [
     'header.team' => 'Team',
     'header.create-team' => 'Create Team',
 
+    'footer.head-right' => 'Thanks you',
+    'footer.btn-right' => 'Send Massage',
+
     'contact.address' => 'Office Address',
     'contact.phone' => 'Phone number',
     'contact.sendmail' => 'Send Email',

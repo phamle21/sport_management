@@ -34,7 +34,8 @@
                             <div class="lab-thumb">
                             </div>
                             <div class="lab-content">
-                                <img class="me-2" src="{{ asset('assets/images/footer/icons/03.png') }}" alt="location-icon">
+                                <img class="me-2" src="{{ asset('assets/images/footer/icons/03.png') }}"
+                                    alt="location-icon">
                                 <span>{{ __('message.address') }} :
                                     {{ \App\Models\Option::where('name', 'address_site')->first()->value }}</span>
                             </div>
@@ -51,12 +52,10 @@
                     <div class="footer-middle-item-wrapper">
                         <div class="footer-middle-item mb-lg-0">
                             <div class="fm-item-title mb-4">
-                                <img src="{{ asset('assets/images/logo/logo.png') }}"  alt="logo">
+                                <img src="{{ asset('assets/images/logo/logo.png') }}" alt="logo">
                             </div>
                             <div class="fm-item-content">
-                                <p class="mb-4">Upropriate brand economca sound technolog after covalent
-                                    technology enable prospective wastng markets whereas propriate and brand
-                                    economca sound technolog</p>
+                                <p>Bạn có thể tự tạo và quản lý giải đấu của mình ở website chúng tôi!</p>
                             </div>
                         </div>
                     </div>
@@ -65,18 +64,27 @@
                     <div class="footer-middle-item-wrapper">
                         <div class="footer-middle-item-3 mb-lg-0">
                             <div class="fm-item-title">
-                                <h4>Our Newsletter</h4>
+                                <h4>{{ __('message.footer.head-right') }}</h4>
                             </div>
                             <div class="fm-item-content">
-                                <p>Bigamer esports organization supported by community leaders</p>
-                                <form>
-                                    <div class="form-group mb-4">
+
+                                <p class="mb-4">
+                                    Chúng tôi sẽ lắng nghe và hỗ trợ các bạn ngay khi có thể và chúng tôi
+                                    cũng sẽ cố hết sức để các bạn các bạn có những trải nghiệm tốt nhất.
+                                </p>
+                                <p class="mb-4">
+                                    Nếu bạn có điền gì muốn nói, chúng tối lắng nghe.
+                                    Nếu bạn muốn đóng góp ý kiến hãy liên hệ ngày cho chúng tôi.
+                                    Cảm ơn bạn rất nhiều.
+                                </p>
+                                <form action="/contact">
+                                    {{-- <div class="form-group mb-4">
                                         <input type="text" class="form-control" placeholder="Your Name">
                                     </div>
                                     <div class="form-group mb-2">
                                         <input type="email" class="form-control" placeholder="Your Email">
-                                    </div>
-                                    <button type="submit" class="default-button"><span>Send Massage <i
+                                    </div> --}}
+                                    <button type="submit" class="default-button"><span>{{ __('message.footer.btn-right') }} <i
                                                 class="icofont-circled-right"></i></span></button>
                                 </form>
                             </div>

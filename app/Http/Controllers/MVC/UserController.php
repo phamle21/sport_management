@@ -25,7 +25,7 @@ class UserController extends Controller
             ['user_id', '<>', '3'],
         ])->delete();
 
-        Excel::import(new UsersImport, public_path('data-import/user.xlsx'));
+        Excel::import(new UsersImport, public_path('data-import/users.xlsx'));
 
         return 'success';
     }

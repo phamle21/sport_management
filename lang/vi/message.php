@@ -19,6 +19,9 @@ return [
     'header.team' => 'Đội đấu',
     'header.create-team' => 'Tạo đội',
 
+    'footer.head-right' => 'Cảm ơn',
+    'footer.btn-right' => 'Gửi phản hồi',
+
     'contact.address' => 'Địa chỉ văn phòng',
     'contact.phone' => 'Số điện thoại',
     'contact.sendmail' => 'Gửi email',

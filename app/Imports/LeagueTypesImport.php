@@ -2,21 +2,21 @@
 
 namespace App\Imports;
 
-use App\Models\Matches;
+use App\Models\LeagueType;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 
-class MatchesImport implements ToModel, WithStartRow
+class LeagueTypesImport implements ToModel, WithStartRow
 {
     public function startRow(): int
     {
         return 3;
     }
-    
+
     public function model(array $row)
     {
-        return new Matches([
-            //
+        return new LeagueType([
+            'name' => $row[0],
         ]);
     }
 }

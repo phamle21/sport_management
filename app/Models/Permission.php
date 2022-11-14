@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Permission extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'address',
+        'price',
+    ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
 }
