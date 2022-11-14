@@ -64,7 +64,7 @@
                                 </div>
                             @endif
 
-                            <form class="contact-form justify-content-center" action="{{ route('contact.send') }} "
+                            <form class="contact-form justify-content-center" action="{{ route('tournament.create') }} "
                                 id="frmCreateTournament" method="POST">
                                 @csrf
 
@@ -107,12 +107,14 @@
                                     <div class="col">
                                         <div class="form-group w-100">
                                             <input type="text" id="start" name="start"
+                                                data-inputmask="'alias': 'datetime', 'inputFormat': 'dd/mm/yyyy'"
                                                 placeholder="{{ __('message.tournament.create.frm-start') }}" required>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group w-100">
                                             <input type="text" id="end" name="end"
+                                                data-inputmask="'alias': 'datetime', 'inputFormat': 'dd/mm/yyyy'"
                                                 placeholder="{{ __('message.tournament.create.frm-end') }}" required>
                                         </div>
                                     </div>
@@ -145,6 +147,7 @@
 @endsection
 
 @section('js')
+    {{-- Upload logo --}}
     <script>
         function readURL(input) {
             if (input.files && input.files[0]) {
@@ -161,14 +164,23 @@
             readURL(this);
         });
     </script>
+
+    {{-- Input mask --}}
+    <script src="https://unpkg.com/inputmask@4.0.4/dist/inputmask/dependencyLibs/inputmask.dependencyLib.js"></script>
+    <script src="https://unpkg.com/inputmask@4.0.4/dist/inputmask/inputmask.js"></script>
+    <script src="https://unpkg.com/inputmask@4.0.4/dist/inputmask/inputmask.date.extensions.js"></script>
+    <script>
+        Inputmask().mask("input");
+    </script>
+
+    {{-- CK_Editor --}}
     <script>
         ClassicEditor
             .create(document.querySelector('#rule'), {
                 ckfinder: {
                     uploadUrl: '{{ route('image.upload') . '?_token=' . csrf_token() }}',
                 }
-            })
-            .catch(error => {
+            }).catch(error => {
                 console.error(error);
             });
     </script>
