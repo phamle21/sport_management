@@ -35,4 +35,11 @@ return [
     'contact.frm-subject' => 'Subject',
     'contact.frm-message' => 'Your Message',
 
+    'tournament.create.head' => 'Create new tournament',
+    'tournament.create.frm-name' => 'Tournament name',
+    'tournament.create.frm-type' => 'Tournament type',
+    'tournament.create.frm-rule' => 'Rule of tournament',
+    'tournament.create.frm-start' => 'Start Date',
+    'tournament.create.frm-end' => 'End Date',
+
 ];

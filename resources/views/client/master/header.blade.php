@@ -37,7 +37,7 @@
                 <div class="header-bottom">
                     <div class="header-wrapper justify-content-lg-end">
                         <div class="mobile-logo d-lg-none">
-                            <a href="index"><img src="{{ asset('assets/images/logo/logo.png') }}" alt="logo"></a>
+                            <a href="/"><img src="{{ asset('assets/images/logo/logo.png') }}" alt="logo"></a>
                         </div>
                         <div class="menu-area">
                             <ul class="menu">
@@ -46,19 +46,19 @@
                                 <li>
                                     <a href="#0">{{ __('message.header.tournament') }}</a>
                                     <ul class="submenu">
-                                        <li><a href="/blog">{{ __('message.header.find-tournament') }}</a></li>
-                                        <li><a href="/blog-2">{{ __('message.header.create-tournament') }}</a></li>
+                                        <li><a href="/find-tournament">{{ __('message.header.find-tournament') }}</a></li>
+                                        <li><a href="/create-tournament">{{ __('message.header.create-tournament') }}</a></li>
                                     </ul>
                                 </li>
 
                                 <li>
                                     <a href="#0">{{ __('message.header.team') }}</a>
                                     <ul class="submenu">
-                                        <li><a href="/blog-2">{{ __('message.header.create-team') }}</a></li>
+                                        <li><a href="/create-tournament">{{ __('message.header.create-team') }}</a></li>
                                     </ul>
                                 </li>
 
-                                <li><a href="/contact">{{ __('message.header.about') }}</a></li>
+                                <li><a href="/about">{{ __('message.header.about') }}</a></li>
                                 <li><a href="/contact">{{ __('message.header.contact') }}</a></li>
                             </ul>
                             <a href="login" class="login">

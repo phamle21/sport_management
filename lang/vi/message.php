@@ -35,4 +35,12 @@ return [
     'contact.frm-subject' => 'Tiêu đề',
     'contact.frm-message' => 'Nội dung liên hệ',
 
+    'tournament.create.head' => 'Tạo giải đấu mới',
+    'tournament.create.frm-name' => 'Tên giải đấu',
+    'tournament.create.frm-type' => 'Loại giải đấu',
+    'tournament.create.frm-rule' => 'Luật lệ',
+    'tournament.create.frm-start' => 'Ngày bắt đầu',
+    'tournament.create.frm-end' => 'Ngày kết thúc',
+
+
 ];
