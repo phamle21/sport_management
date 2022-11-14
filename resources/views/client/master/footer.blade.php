@@ -77,16 +77,9 @@
                                     Nếu bạn muốn đóng góp ý kiến hãy liên hệ ngày cho chúng tôi.
                                     Cảm ơn bạn rất nhiều.
                                 </p>
-                                <form action="/contact">
-                                    {{-- <div class="form-group mb-4">
-                                        <input type="text" class="form-control" placeholder="Your Name">
-                                    </div>
-                                    <div class="form-group mb-2">
-                                        <input type="email" class="form-control" placeholder="Your Email">
-                                    </div> --}}
-                                    <button type="submit" class="default-button"><span>{{ __('message.footer.btn-right') }} <i
-                                                class="icofont-circled-right"></i></span></button>
-                                </form>
+
+                                <a href="/contact" class="default-button"><span>{{ __('message.footer.btn-right') }} <i
+                                            class="icofont-circled-right"></i></span></a>
                             </div>
                         </div>
                     </div>
