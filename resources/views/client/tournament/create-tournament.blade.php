@@ -29,6 +29,7 @@
             box-shadow: 0px 2px 4px 0px rgb(0 0 0 / 6%);
             background: rgba(35, 42, 92, .5);
             color: #fff;
+            min-height: 15rem;
         }
 
         .ck-sticky-panel__content {
