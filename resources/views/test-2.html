@@ -1,0 +1,568 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+
+<HEAD>
+    <TITLE> TNYK <3 </TITLE>
+            <META CHARSET="UTF-8">
+            <META NAME="Generator" CONTENT="EditPlus">
+            <META NAME="Author" CONTENT="">
+            <META NAME="Keywords" CONTENT="">
+            <META NAME="Description" CONTENT="">
+
+
+            <style>
+                html,
+                body {
+                    height: 100%;
+                    padding: 0;
+                    margin: 0;
+                    background: #000;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    overflow: hidden;
+                    margin-top: -50px;
+                }
+
+                .box {
+                    width: 100%;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                canvas {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                }
+
+                #pinkboard {
+                    position: relative;
+                    margin: auto;
+                    height: 500px;
+                    width: 100%;
+                    /* animation: animate 1.3s infinite; */
+                }
+
+                #pinkboard:before,
+                #pinkboard:after {
+                    content: '';
+                    position: absolute;
+                    background: #FF5CA4;
+                    width: 100px;
+                    height: 160px;
+                    border-top-left-radius: 50px;
+                    border-top-right-radius: 50px;
+                }
+
+                #pinkboard:before {
+                    left: 100px;
+                    transform: rotate(-45deg);
+                    transform-origin: 0 100%;
+                    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25),
+                        0 10px 10px rgba(0, 0, 0, 0.22);
+                }
+
+                #pinkboard:after {
+                    left: 0;
+                    transform: rotate(45deg);
+                    transform-origin: 100% 100%;
+                }
+
+                @keyframes animate {
+                    0% {
+                        transform: scale(1);
+                    }
+
+                    30% {
+                        transform: scale(.8);
+                    }
+
+                    60% {
+                        transform: scale(1.2);
+                    }
+
+                    100% {
+                        transform: scale(1);
+                    }
+                }
+            </style>
+            <style>
+                .box {
+                    /* animation: rotar 15s infinite linear;
+                    transform-style: preserve-3d;
+                    top: 0;
+                    left: 0; */
+                    z-index: 15;
+                    margin-top: -50px;
+                }
+            </style>
+</HEAD>
+
+<BODY>
+    <div class="box">
+        <canvas id="pinkboard"></canvas>
+    </div>
+    <script>
+        /*
+       * Settings
+       */
+        var settings = {
+            particles: {
+                length: 2000, // maximum amount of particles
+                duration: 2.1, // particle duration in sec
+                velocity: 100, // particle velocity in pixels/sec
+                effect: -1.3, // play with this for a nice effect
+                size: 16, // particle size in pixels
+            },
+        };
+        /*
+         * RequestAnimationFrame polyfill by Erik Möller
+         */
+        (function () { var b = 0; var c = ["ms", "moz", "webkit", "o"]; for (var a = 0; a < c.length && !window.requestAnimationFrame; ++a) { window.requestAnimationFrame = window[c[a] + "RequestAnimationFrame"]; window.cancelAnimationFrame = window[c[a] + "CancelAnimationFrame"] || window[c[a] + "CancelRequestAnimationFrame"] } if (!window.requestAnimationFrame) { window.requestAnimationFrame = function (h, e) { var d = new Date().getTime(); var f = Math.max(0, 16 - (d - b)); var g = window.setTimeout(function () { h(d + f) }, f); b = d + f; return g } } if (!window.cancelAnimationFrame) { window.cancelAnimationFrame = function (d) { clearTimeout(d) } } }());
+        /*
+         * Point class
+         */
+        var Point = (function () {
+            function Point(x, y) {
+                this.x = (typeof x !== 'undefined') ? x : 0;
+                this.y = (typeof y !== 'undefined') ? y : 0;
+            }
+            Point.prototype.clone = function () {
+                return new Point(this.x, this.y);
+            };
+            Point.prototype.length = function (length) {
+                if (typeof length == 'undefined')
+                    return Math.sqrt(this.x * this.x + this.y * this.y);
+                this.normalize();
+                this.x *= length;
+                this.y *= length;
+                return this;
+            };
+            Point.prototype.normalize = function () {
+                var length = this.length();
+                this.x /= length;
+                this.y /= length;
+                return this;
+            };
+            return Point;
+        })();
+        /*
+         * Particle class
+         */
+        var Particle = (function () {
+            function Particle() {
+                this.position = new Point();
+                this.velocity = new Point();
+                this.acceleration = new Point();
+                this.age = 0;
+            }
+            Particle.prototype.initialize = function (x, y, dx, dy) {
+                this.position.x = x;
+                this.position.y = y;
+                this.velocity.x = dx;
+                this.velocity.y = dy;
+                this.acceleration.x = dx * settings.particles.effect;
+                this.acceleration.y = dy * settings.particles.effect;
+                this.age = 0;
+            };
+            Particle.prototype.update = function (deltaTime) {
+                this.position.x += this.velocity.x * deltaTime;
+                this.position.y += this.velocity.y * deltaTime;
+                this.velocity.x += this.acceleration.x * deltaTime;
+                this.velocity.y += this.acceleration.y * deltaTime;
+                this.age += deltaTime;
+            };
+            Particle.prototype.draw = function (context, image) {
+                function ease(t) {
+                    return (--t) * t * t + 1;
+                }
+                var size = image.width * ease(this.age / settings.particles.duration);
+                context.globalAlpha = 1 - this.age / settings.particles.duration;
+                context.drawImage(image, this.position.x - size / 2, this.position.y - size / 2, size, size);
+            };
+            return Particle;
+        })();
+        /*
+         * ParticlePool class
+         */
+        var ParticlePool = (function () {
+            var particles,
+                firstActive = 0,
+                firstFree = 0,
+                duration = settings.particles.duration;
+
+            function ParticlePool(length) {
+                // create and populate particle pool
+                particles = new Array(length);
+                for (var i = 0; i < particles.length; i++)
+                    particles[i] = new Particle();
+            }
+            ParticlePool.prototype.add = function (x, y, dx, dy) {
+                particles[firstFree].initialize(x, y, dx, dy);
+
+                // handle circular queue
+                firstFree++;
+                if (firstFree == particles.length) firstFree = 0;
+                if (firstActive == firstFree) firstActive++;
+                if (firstActive == particles.length) firstActive = 0;
+            };
+            ParticlePool.prototype.update = function (deltaTime) {
+                var i;
+
+                // update active particles
+                if (firstActive < firstFree) {
+                    for (i = firstActive; i < firstFree; i++)
+                        particles[i].update(deltaTime);
+                }
+                if (firstFree < firstActive) {
+                    for (i = firstActive; i < particles.length; i++)
+                        particles[i].update(deltaTime);
+                    for (i = 0; i < firstFree; i++)
+                        particles[i].update(deltaTime);
+                }
+
+                // remove inactive particles
+                while (particles[firstActive].age >= duration && firstActive != firstFree) {
+                    firstActive++;
+                    if (firstActive == particles.length) firstActive = 0;
+                }
+
+
+            };
+            ParticlePool.prototype.draw = function (context, image) {
+                // draw active particles
+                if (firstActive < firstFree) {
+                    for (i = firstActive; i < firstFree; i++)
+                        particles[i].draw(context, image);
+                }
+                if (firstFree < firstActive) {
+                    for (i = firstActive; i < particles.length; i++)
+                        particles[i].draw(context, image);
+                    for (i = 0; i < firstFree; i++)
+                        particles[i].draw(context, image);
+                }
+            };
+            return ParticlePool;
+        })();
+        /*
+         * Putting it all together
+         */
+        (function (canvas) {
+            var context = canvas.getContext('2d'),
+                particles = new ParticlePool(settings.particles.length),
+                particleRate = settings.particles.length / settings.particles.duration, // particles/sec
+                time;
+
+            // get point on heart with -PI <= t <= PI
+            function pointOnHeart(t) {
+                return new Point(
+                    160 * Math.pow(Math.sin(t), 3),
+                    130 * Math.cos(t) - 50 * Math.cos(2 * t) - 20 * Math.cos(3 * t) - 10 * Math.cos(4 * t) + 25
+                );
+            }
+
+            // creating the particle image using a dummy canvas
+            var image = (function () {
+                var canvas = document.createElement('canvas'),
+                    context = canvas.getContext('2d');
+                canvas.width = settings.particles.size;
+                canvas.height = settings.particles.size;
+                // helper function to create the path
+                function to(t) {
+                    var point = pointOnHeart(t);
+                    point.x = settings.particles.size / 2 + point.x * settings.particles.size / 350;
+                    point.y = settings.particles.size / 2 - point.y * settings.particles.size / 350;
+                    return point;
+                }
+                // create the path
+                context.beginPath();
+                var t = -Math.PI;
+                var point = to(t);
+                context.moveTo(point.x, point.y);
+                while (t < Math.PI) {
+                    t += 0.01; // baby steps!
+                    point = to(t);
+                    context.lineTo(point.x, point.y);
+                }
+                context.closePath();
+                // create the fill
+                context.fillStyle = '#FF5CA4';
+                context.fill();
+                // create the image
+                var image = new Image();
+                image.src = canvas.toDataURL();
+                return image;
+            })();
+
+            // render that thing!
+            function render() {
+                // next animation frame
+                requestAnimationFrame(render);
+
+                // update time
+                var newTime = new Date().getTime() / 1000,
+                    deltaTime = newTime - (time || newTime);
+                time = newTime;
+
+                // clear canvas
+                context.clearRect(0, 0, canvas.width, canvas.height);
+
+                // create new particles
+                var amount = particleRate * deltaTime;
+                for (var i = 0; i < amount; i++) {
+                    var pos = pointOnHeart(Math.PI - 2 * Math.PI * Math.random());
+                    var dir = pos.clone().length(settings.particles.velocity);
+                    particles.add(canvas.width / 2 + pos.x, canvas.height / 2 - pos.y, dir.x, -dir.y);
+                }
+
+                // update and draw particles
+                particles.update(deltaTime);
+                particles.draw(context, image);
+            }
+
+            // handle (re-)sizing of the canvas
+            function onResize() {
+                canvas.width = canvas.clientWidth;
+                canvas.height = canvas.clientHeight;
+            }
+            window.onresize = onResize;
+
+            // delay rendering bootstrap
+            setTimeout(function () {
+                onResize();
+                render();
+            }, 10);
+        })(document.getElementById('pinkboard'));
+    </script>
+
+    <div class="center-text" , style="background-color: rgb(0, 0, 0);
+  width: 100%;
+  color: rgb(255 255 255);
+  height: 100%;
+  font-size: 31px;
+  font-style: italic;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 50px;
+  text-shadow: 0 0 10px rgb(225 12 168), 0 0 10px rgb(225 12 168), 0 0 10px rgb(225 12 168);
+  text-align: center;">Thái Ngọc Yến Khang</div>
+    <style>
+        /* 3D Slideshow */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            /* max-width: 100%;
+        overflow-x: hidden;
+        overflow-y: hidden;
+        background-color: #6adecd; */
+        }
+
+        #slideshow {
+            margin: 0 auto;
+            /* padding-top: 50px; */
+            /* height: 600px; */
+            width: 100%;
+            /* background-color: #6adecd; */
+            box-sizing: border-box;
+            position: absolute;
+            margin-top: -220px;
+        }
+
+        .slideshow-title {
+            font-family: 'Allerta Stencil';
+            font-size: 62px;
+            color: #fff;
+            margin: 0 auto;
+            text-align: center;
+            margin-top: 25%;
+            letter-spacing: 3px;
+            font-weight: 300;
+        }
+
+        .sub-heading {
+            padding-top: 50px;
+            font-size: 18px;
+        }
+
+        .sub-heading-two {
+            font-size: 15px;
+        }
+
+        .sub-heading-three {
+            font-size: 13px;
+        }
+
+        .sub-heading-four {
+            font-size: 11px;
+        }
+
+        .sub-heading-five {
+            font-size: 9px;
+        }
+
+        .sub-heading-six {
+            font-size: 7px;
+        }
+
+        .sub-heading-seven {
+            font-size: 5px;
+        }
+
+        .sub-heading-eight {
+            font-size: 3px;
+        }
+
+        .sub-heading-nine {
+            font-size: 1px;
+        }
+
+        .entire-content {
+            margin: auto;
+            width: 190px;
+            perspective: 950px;
+            position: relative;
+            padding-top: 500px;
+            margin-top: -80px;
+        }
+
+        .content-carrousel {
+            width: 100%;
+            position: absolute;
+            float: right;
+            animation: rotar 15s infinite linear;
+            transform-style: preserve-3d;
+        }
+
+        .content-carrousel:hover {
+            animation-play-state: paused;
+            cursor: pointer;
+        }
+
+        .content-carrousel figure {
+            width: 100%;
+            height: 120px;
+            border: 1px solid #3b444b;
+            overflow: hidden;
+            position: absolute;
+        }
+
+        .content-carrousel figure:nth-child(1) {
+            transform: rotateY(0deg) translateZ(300px);
+        }
+
+        .content-carrousel figure:nth-child(2) {
+            transform: rotateY(40deg) translateZ(300px);
+        }
+
+        .content-carrousel figure:nth-child(3) {
+            transform: rotateY(80deg) translateZ(300px);
+        }
+
+        .content-carrousel figure:nth-child(4) {
+            transform: rotateY(120deg) translateZ(300px);
+        }
+
+        .content-carrousel figure:nth-child(5) {
+            transform: rotateY(160deg) translateZ(300px);
+        }
+
+        .content-carrousel figure:nth-child(6) {
+            transform: rotateY(200deg) translateZ(300px);
+        }
+
+        .content-carrousel figure:nth-child(7) {
+            transform: rotateY(240deg) translateZ(300px);
+        }
+
+        .content-carrousel figure:nth-child(8) {
+            transform: rotateY(280deg) translateZ(300px);
+        }
+
+        .content-carrousel figure:nth-child(9) {
+            transform: rotateY(320deg) translateZ(300px);
+        }
+
+        .content-carrousel figure:nth-child(10) {
+            transform: rotateY(360deg) translateZ(300px);
+        }
+
+        .shadow {
+            position: absolute;
+            box-shadow: 0px 0px 20px 0px #000;
+            border-radius: 1px;
+        }
+
+        .content-carrousel img {
+            image-rendering: auto;
+            transition: all 300ms;
+            width: 100%;
+            height: 100%;
+        }
+
+        .content-carrousel img:hover {
+            transform: scale(1.2);
+            transition: all 300ms;
+        }
+
+        .content-carrousel img:active {
+            transform: scale(3);
+            transition: all 300ms;
+        }
+
+        @keyframes rotar {
+            from {
+                transform: rotateY(0deg);
+            }
+
+            to {
+                transform: rotateY(360deg);
+            }
+        }
+    </style>
+    <!-- 3D Slideshow Section -->
+    <section id="slideshow">
+        <div class="entire-content">
+            <div class="content-carrousel">
+                <figure class="shadow"><img
+                        src="https://scontent.fsgn8-2.fna.fbcdn.net/v/t39.30808-1/313924251_3308691242783740_3186596791245269194_n.jpg?stp=dst-jpg_p320x320&_nc_cat=100&ccb=1-7&_nc_sid=7206a8&_nc_ohc=uGkHcdcoHmMAX8bFpcX&_nc_ht=scontent.fsgn8-2.fna&oh=00_AfBNXAU6DYEq7ehIyC5Eii3GqDObxbskgLlNHSWTQvW6nA&oe=6377A863" />
+                </figure>
+                <figure class="shadow"><img
+                        src="https://scontent.fsgn3-1.fna.fbcdn.net/v/t39.30808-6/279391652_3165014113818121_8628369870278683766_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=h_eYYgds8QoAX8Po3LK&_nc_ht=scontent.fsgn3-1.fna&oh=00_AfD7M1wboVBdL32jLYGkQjmbe2EDro9tP9Y2E0D6DCr44A&oe=6377627C" />
+                </figure>
+                <figure class="shadow"><img
+                        src="https://scontent.fsgn13-3.fna.fbcdn.net/v/t39.30808-6/272992682_3096252184027648_3467171642957515828_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=iURODiOUSagAX_ASOQN&_nc_ht=scontent.fsgn13-3.fna&oh=00_AfA0FJAUWkWGDJMHc5_y-mDL6zpTWp-FONmXiCTvl9uNOA&oe=6376E770" />
+                </figure>
+                <figure class="shadow"><img
+                        src="https://scontent.fsgn8-2.fna.fbcdn.net/v/t1.6435-9/163573942_2864793770506825_4414883412623529462_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=9iPJdqjLHS4AX_ieMWE&_nc_ht=scontent.fsgn8-2.fna&oh=00_AfD4VVhryjmz4H0iexIx15S54sNLHzOiYDnVhEKtxgG7FA&oe=63992213" />
+                </figure>
+                <figure class="shadow"><img
+                        src="https://scontent.fsgn8-2.fna.fbcdn.net/v/t1.6435-9/123269049_2751726258480244_1590022362041020769_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=174925&_nc_ohc=V2NP7DSWLl4AX_dx3aW&tn=r2hPloJFCeqaczyg&_nc_ht=scontent.fsgn8-2.fna&oh=00_AfBDZJygP2oy7rFwu6mk0u2GtJi1A0XsVVW0_mIq93xUJw&oe=6399481D" />
+                </figure>
+                <figure class="shadow"><img
+                        src="https://images.pexels.com/photos/131046/pexels-photo-131046.jpeg?w=940&h=650&auto=compress&cs=tinysrgb" />
+                </figure>
+                <figure class="shadow"><img
+                        src="https://images.pexels.com/photos/302515/pexels-photo-302515.jpeg?w=940&h=650&auto=compress&cs=tinysrgb" />
+                </figure>
+                <figure class="shadow"><img
+                        src="https://images.pexels.com/photos/301682/pexels-photo-301682.jpeg?w=940&h=650&auto=compress&cs=tinysrgb" />
+                </figure>
+                <figure class="shadow"><img
+                        src="https://images.pexels.com/photos/933054/pexels-photo-933054.jpeg?w=940&h=650&auto=compress&cs=tinysrgb" />
+                </figure>
+            </div>
+        </div>
+    </section>
+</BODY>
+
+</HTML>

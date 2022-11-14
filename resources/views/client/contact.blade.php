@@ -1,13 +1,12 @@
 @extends('client.master.template')
 
 @section('body_content')
-
     <!-- ===========Info Section Ends Here========== -->
     <div class="info-section margin-top padding-top padding-bottom">
         <div class="container">
             <div class="section-header">
-                <p>Get in touch with us</p>
-                <h2>We're Always Eager To Hear From You!</h2>
+                <p>{{ __('message.contact.head-1') }}</p>
+                <h2>{{ __('message.contact.head-2') }}</h2>
             </div>
             <div class="section-wrapper">
                 <div class="row justify-content-center g-4">
@@ -17,8 +16,9 @@
                                 <img src="assets/images/contact/icon/01.png" alt="contact-thumb">
                             </div>
                             <div class="contact-content">
-                                <h6 class="title">Office Address</h6>
-                                <p>1201 park street, Fifth Avenue</p>
+                                <h6 class="title">{{ __('message.contact.address') }}</h6>
+                                <p style="height: 25px">
+                                    {{ \App\Models\Option::where('name', 'address_site')->first()->value }}</p>
                             </div>
                         </div>
                     </div>
@@ -28,8 +28,9 @@
                                 <img src="assets/images/contact/icon/02.png" alt="contact-thumb">
                             </div>
                             <div class="contact-content">
-                                <h6 class="title">Phone number</h6>
-                                <p>+22698 745 632,02 982 745</p>
+                                <h6 class="title">{{ __('message.contact.phone') }}</h6>
+                                <p style="height: 25px">
+                                    {{ \App\Models\Option::where('name', 'phone_site')->first()->value }}</p>
                             </div>
                         </div>
                     </div>
@@ -39,8 +40,9 @@
                                 <img src="assets/images/contact/icon/03.png" alt="contact-thumb">
                             </div>
                             <div class="contact-content">
-                                <h6 class="title">Send Email</h6>
-                                <p>adminbigamer@gmil.com</p>
+                                <h6 class="title">{{ __('message.contact.sendmail') }}</h6>
+                                <p style="height: 25px">
+                                    {{ \App\Models\Option::where('name', 'email_site')->first()->value }}</p>
                             </div>
                         </div>
                     </div>
@@ -59,7 +61,7 @@
                 <div class="row justify-content-center">
                     <div class="col-12 col-lg-9">
                         <div class="contact-form-wrapper text-center">
-                            <h2 class="mb-5">Fill The Form Below So We Can Get To Know You And Your Needs Better.</h2>
+                            <h2 class="mb-5">{{ __('message.contact.head-3') }}</h2>
                             <form class="contact-form" action="contact.php" id="contact-form" method="POST">
                                 <div class="form-group">
                                     <input type="text" placeholder="Your Name" id="name" name="name"
@@ -94,8 +96,9 @@
                         <div class="location-map">
                             <div id="map">
                                 <iframe
-                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d423283.4355669374!2d-118.69192993092697!3d34.02073049448939!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2c75ddc27da13%3A0xe22fdf6f254608f4!2sLos%20Angeles%2C%20CA%2C%20USA!5e0!3m2!1sen!2sbd!4v1633958856057!5m2!1sen!2sbd"
-                                    allowfullscreen="" loading="lazy"></iframe>
+                                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.0600373687744!2d105.74704152190756!3d10.011899769951238!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31a089b347a30a2f%3A0xe649905c1f0a33e0!2zMyDEkC4gVHLhuqduIFbEqW5oIEtp4bq_dCwgQW4gQsOsbmgsIE5pbmggS2nhu4F1LCBD4bqnbiBUaMahLCBWaWV0bmFt!5e0!3m2!1sen!2s!4v1668429264208!5m2!1sen!2s"
+                                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                                    referrerpolicy="no-referrer-when-downgrade"></iframe>
                             </div>
                         </div>
                     </div>

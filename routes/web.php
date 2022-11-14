@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\App;
-use App\Http\Controllers\MVC\HomeController;
 use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\MVC\HomeController;
+use App\Http\Controllers\MVC\UserController;
+use App\Http\Controllers\MVC\OptionController;
 
 
 
@@ -31,3 +32,7 @@ Route::get('/', [HomeController::class, 'index']);
 
 // Contact
 Route::get('/contact', [HomeController::class, 'contact']);
+
+// Import
+Route::get('/import-users', [UserController::class, 'import']);
+Route::get('/import-options', [OptionController::class, 'import']);

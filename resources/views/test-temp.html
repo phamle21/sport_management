@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html>
+
+<body>
+    <button onclick="getCurrentLocation()">
+        Get URL
+    </button>
+    <button onclick="setCurrentLocation()">
+        Change URL
+    </button>
+
+    <script>
+        function getCurrentLocation() {
+
+            // Get current location
+            var loc = window.location.href;
+            alert(loc);
+        }
+        function setCurrentLocation() {
+
+            // Change current location
+            var newloc = "https://www.geeksforgeeks.org/";
+            // window.location = newloc;
+        }
+    </script>
+</body>
+
+</html>

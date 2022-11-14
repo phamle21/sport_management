@@ -14,4 +14,9 @@ class Option extends Model
         'value',
         'autoload'
     ];
+
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
 }
