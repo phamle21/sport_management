@@ -62,25 +62,51 @@
                     <div class="col-12 col-lg-9">
                         <div class="contact-form-wrapper text-center">
                             <h2 class="mb-5">{{ __('message.contact.head-3') }}</h2>
-                            <form class="contact-form" action="contact.php" id="contact-form" method="POST">
+
+                            @if (\Session::has('success'))
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    {!! \Session::get('success') !!}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                </div>
+                            @endif
+                            @if (\Session::has('error'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    {!! \Session::get('error') !!}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                </div>
+                            @endif
+
+                            <form class="contact-form" action="{{ route('contact.send') }} " id="frmSendContact"
+                                method="POST">
+                                @csrf
                                 <div class="form-group">
-                                    <input type="text" placeholder="Your Name" id="name" name="name"
-                                        required="required">
+                                    <input type="text" placeholder="{{ __('message.contact.frm-name') }}" id="name"
+                                        name="send_name" required="required">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" placeholder="Your Email" id="email" name="email" required>
+                                    <input type="text" placeholder="{{ __('message.contact.frm-email') }}"
+                                        id="email" name="send_email" required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" placeholder="Phone" id="phone" name="phone" required>
+                                    <input type="text" placeholder="{{ __('message.contact.frm-phone') }}"
+                                        id="phone" name="send_phone" required>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" placeholder="Subject" id="subject" name="subject" required>
+                                    <input type="text" placeholder="{{ __('message.contact.frm-subject') }}"
+                                        id="subject" name="send_subject" required>
                                 </div>
                                 <div class="form-group w-100">
-                                    <textarea name="message" rows="8" id="message" placeholder="Your Message" required></textarea>
+                                    <textarea name="send_message" rows="8" id="message" placeholder="{{ __('message.contact.frm-message') }}"
+                                        required></textarea>
                                 </div>
                                 <div class="form-group w-100 text-center">
-                                    <button class="default-button" type="submit"><span>Send our Message</span></button>
+                                    <button class="default-button" from="frmSendContact"type="submit">
+                                        <span>{{ __('message.contact.btn-send') }}
+                                            <i class="icofont-circled-right"></i>
+                                        </span>
+                                    </button>
                                 </div>
                             </form>
                             <p class="form-message"></p>

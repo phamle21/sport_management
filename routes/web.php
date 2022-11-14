@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\MVC\HomeController;
 use App\Http\Controllers\MVC\UserController;
 use App\Http\Controllers\MVC\OptionController;
+use App\Http\Controllers\MVC\ContactController;
 
 
 
@@ -31,7 +32,8 @@ Route::get('/languages/{language}', function ($language) {
 Route::get('/', [HomeController::class, 'index']);
 
 // Contact
-Route::get('/contact', [HomeController::class, 'contact']);
+Route::get('/contact', [ContactController::class, 'index']);
+Route::post('/contact-sendmail', [ContactController::class, 'sendContact'])->name('contact.send');
 
 // Import
 Route::get('/import-users', [UserController::class, 'import']);

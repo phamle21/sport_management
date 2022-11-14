@@ -27,6 +27,12 @@ return [
     'contact.sendmail' => 'Gửi email',
     'contact.head-1' => 'Hãy liên hệ với chúng tôi',
     'contact.head-2' => 'Chúng tôi rất háo hức nghe phản hổi của bạn!',
-    'contact.head-3' => 'Hãy điền vào biểu mẫu dưới đây để chung tôi hiểu rõ hơn về nhu cầu của bạn.',
+    'contact.head-3' => 'Hãy điền vào biểu mẫu dưới đây để chúng tôi hiểu rõ hơn về nhu cầu của bạn.',
+    'contact.btn-send' => 'Gửi',
+    'contact.frm-name' => 'Họ và tên',
+    'contact.frm-email' => 'Email của bạn',
+    'contact.frm-phone' => 'Số điện thoại',
+    'contact.frm-subject' => 'Tiêu đề',
+    'contact.frm-message' => 'Nội dung liên hệ',
 
 ];

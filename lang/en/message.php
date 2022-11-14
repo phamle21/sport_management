@@ -28,5 +28,11 @@ return [
     'contact.head-1' => 'Get in touch with us',
     'contact.head-2' => 'We\'re Always Eager To Hear From You!',
     'contact.head-3' => 'Fill The Form Below So We Can Get To Know You And Your Needs Better.',
+    'contact.btn-send' => 'Send',
+    'contact.frm-name' => 'Your name',
+    'contact.frm-email' => 'Your email',
+    'contact.frm-phone' => 'Phone',
+    'contact.frm-subject' => 'Subject',
+    'contact.frm-message' => 'Your Message',
 
 ];

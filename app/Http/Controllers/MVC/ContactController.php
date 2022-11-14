@@ -12,34 +12,37 @@ class ContactController extends Controller
 
     public function __construct()
     {
-        function sendMail($to = null, $subject = null, $title, $body, $view)
+        function sendMail($subject, $title, $body, $view)
         {
             $mailData = [
                 'view' => $view,
-                'subject' => $subject ? $subject : env('APP_NAME'),
+                'subject' => $subject,
                 'title' => $title,
                 'body' => $body,
             ];
 
-            if ($to != null) {
-                $to .= ',' . env('MAIL_LIST_CONFIRM');
-            } else {
-                $to = env('MAIL_LIST_CONFIRM');
-            }
+            $to = env('MAIL_LIST_CONFIRM');
 
             $list_send_mail = explode(',', $to);
 
             foreach ($list_send_mail as $email) {
-                Mail::to($email)->send(new SendMail($mailData));
+                $check = Mail::to($email)->send(new SendMail($mailData));
             }
+
+            return $check;
         }
+    }
+
+    public function index()
+    {
+        return view('client.contact.contact');
     }
 
     public function sendContact(Request $request)
     {
         $send_name = $request->send_name;
         $send_email = $request->send_email;
-        $send_phone = $request->send_name;
+        $send_phone = $request->send_phone;
         $send_subject = $request->send_subject;
         $send_message = $request->send_message;
 
@@ -51,6 +54,12 @@ class ContactController extends Controller
             'send_message' => $send_message,
         ];
 
-        $send = sendMail(null, null, 'Delete users', $body, 'sendContact');
+        $send = sendMail($send_subject, 'Contact', $body, 'sendContact');
+
+        if ($send) {
+            return redirect('/contact')->with('success', 'Gửi liên hệ thành công.');
+        } else {
+            return redirect('/contact')->with('error', 'Gửi liên hệ thất bại.');
+        }
     }
 }
