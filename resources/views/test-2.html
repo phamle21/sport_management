@@ -45,7 +45,7 @@
                     margin: auto;
                     height: 500px;
                     width: 100%;
-                    /* animation: animate 1.3s infinite; */
+                    animation: animate 1.3s infinite;
                 }
 
                 #pinkboard:before,
@@ -79,11 +79,11 @@
                     }
 
                     30% {
-                        transform: scale(.8);
+                        transform: scale(.95);
                     }
 
                     60% {
-                        transform: scale(1.2);
+                        transform: scale(1.05);
                     }
 
                     100% {
@@ -98,7 +98,7 @@
                     top: 0;
                     left: 0; */
                     z-index: 15;
-                    margin-top: -50px;
+                    margin-top: -65px;
                 }
             </style>
 </HEAD>
@@ -340,7 +340,7 @@
         })(document.getElementById('pinkboard'));
     </script>
 
-    <div class="center-text" , style="background-color: rgb(0, 0, 0);
+    <div class="center-text" , style="background-color: rgba(0, 0, 0, 0);
   width: 100%;
   color: rgb(255 255 255);
   height: 100%;
@@ -359,23 +359,18 @@
             padding: 0;
         }
 
-        html,
         body {
-            /* max-width: 100%;
-        overflow-x: hidden;
-        overflow-y: hidden;
-        background-color: #6adecd; */
+            z-index: -20;
         }
 
         #slideshow {
             margin: 0 auto;
-            /* padding-top: 50px; */
-            /* height: 600px; */
+            padding-top: 0px;
+            height: 600px;
             width: 100%;
             /* background-color: #6adecd; */
             box-sizing: border-box;
             position: absolute;
-            margin-top: -220px;
         }
 
         .slideshow-title {
@@ -444,7 +439,7 @@
         }
 
         .content-carrousel:hover {
-            animation-play-state: paused;
+            /* animation-play-state: paused; */
             cursor: pointer;
         }
 
@@ -549,20 +544,78 @@
                         src="https://scontent.fsgn8-2.fna.fbcdn.net/v/t1.6435-9/123269049_2751726258480244_1590022362041020769_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=174925&_nc_ohc=V2NP7DSWLl4AX_dx3aW&tn=r2hPloJFCeqaczyg&_nc_ht=scontent.fsgn8-2.fna&oh=00_AfBDZJygP2oy7rFwu6mk0u2GtJi1A0XsVVW0_mIq93xUJw&oe=6399481D" />
                 </figure>
                 <figure class="shadow"><img
-                        src="https://images.pexels.com/photos/131046/pexels-photo-131046.jpeg?w=940&h=650&auto=compress&cs=tinysrgb" />
+                        src="https://scontent.fsgn5-11.fna.fbcdn.net/v/t39.30808-6/279561827_3165014133818119_6753926926775522256_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=jn9v9YQqdZgAX9Vh4jH&_nc_ht=scontent.fsgn5-11.fna&oh=00_AfBdAmxsvnbnJsaHWU6xatLxgfgd8k36J336jHkacrzJpw&oe=6377A145" />
                 </figure>
                 <figure class="shadow"><img
-                        src="https://images.pexels.com/photos/302515/pexels-photo-302515.jpeg?w=940&h=650&auto=compress&cs=tinysrgb" />
+                        src="https://scontent.fsgn5-10.fna.fbcdn.net/v/t1.6435-9/166233765_2864793737173495_1612728552417305315_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=-IAvFCLj2LcAX-W5Z3J&tn=r2hPloJFCeqaczyg&_nc_ht=scontent.fsgn5-10.fna&oh=00_AfDsf_1lqpERLqCSnSd5q6s94pbrYzO6JMBtPWhtO-O8jw&oe=639A9125" />
                 </figure>
                 <figure class="shadow"><img
-                        src="https://images.pexels.com/photos/301682/pexels-photo-301682.jpeg?w=940&h=650&auto=compress&cs=tinysrgb" />
+                        src="https://scontent.fsgn5-9.fna.fbcdn.net/v/t39.30808-6/273155165_3096252170694316_8866967459025932390_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=PUlvroXMFVcAX_NzS8z&_nc_ht=scontent.fsgn5-9.fna&oh=00_AfACqrnFrJUCokK_Slky8zd32o-7Mr1XTyTzxCXgjAAgPA&oe=6378A4A9" />
                 </figure>
                 <figure class="shadow"><img
-                        src="https://images.pexels.com/photos/933054/pexels-photo-933054.jpeg?w=940&h=650&auto=compress&cs=tinysrgb" />
+                        src="https://scontent.fsgn5-10.fna.fbcdn.net/v/t1.6435-9/163642257_2864793717173497_8866184619697205776_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=8bfeb9&_nc_ohc=KC9IOe-dfgMAX90wuvS&_nc_ht=scontent.fsgn5-10.fna&oh=00_AfAj2sPs0WP2E2ij6B14hHycLW3t-esIWGb4U83wgH8G-g&oe=639A9CA6" />
                 </figure>
             </div>
         </div>
     </section>
+
+    <style>
+        #full-screen {
+            z-index: -15;
+            border-radius: 50%;
+            width: max-content;
+        }
+
+        #full-screen img {
+            /* max-width: 30%; */
+            box-shadow: 0 0 20px whitesmoke;
+            position: absolute;
+            border-radius: 30px;
+            height: 100%;
+            top: 0;
+            left: 10000000;
+        }
+    </style>
+    <div id="full-screen">
+        <img src="" alt="">
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script>
+        function random_item(items) {
+
+            return items[Math.floor(Math.random() * items.length)];
+
+        }
+        function moveDiv() {
+            var $span = $("#full-screen img");
+
+            $span.fadeOut(3000, function () {
+                var maxLeft = $(window).width() - $span.width();
+                var maxTop = $(window).height() - $span.height();
+                var leftPos = Math.floor(Math.random() * (maxLeft + 1))
+                var topPos = Math.floor(Math.random() * (maxTop + 1))
+
+                const arrTemp = [];
+                $('.content-carrousel img').each(function (i) {
+                    arrTemp.push(i);
+                })
+                $('#full-screen img').attr('src', $('.content-carrousel img').eq(random_item(arrTemp)).attr('src'))
+
+                $span.css({ left: leftPos, top: 0 }).fadeIn(2000);
+            });
+
+        };
+
+        $('.content-carrousel img').mouseover(function () {
+            $('#full-screen img').attr('src', $(this).attr('src')).css({ left: 10, top: 10, })
+            // moveDiv();
+            setInterval(moveDiv, 5000);
+            // $('#full-screen').css({
+            //     'background-image': `url(${$(this).attr('src')})`
+            // })
+        })
+    </script>
 </BODY>
 
 </HTML>

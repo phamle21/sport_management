@@ -2,12 +2,13 @@
 .avatar-upload {
     position: relative;
     max-width: 205px;
-    margin: 25px auto;
+    margin: auto;
+    margin-bottom: 25px;
 }
 
 .avatar-upload .avatar-edit {
     position: absolute;
-    right: 12px;
+    right: 40px;
     z-index: 1;
     top: 10px;
 }
@@ -31,16 +32,17 @@
 }
 
 .avatar-upload .avatar-edit input+label:hover {
-    background: #f1f1f1;
-    border-color: #d6d6d6;
+    background: #bbbbbb;
+    border-color: white;
 }
 
 .avatar-upload .avatar-edit input+label:after {
-    content: "\f040";
+    content: "\f093";
     font-family: 'FontAwesome';
-    color: #757575;
+    border-color: #7b7b7b;
+    color: #444444;
     position: absolute;
-    top: 10px;
+    top: 5.5px;
     left: 0;
     right: 0;
     text-align: center;
@@ -48,8 +50,8 @@
 }
 
 .avatar-upload .avatar-preview {
-    width: 192px;
-    height: 192px;
+    width: 170px;
+    height: 170px;
     position: relative;
     border-radius: 100%;
     border: 6px solid #F8F8F8;

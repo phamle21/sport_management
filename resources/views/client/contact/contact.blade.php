@@ -63,22 +63,9 @@
                         <div class="contact-form-wrapper text-center">
                             <h2 class="mb-5">{{ __('message.contact.head-3') }}</h2>
 
-                            @if (\Session::has('success'))
-                                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    {!! \Session::get('success') !!}
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                        aria-label="Close"></button>
-                                </div>
-                            @endif
-                            @if (\Session::has('error'))
-                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    {!! \Session::get('error') !!}
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                        aria-label="Close"></button>
-                                </div>
-                            @endif
 
-                            <form class="contact-form" action="{{ route('contact.send') }} " id="frmSendContact"
+
+                            <form class="contact-form" action="{{ route('contact.send') }}" id="frmSendContact"
                                 method="POST">
                                 @csrf
                                 <div class="form-group">

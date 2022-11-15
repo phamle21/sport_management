@@ -37,6 +37,19 @@
             color: #fff;
         }
     </style>
+    <style>
+        .btn-add {
+            border: 1px solid rgba(255, 255, 255, .1) !important;
+            color: #fff;
+            padding: 1rem;
+            margin-left: 0.5rem;
+        }
+
+        .btn-add:hover {
+            color: #fff;
+            background: rgba(35, 42, 92, 0.833);
+        }
+    </style>
 @endsection
 
 @section('body_content')
@@ -49,23 +62,9 @@
                         <div class="contact-form-wrapper text-center">
                             <h2 class="mb-5">{{ __('message.tournament.create.head') }}</h2>
 
-                            @if (\Session::has('success'))
-                                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    {!! \Session::get('success') !!}
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                        aria-label="Close"></button>
-                                </div>
-                            @endif
-                            @if (\Session::has('error'))
-                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    {!! \Session::get('error') !!}
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                        aria-label="Close"></button>
-                                </div>
-                            @endif
-
-                            <form class="contact-form justify-content-center" action="{{ route('tournament.create') }} "
-                                id="frmCreateTournament" method="POST">
+                            <form class="contact-form justify-content-center" action="{{ route('tournament.create') }}"
+                                id="frmCreateTournament" name="frmCreateTournament" method="POST"
+                                enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="row justify-content-center align-items-center w-100">
@@ -75,7 +74,7 @@
                                             <div class="avatar-upload">
                                                 <div class="avatar-edit">
                                                     <input type='file' id="imageUpload" name="image"
-                                                        accept=".png, .jpg, .jpeg" required />
+                                                        accept=".png, .jpg, .jpeg" />
                                                     <label for="imageUpload"></label>
                                                 </div>
                                                 <div class="avatar-preview">
@@ -83,22 +82,31 @@
                                                         style="background-image: url({{ asset(\App\Models\Option::where('name', 'logo_site_path')->first()->value) }});">
                                                     </div>
                                                 </div>
+                                                <label id="label-image" class="col d-flex justify-content-start mt-2">
+                                                    <p class="text-warning"></p>
+                                                </label>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group w-100">
-                                            <input type="text" id="name" name="name"
-                                                placeholder="{{ __('message.tournament.create.frm-name') }}" required>
+                                            <input type="text" id="name" name="name" required
+                                                placeholder="{{ __('message.tournament.create.frm-name') }}">
                                         </div>
-                                        <div class="form-group w-100">
-                                            <select name="type" id="type" required>
+                                        <div class="form-group w-100 d-flex align-items-center">
+                                            <select name="type" id="select_type" required>
                                                 <option disabled selected value="-1">
-                                                    {{ __('message.tournament.create.frm-type') }}</option>
+                                                    {{ __('message.tournament.create.frm-type') }} *</option>
                                                 @foreach ($league_type_list as $v)
                                                     <option value="{{ $v->id }}">{{ $v->name }} </option>
                                                 @endforeach
                                             </select>
+                                            <input type="text" id="new_type" name="type" disabled class="d-none"
+                                                placeholder="{{ __('message.tournament.create.frm-type') }} *">
+                                            <button class="btn btn-add border" id="btn-add_tournament_type"
+                                                type="button"><i class="fa fa-plus"></i></button>
+                                            <button class="btn btn-add border d-none" id="btn-toggle_tournament_type"
+                                                type="button"><i class="fa-solid fa-arrows-rotate"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -106,37 +114,51 @@
                                 <div class="row justify-content-center align-items-center w-100">
                                     <div class="col">
                                         <div class="form-group w-100">
-                                            <input type="text" id="start" name="start"
+                                            <input type="text" id="start" name="start" required
                                                 data-inputmask="'alias': 'datetime', 'inputFormat': 'dd/mm/yyyy'"
-                                                placeholder="{{ __('message.tournament.create.frm-start') }}" required>
+                                                placeholder="{{ __('message.tournament.create.frm-start') }}">
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div class="form-group w-100">
-                                            <input type="text" id="end" name="end"
+                                            <input type="text" id="end" name="end" required
                                                 data-inputmask="'alias': 'datetime', 'inputFormat': 'dd/mm/yyyy'"
-                                                placeholder="{{ __('message.tournament.create.frm-end') }}" required>
+                                                placeholder="{{ __('message.tournament.create.frm-end') }}">
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="row justify-content-center align-items-center w-100">
-                                    <div class="col">
+                                    <label for="notify" id="label-notify"
+                                        class="col d-flex justify-content-start ">{{ __('message.tournament.create.frm-notify') }}
+                                        *: <p class="text-warning"></p></label>
+                                    <div class="col-12">
                                         <div class="form-group w-100" id="form-group-ckeditor">
-                                            <textarea class="form-control" id="rule" rows="8"
-                                                placeholder="{{ __('message.tournament.create.frm-rule') }}" name="rule" required></textarea>
+                                            <textarea class="form-control" id="notify" rows="8"
+                                                placeholder="{{ __('message.tournament.create.frm-notify') }}" name="notify"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <label for="prize" id="label-prize"
+                                        class="col d-flex justify-content-start ">{{ __('message.tournament.create.frm-prize') }}
+                                        *: <p class="text-warning"></p></label>
+                                    <div class="col-12">
+                                        <div class="form-group w-100" id="form-group-ckeditor">
+                                            <textarea class="form-control" id="prize" rows="8"
+                                                placeholder="{{ __('message.tournament.create.frm-prize-placeholder') }}" name="prize"></textarea>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="form-group w-100 text-center mt-4">
-                                    <button class="default-button" from="frmCreateTournament"type="submit">
-                                        <span>{{ __('message.contact.btn-send') }}
+                                    <button class="default-button" id="btn-frmCreateTournament" from="frmCreateTournament"
+                                        type="submit">
+                                        <span>{{ __('message.tournament.create.btn-send') }}
                                             <i class="icofont-circled-right"></i>
                                         </span>
                                     </button>
                                 </div>
                             </form>
+
                             <p class="form-message"></p>
                         </div>
                     </div>
@@ -147,6 +169,20 @@
 @endsection
 
 @section('js')
+    {{-- check submit  --}}
+    <script>
+        $('#btn-frmCreateTournament').on('click', function() {
+
+            if ($('#imageUpload').get(0).files.length === 0) {
+                $('#label-image p').empty()
+                $('#label-image p').append('&nbsp;&nbsp;Không thể để trống');
+            } else {
+                $('#label-image p').empty()
+            }
+
+
+        })
+    </script>
     {{-- Upload logo --}}
     <script>
         function readURL(input) {
@@ -173,10 +209,56 @@
         Inputmask().mask("input");
     </script>
 
+    {{-- required ui, windowload --}}
+    <script>
+        $('input').each(function() {
+            if ($(this).attr('required')) {
+                $(this).attr('placeholder', `${$(this).attr('placeholder')} *`)
+            }
+        })
+    </script>
+
+    {{-- new tournament type --}}
+    <script>
+        $('#btn-add_tournament_type').click(function() {
+            $('#new_type').removeClass('d-none').attr({
+                'disabled': false,
+                'required': true
+            });
+            $('#select_type').addClass('d-none').attr({
+                'disabled': true,
+                'required': false
+            });
+            $(this).addClass('d-none')
+            $('#btn-toggle_tournament_type').removeClass('d-none')
+        })
+
+        $('#btn-toggle_tournament_type').click(function() {
+            $('#new_type').addClass('d-none').attr({
+                'disabled': true,
+                'required': false
+            });
+            $('#select_type').removeClass('d-none').attr({
+                'disabled': false,
+                'required': true
+            });
+            $(this).addClass('d-none')
+            $('#btn-add_tournament_type').removeClass('d-none')
+        })
+    </script>
+
     {{-- CK_Editor --}}
     <script>
         ClassicEditor
-            .create(document.querySelector('#rule'), {
+            .create(document.querySelector('#notify'), {
+                ckfinder: {
+                    uploadUrl: '{{ route('image.upload') . '?_token=' . csrf_token() }}',
+                }
+            }).catch(error => {
+                console.error(error);
+            });
+        ClassicEditor
+            .create(document.querySelector('#prize'), {
                 ckfinder: {
                     uploadUrl: '{{ route('image.upload') . '?_token=' . csrf_token() }}',
                 }

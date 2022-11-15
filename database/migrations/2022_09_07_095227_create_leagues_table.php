@@ -16,10 +16,11 @@ return new class extends Migration
         Schema::create('leagues', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('rule');
+            $table->text('notify');
+            $table->string('logo');
             $table->datetime('start');
             $table->datetime('end');
-            $table->string('prize');
+            $table->text('prize');
             $table->unsignedBigInteger('league_type_id');
             $table->timestamps();
         });

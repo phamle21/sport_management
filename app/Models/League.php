@@ -11,7 +11,8 @@ class League extends Model
 
     protected $fillable = [
         'name',
-        'rule',
+        'logo',
+        'notify',
         'start',
         'end',
         'prize',

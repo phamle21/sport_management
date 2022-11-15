@@ -17,8 +17,7 @@ Route::get('/sport-admin', function () {
 // Change languages
 Route::get('/languages/{language}', function ($language) {
     if (!in_array($language, ['en', 'vi'])) {
-        // abort(404);
-        return redirect('page-not-found');
+        abort(404);
     }
 
     Session::put('website_language', $language);
@@ -45,6 +44,7 @@ Route::get('/import-options', [OptionController::class, 'import']);
 Route::get('/find-tournament', [TournamentController::class, 'index'])->name('tournament.find');
 Route::get('/create-tournament', [TournamentController::class, 'create'])->name('tournament.frmCreate');
 Route::post('/create-tournament', [TournamentController::class, 'store'])->name('tournament.create');
+Route::get('/tournament/{id}/details', [TournamentController::class, 'show'])->name('tournament.details');
 
 // Ckeditor
 Route::post('image-upload', [TournamentController::class, 'storeImage'])->name('image.upload');

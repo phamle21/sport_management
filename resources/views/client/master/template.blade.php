@@ -18,7 +18,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/lightcase.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro-v6@44659d9/css/all.min.css" rel="stylesheet"
+        type="text/css" />
     @yield('css')
 </head>
 
@@ -51,13 +52,21 @@
 
     <!-- ================ Body Content =============== -->
     <div id="body-content">
+        @if (\Session::has('success'))
+            <div class="alert alert-success alert-dismissible fade show d-flex justify-content-center" role="alert">
+                {!! \Session::get('success') !!}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+        @if (\Session::has('error'))
+            <div class="alert alert-danger alert-dismissible fade show d-flex justify-content-center" role="alert">
+                {!! \Session::get('error') !!}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
         @yield('body_content')
     </div>
     <!-- ================ /Body Content =============== -->
-
-
-
-
 
 
     <!-- ================ footer Section start Here =============== -->

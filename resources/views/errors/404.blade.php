@@ -3,21 +3,21 @@
 
 <head>
     <meta charset="utf-8">
-    <title>??? - 404 - ???</title>
+    <title>404 | {{ __('message.title') }} </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- site favicon -->
-    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="icon" type="image/png" href="{{ asset('assets/images/logo.png') }}">
     <!-- Place favicon.ico in the root directory -->
 
     <!-- All stylesheet and icons css  -->
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/animate.css">
-    <link rel="stylesheet" href="assets/css/icofont.min.css">
-    <link rel="stylesheet" href="assets/css/swiper.min.css">
-    <link rel="stylesheet" href="assets/css/lightcase.css">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/style.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/animate.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/icofont.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/swiper.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/lightcase.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.min.css') }}">
 
 </head>
 
@@ -32,10 +32,10 @@
                     <img src="{{ asset('assets/images/404.png') }}" alt="404">
                 </div>
                 <div class="zero-content">
-                    <h2>Oops! This Page Not Found</h2>
-                    <p>We are Really Sorry But the Page you Requested is Missing <i class="icofont-worried"></i>
+                    <h2>{{__('message.404.head')}}</h2>
+                    <p>{{__('message.404.head-sub')}} <i class="icofont-worried"></i>
                     </p>
-                    <a href="/" class="default-button reverse-effect"><span>Go Back to Home <i
+                    <a href="/" class="default-button reverse-effect"><span>{{__('message.404.btn-gohome')}} <i
                                 class="icofont-double-right"></i></span> </a>
                 </div>
             </div>
@@ -43,34 +43,18 @@
     </section>
     <!-- ===========404 Section Ends Here========== -->
 
-
     <!-- All Needed JS -->
-    <script src="assets/js/vendor/jquery-3.6.0.min.js"></script>
-    <script src="assets/js/vendor/modernizr-3.11.2.min.js"></script>
-    <script src="assets/js/circularProgressBar.min.js"></script>
-    <script src="assets/js/isotope.pkgd.min.js"></script>
-    <script src="assets/js/swiper.min.js"></script>
-    <script src="assets/js/lightcase.js"></script>
-    <script src="assets/js/waypoints.min.js"></script>
-    <script src="assets/js/wow.min.js"></script>
-    <script src="assets/js/vendor/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/plugins.js"></script>
-    <script src="assets/js/main.js"></script>
-
-
-    <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
-    <script>
-        window.ga = function() {
-            ga.q.push(arguments)
-        };
-        ga.q = [];
-        ga.l = +new Date;
-        ga('create', 'UA-XXXXX-Y', 'auto');
-        ga('set', 'anonymizeIp', true);
-        ga('set', 'transport', 'beacon');
-        ga('send', 'pageview')
-    </script>
-    <script src="https://www.google-analytics.com/analytics.js" async></script>
+    <script src="{{ asset('assets/js/vendor/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor/modernizr-3.11.2.min.js') }}"></script>
+    <script src="{{ asset('assets/js/circularProgressBar.min.js') }}"></script>
+    <script src="{{ asset('assets/js/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ asset('assets/js/swiper.min.js') }}"></script>
+    <script src="{{ asset('assets/js/lightcase.js') }}"></script>
+    <script src="{{ asset('assets/js/waypoints.min.js') }}"></script>
+    <script src="{{ asset('assets/js/wow.min.js') }}"></script>
+    <script src="{{ asset('assets/js/vendor/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins.js') }}"></script>
+    <script src="{{ asset('assets/js/main.js') }}"></script>
 
 
 
