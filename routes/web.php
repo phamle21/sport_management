@@ -37,11 +37,8 @@ Route::post('/login', [HomeController::class, 'loginSubmit'])->name('login.submi
 
 Route::get('/register', [HomeController::class, 'register'])->name('register');
 Route::post('/register', [HomeController::class, 'registerSubmit'])->name('register.submit');
-<<<<<<< HEAD
 
 Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
-=======
->>>>>>> 8b810b063c1234efa9659003dcb5b6c3c40b8bbd
 
 // About
 Route::get('/about', [HomeController::class, 'about'])->name('about');
