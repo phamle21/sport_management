@@ -25,6 +25,8 @@ return new class extends Migration
             $table->string('status')->default('Active');;
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('facebook_id')->nullable();
+            $table->string('google_id')->nullable();
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();

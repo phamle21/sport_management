@@ -85,6 +85,7 @@
                                             {{ __('message.tournament.details.total-team') }}</span>
                                     </li>
                                 </ul>
+
                                 <!-- ===========Sponsor Section Start Here========== -->
                                 <div class="sponsor-section padding-top padding-bottom">
                                     <div class="container">
@@ -115,6 +116,25 @@
                                     </div>
                                 </div>
                                 <!-- ===========Sponsor Section Ends Here========== -->
+
+                                <div class="container">
+                                    <hr class="m-0">
+                                </div>
+
+                                <!-- ===========Prize Section Start Here========== -->
+                                <div class="sponsor-section padding-top padding-bottom">
+                                    <div class="container">
+                                        <div class="section-header">
+                                            <p>{{ __('message.tournament.details.about-head-sub-3') }}</p>
+                                            <h2>{{ __('message.tournament.details.about-head-3') }}</h2>
+                                        </div>
+                                        <div class="section-wrapper">
+                                            {!! $tournament->prize !!}
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- ===========Prize Section Ends Here========== -->
+
                             </div>
                         </div>
                     </div>

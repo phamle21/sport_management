@@ -6,7 +6,10 @@ use App\Http\Controllers\MVC\HomeController;
 use App\Http\Controllers\MVC\UserController;
 use App\Http\Controllers\MVC\OptionController;
 use App\Http\Controllers\MVC\ContactController;
+use App\Http\Controllers\MVC\FacebookController;
+use App\Http\Controllers\MVC\GoogleController;
 use App\Http\Controllers\MVC\TournamentController;
+use Illuminate\Support\Facades\Auth;
 
 // Goto admin page ReactJs
 Route::get('/sport-admin', function () {
@@ -27,10 +30,18 @@ Route::get('/languages/{language}', function ($language) {
 
 
 // Home
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/login', [HomeController::class, 'login'])->name('login');
+Route::post('/login', [HomeController::class, 'loginSubmit'])->name('login.submit');
+
+Route::get('/register', [HomeController::class, 'register'])->name('register');
+Route::post('/register', [HomeController::class, 'registerSubmit'])->name('register.submit');
+
+Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
 
 // About
-Route::get('/about', [HomeController::class, 'about']);
+Route::get('/about', [HomeController::class, 'about'])->name('about');
 
 // Contact
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
@@ -48,3 +59,15 @@ Route::get('/tournament/{id}/details', [TournamentController::class, 'show'])->n
 
 // Ckeditor
 Route::post('image-upload', [TournamentController::class, 'storeImage'])->name('image.upload');
+
+// Login Facebook
+Route::controller(FacebookController::class)->group(function () {
+    Route::get('auth/facebook', 'redirectToFacebook')->name('auth.facebook');
+    Route::get('auth/facebook/callback', 'handleFacebookCallback');
+});
+
+// Login Google
+Route::controller(GoogleController::class)->group(function () {
+    Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
+    Route::get('auth/google/callback', 'handleGoogleCallback');
+});

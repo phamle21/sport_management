@@ -8,11 +8,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
-// use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class User extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable;
+
 
     /**
      * The attributes that are mass assignable.
@@ -29,6 +30,8 @@ class User extends Authenticatable implements JWTSubject
         'email',
         'status',
         'password',
+        'facebook_id',
+        'google_id',
     ];
 
     /**

@@ -192,7 +192,7 @@
 	</section>
 	<!-- ===========Banner Section Ends Here========== -->
 
-    
+
 
 	<!-- ===========Blog Section Start Here========== -->
 	<div class="blog-section blog-single padding-top padding-bottom aside-bg">
@@ -218,10 +218,10 @@
 										<p>Serenity hassir taken posseson of mying entire soung like these sweet mornngs is whch enjoy with my whole heart create am alonesi and feel the charm of exstenceth spotens whch was the blis of souls like mineing am soo happy my dearsi frend absoribed the em exquste sense enjoy with my whole heart inaming alone and feel the charm of exstensc spotsi whch was the blis of souls like mineing am soing happyr my dear frend soingu ize absoribed the exqust sense tranquil existence that neglect my talentsr Ins should byers ncapable ofing is drawng and singe wonderful.</p>
 										<blockquote class="single-quote mb-30">
 											<div class="quotes">
-												Dynamicaly recaptiuaze distribute technologies wherease 
+												Dynamicaly recaptiuaze distribute technologies wherease
 												turnkey channels and onotonec provide aces to resource
-												levelng expert vias worldwide deverabes uoliticly extend 
-												aserser are diverse vortals. 
+												levelng expert vias worldwide deverabes uoliticly extend
+												aserser are diverse vortals.
 												<span>...Melissa Hunter</span>
 											</div>
 										</blockquote>
