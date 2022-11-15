@@ -57,6 +57,8 @@ return [
     'tournament.details.about-head-1' => 'About tournament',
     'tournament.details.about-head-sub-2' => 'WE OUR PARTNERS',
     'tournament.details.about-head-2' => 'Tournament Sponsors',
+    'tournament.details.about-head-sub-3' => 'Prize',
+    'tournament.details.about-head-3' => 'Champion\'s Reward',
     'tournament.details.about-btn-susponsor' => 'BECOME A PARTNER',
     'tournament.details.about-startat' => 'Start',
     'tournament.details.about-endat' => 'End',

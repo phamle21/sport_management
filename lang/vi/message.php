@@ -57,6 +57,8 @@ return [
     'tournament.details.about-head-1' => 'Giới thiệu về giải đấu',
     'tournament.details.about-head-sub-2' => 'Đồng hành cùng chúng tôi',
     'tournament.details.about-head-2' => 'Các nhà tài trợ chính của giải đấu',
+    'tournament.details.about-head-sub-3' => 'Phần thưởng',
+    'tournament.details.about-head-3' => 'Nhà vô địch sẽ nhận được gì?',
     'tournament.details.about-btn-susponsor' => 'Trở thành một nhà đồng hành',
     'tournament.details.about-startat' => 'Bắt đầu',
     'tournament.details.about-endat' => 'Kết thúc',

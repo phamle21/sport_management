@@ -61,11 +61,11 @@
                                 <li><a href="/about">{{ __('message.header.about') }}</a></li>
                                 <li><a href="/contact">{{ __('message.header.contact') }}</a></li>
                             </ul>
-                            <a href="login" class="login">
+                            <a href="/login" class="login">
                                 <i class="icofont-user"></i>
                                 <span>{{ __('message.login') }}</span>
                             </a>
-                            <a href="signup" class="signup">
+                            <a href="/register" class="signup">
                                 <i class="icofont-users"></i>
                                 <span>{{ __('message.register') }}</span></a>
 

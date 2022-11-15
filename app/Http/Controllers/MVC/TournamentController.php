@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Storage;
 
 class TournamentController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+    }
+
     public function index(Request $request)
     {
         return view('client.tournament.find-tournament');
@@ -58,7 +63,8 @@ class TournamentController extends Controller
                 $file = $request->file('image');
                 $extension = $file->getClientOriginalExtension();
 
-                $path_logo = Storage::put('storage/tournament/logo', $file);
+                Storage::put('public/tournament/logo', $file);
+                $path_logo = 'storage/tournament/logo/' . $file;
             } else {
                 return redirect(route('tournament.frmCreate'))->with('error', 'Logo tải lên không đúng định dạng.');
             }
