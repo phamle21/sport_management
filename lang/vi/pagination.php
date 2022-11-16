@@ -15,10 +15,10 @@ return [
 
     'previous' => '&laquo; Previous',
     'next' => 'Next &raquo;',
-    'Showing' => 'Showing',
-    'to' => 'to',
-    'of' => 'of',
-    'results' => 'results',
-    'all' => 'all',
+    'Showing' => 'Hiển thị',
+    'to' => 'đến',
+    'of' => 'của',
+    'results' => 'kết quả',
+    'all' => 'tất cả',
 
 ];

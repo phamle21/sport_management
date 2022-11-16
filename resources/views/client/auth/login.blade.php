@@ -29,7 +29,6 @@
                 <div class="account-bottom">
                     <span class="d-block cate pt-10">Don’t Have any Account? <a href="/register"> Sign Up</a></span>
                     <span class="or"><span>or</span></span>
-                    <h5 class="subtitle">Login With Social Media</h5>
                     <ul class="match-social-list d-flex flex-wrap align-items-center justify-content-center mt-4">
                         <li>
                             <a class="ml-1 btn btn-primary border-0 m-0 p-0 mx-3" href="{{ url('auth/facebook') }}" id="btn-fblogin"

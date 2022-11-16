@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('notify');
+            $table->string('description')->nullable();
             $table->string('logo');
             $table->datetime('start');
             $table->datetime('end');

@@ -13,14 +13,26 @@ class League extends Model
         'name',
         'logo',
         'notify',
+        'description',
         'start',
         'end',
         'prize',
         'league_type_id',
+        'user_id',
     ];
 
     protected $hidden = [
         'created_at',
         'updated_at',
     ];
+
+    public function type()
+    {
+        return LeagueType::find($this->league_type_id);
+    }
+
+    public function typeName()
+    {
+        return LeagueType::find($this->league_type_id)->name;
+    }
 }

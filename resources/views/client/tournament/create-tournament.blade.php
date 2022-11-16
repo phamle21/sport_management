@@ -127,7 +127,15 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="row justify-content-center align-items-center w-100">
+                                    <div class="col-12">
+                                        <div class="form-group w-100">
+                                            <textarea class="form-control" id="description" rows="4" maxlength=300
+                                                placeholder="{{ __('message.tournament.create.frm-des') }}" name="description"></textarea>
+                                        </div>
+                                    </div>
+
                                     <label for="notify" id="label-notify"
                                         class="col d-flex justify-content-start ">{{ __('message.tournament.create.frm-notify') }}
                                         *: <p class="text-warning"></p></label>
@@ -150,8 +158,8 @@
                                 </div>
 
                                 <div class="form-group w-100 text-center mt-4">
-                                    <button class="default-button" id="btn-frmCreateTournament" from="frmCreateTournament"
-                                        type="submit">
+                                    <button class="default-button" id="btn-frmCreateTournament"
+                                        from="frmCreateTournament" type="submit">
                                         <span>{{ __('message.tournament.create.btn-send') }}
                                             <i class="icofont-circled-right"></i>
                                         </span>
@@ -252,7 +260,10 @@
         ClassicEditor
             .create(document.querySelector('#notify'), {
                 ckfinder: {
-                    uploadUrl: '{{ route('image.upload') . '?_token=' . csrf_token() }}',
+                    uploadUrl: "{{ route('image.upload') . '?_token=' . csrf_token() }}",
+                },
+                mediaEmbed: {
+                    previewsInData: true
                 }
             }).catch(error => {
                 console.error(error);
@@ -260,7 +271,10 @@
         ClassicEditor
             .create(document.querySelector('#prize'), {
                 ckfinder: {
-                    uploadUrl: '{{ route('image.upload') . '?_token=' . csrf_token() }}',
+                    uploadUrl: "{{ route('image.upload') . '?_token=' . csrf_token() }}",
+                },
+                mediaEmbed: {
+                    previewsInData: true
                 }
             }).catch(error => {
                 console.error(error);

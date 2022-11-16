@@ -13,13 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('sponsorships', function (Blueprint $table) {
+        Schema::create('table_sponsor_infors', function (Blueprint $table) {
             $table->id();
-            $table->string('user_id');
-            $table->string('sponsor_amount');
-            $table->string('sponsor_oder_id');
-            $table->string('sponsor_status');
-            $table->string('sponsor_link');
+            $table->unsignedBigInteger('sponsor_id');
+            $table->string('key')->nullable();
+            $table->string('value')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sponsorships');
+        Schema::dropIfExists('table_sponsor_infors');
     }
 };

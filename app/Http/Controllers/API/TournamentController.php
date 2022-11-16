@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\MVC;
+namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+
 use App\Models\League;
-use App\Models\LeagueType;
 use Illuminate\Http\Request;
+use App\Models\LeagueType;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -13,14 +14,13 @@ class TournamentController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except(['index', 'show']);
+        $this->middleware('auth')->except(['index', 'show', 'pagination']);
     }
 
     public function index(Request $request)
     {
-        $tournaments = League::paginate(10);
-
-        return view('client.tournament.find-tournament', compact('tournaments'));
+        $tour_list = League::all();
+        return view('client.tournament.find-tournament', compact('tour_list'));
     }
 
     public function create()
@@ -115,11 +115,17 @@ class TournamentController extends Controller
             return abort(404);
         }
         $tournament = League::find($id);
-        $tournament->total_stage = 0;
-        $tournament->total_group = 0;
-        $tournament->total_match = 0;
-        $tournament->total_team = 0;
+        $tournament->logo = asset($tournament->logo);
+        $tournament->typeName = $tournament->type()->name;
+        $tournament->start = date('d/m/Y', strtotime($tournament->start));
+        $tournament->end = date('d/m/Y', strtotime($tournament->end));
+        $tournament->totalStage = 0;
+        $tournament->totalGroup = 0;
+        $tournament->totalMatch = 0;
+        $tournament->totalTeam = 0;
 
+        return response()->json($tournament);
         return view('client.tournament.details-tournament', compact('tournament'));
     }
+
 }

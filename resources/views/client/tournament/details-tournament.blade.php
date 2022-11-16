@@ -52,39 +52,49 @@
                     <div class="gameListItem collection-about">
                         <div class="about-team padding-bottom">
                             <div class="container">
-                                <div class="section-header">
-                                    <p>{{ __('message.tournament.details.about-head-sub-1') }}</p>
-                                    <h2 class="mb-3">{{ __('message.tournament.details.about-head-1') }}</h2>
-                                    <p class="desc">
-                                        {{ __('message.tournament.details.about-startat') }}:
-                                        <b>{{ date('d/m/Y', strtotime($tournament->start)) }}</b>
-                                        &nbsp;&nbsp;<b>-</b>&nbsp;&nbsp;
-                                        {{ __('message.tournament.details.about-endat') }}:
-                                        <b>{{ date('d/m/Y', strtotime($tournament->end)) }}</b>
-                                    </p>
+                                <div class="padding-bottom">
+                                    <div class="section-header">
+                                        <p>{{ __('message.tournament.details.about-head-sub-1') }}</p>
+                                        <h2 class="mb-3">{{ __('message.tournament.details.about-head-1') }}</h2>
+                                        <p class="desc">
+                                            {{ __('message.tournament.details.about-startat') }}:
+                                            <b>{{ date('d/m/Y', strtotime($tournament->start)) }}</b>
+                                            &nbsp;&nbsp;<b>-</b>&nbsp;&nbsp;
+                                            {{ __('message.tournament.details.about-endat') }}:
+                                            <b>{{ date('d/m/Y', strtotime($tournament->end)) }}</b>
+                                        </p>
+                                        <p class="desc">
+                                            {!! $tournament->description !!}
+                                        </p>
+                                    </div>
+                                    <ul class="d-flex flex-wrap justify-content-center player-meta mb-0">
+                                        <li class="d-flex align-items-center">
+                                            <span class="left me-3"><i class="fa-regular fa-diagram-sankey"></i></span>
+                                            <span class="right">{{ $tournament->total_stage }}
+                                                {{ __('message.tournament.details.total-stage') }}</span>
+                                        </li>
+                                        <li class="d-flex align-items-center">
+                                            <span class="left me-3"><i class="fa-solid fa-users-rectangle"></i></span>
+                                            <span class="right">{{ $tournament->total_group }}
+                                                {{ __('message.tournament.details.total-group') }}</span>
+                                        </li>
+                                        <li class="d-flex align-items-center">
+                                            <span class="left me-3"><i class="icofont-game"></i></span>
+                                            <span class="right">{{ $tournament->total_match }}
+                                                {{ __('message.tournament.details.total-match') }}</span>
+                                        </li>
+                                        <li class="d-flex align-items-center">
+                                            <span class="left me-3"><i class="icofont-workers-group"></i></span>
+                                            <span class="right">{{ $tournament->total_team }}
+                                                {{ __('message.tournament.details.total-team') }}</span>
+                                        </li>
+                                    </ul>
                                 </div>
-                                <ul class="d-flex flex-wrap justify-content-center player-meta mb-0">
-                                    <li class="d-flex align-items-center">
-                                        <span class="left me-3"><i class="fa-regular fa-diagram-sankey"></i></span>
-                                        <span class="right">{{ $tournament->total_stage }}
-                                            {{ __('message.tournament.details.total-stage') }}</span>
-                                    </li>
-                                    <li class="d-flex align-items-center">
-                                        <span class="left me-3"><i class="fa-solid fa-users-rectangle"></i></span>
-                                        <span class="right">{{ $tournament->total_group }}
-                                            {{ __('message.tournament.details.total-group') }}</span>
-                                    </li>
-                                    <li class="d-flex align-items-center">
-                                        <span class="left me-3"><i class="icofont-game"></i></span>
-                                        <span class="right">{{ $tournament->total_match }}
-                                            {{ __('message.tournament.details.total-match') }}</span>
-                                    </li>
-                                    <li class="d-flex align-items-center">
-                                        <span class="left me-3"><i class="icofont-workers-group"></i></span>
-                                        <span class="right">{{ $tournament->total_team }}
-                                            {{ __('message.tournament.details.total-team') }}</span>
-                                    </li>
-                                </ul>
+
+
+                                <div class="container">
+                                    <hr class="m-0">
+                                </div>
 
                                 <!-- ===========Sponsor Section Start Here========== -->
                                 <div class="sponsor-section padding-top padding-bottom">
@@ -128,7 +138,7 @@
                                             <p>{{ __('message.tournament.details.about-head-sub-3') }}</p>
                                             <h2>{{ __('message.tournament.details.about-head-3') }}</h2>
                                         </div>
-                                        <div class="section-wrapper">
+                                        <div class="section-wrapper" id="show_prize">
                                             {!! $tournament->prize !!}
                                         </div>
                                     </div>
@@ -164,4 +174,5 @@
             });
         })
     </script>
+
 @endsection
