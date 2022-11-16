@@ -20,5 +20,6 @@ return [
     'of' => 'of',
     'results' => 'results',
     'all' => 'all',
+    'with' => 'with',
 
 ];

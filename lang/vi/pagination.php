@@ -20,5 +20,6 @@ return [
     'of' => 'của',
     'results' => 'kết quả',
     'all' => 'tất cả',
+    'with' => 'với',
 
 ];

@@ -7,21 +7,25 @@
                 <div class="col">
                     <article>
                         <div class="shop-title d-flex flex-wrap justify-content-between">
-                            <div class="widget widget-search">
-                                <form action="/" class="search-wrapper">
-                                    <input type="text" name="s" placeholder="Search Here...">
-                                    <button type="submit"><i class="icofont-search-2"></i></button>
+                            <div class="widget widget-search header-search">
+                                <form action="{{ route('tournament.find') }}" id="frmSearchTournament" class="search-wrapper"
+                                    method="GET">
+                                    <input type="text" name="search"
+                                        value="@if (Request::get('search') != null) {{ Request::get('search') }} @endif">
+                                    <button form="frmSearchTournament" type="submit"><i
+                                            class="icofont-search-2"></i></button>
                                 </form>
                             </div>
                         </div>
                         <div class="shop-title d-flex flex-wrap justify-content-between">
                             {!! $tournaments->withQueryString()->links('vendor.pagination.header-showing') !!}
+
                             <div class="product-view-mode">
                                 <a class="active" data-target="grid"><i class="icofont-ghost"></i></a>
                                 <a data-target="list"><i class="icofont-listine-dots"></i></a>
                             </div>
                         </div>
-                        <div class="shop-product-wrap grid row justify-content-center g-4">
+                        <div class="shop-product-wrap grid row justify-content-center g-4" id="search-suggest">
                             @foreach ($tournaments as $tournament)
                                 <div class="col-lg-3 col-md-6 col-12">
                                     <div class="product-item">
@@ -132,26 +136,26 @@
                                                     <span class="left me-3"><i
                                                             class="fa-regular fa-diagram-sankey"></i></span>
                                                     <span class="right"
-                                                        id="modal-tour-stage">{{ $tournament->total_stage }}</span>
+                                                        id="modal-tour-stage"></span>
                                                     &nbsp;{{ __('message.tournament.details.total-stage') }}
                                                 </li>
                                                 <li class="d-flex align-items-center">
                                                     <span class="left me-3"><i
                                                             class="fa-solid fa-users-rectangle"></i></span>
                                                     <span class="right"
-                                                        id="modal-tour-group">{{ $tournament->total_group }}</span>
+                                                        id="modal-tour-group"></span>
                                                     &nbsp;{{ __('message.tournament.details.total-group') }}
                                                 </li>
                                                 <li class="d-flex align-items-center">
                                                     <span class="left me-3"><i class="icofont-game"></i></span>
                                                     <span class="right"
-                                                        id="modal-tour-match">{{ $tournament->total_match }}</span>
+                                                        id="modal-tour-match"></span>
                                                     &nbsp;{{ __('message.tournament.details.total-match') }}
                                                 </li>
                                                 <li class="d-flex align-items-center">
                                                     <span class="left me-3"><i class="icofont-workers-group"></i></span>
                                                     <span class="right"
-                                                        id="modal-tour-team">{{ $tournament->total_team }}</span>
+                                                        id="modal-tour-team"></span>
                                                     &nbsp;{{ __('message.tournament.details.total-team') }}
                                                 </li>
                                             </ul>
@@ -168,6 +172,7 @@
 @endsection
 
 @section('js')
+    {{-- Modal details --}}
     <script>
         function previewTourDetails(id) {
 
@@ -221,5 +226,25 @@
                 }
             });
         }
+    </script>
+
+    {{-- Search --}}
+    <script type="text/javascript">
+        $('#frmSearchTournament').on('keyup', function() {
+            var search = $(this).serialize();
+            if ($(this).find('.m-input').val() == '') {
+                $('#search-suggest div').hide();
+            } else {
+                $.ajax({
+                        url: '/search',
+                        type: 'POST',
+                        data: search,
+                    })
+                    .done(function(res) {
+                        $('#search-suggest').html('');
+                        $('#search-suggest').append(res)
+                    })
+            };
+        });
     </script>
 @endsection

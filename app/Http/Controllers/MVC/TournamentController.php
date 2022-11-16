@@ -7,6 +7,7 @@ use App\Models\League;
 use App\Models\LeagueType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 class TournamentController extends Controller
@@ -18,7 +19,28 @@ class TournamentController extends Controller
 
     public function index(Request $request)
     {
-        $tournaments = League::paginate(10);
+        $tournaments = League::where([
+            ['name', '!=', Null],
+            [function ($query) use ($request) {
+                if (($s = $request->search)) {
+                    $types = LeagueType::where('name', 'LIKE', '%' . $s . '%')->get();
+                    if (count($types) > 0) {
+                        foreach ($types as $type) {
+                            $query->orWhere('name', 'LIKE', '%' . $s . '%')
+                                ->orWhere('start', 'LIKE', '%' . $s . '%')
+                                ->orWhere('end', 'LIKE', '%' . $s . '%')
+                                ->orWhere('league_type_id', 'LIKE', '%' . $type->id . '%')
+                                ->get();
+                        }
+                    } else {
+                        $query->orWhere('name', 'LIKE', '%' . $s . '%')
+                            ->orWhere('start', 'LIKE', '%' . $s . '%')
+                            ->orWhere('end', 'LIKE', '%' . $s . '%')
+                            ->get();
+                    }
+                }
+            }]
+        ])->paginate(isset($request->pageSize) ? $request->pageSize : 10);
 
         return view('client.tournament.find-tournament', compact('tournaments'));
     }

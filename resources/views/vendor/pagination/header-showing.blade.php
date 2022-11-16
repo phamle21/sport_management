@@ -12,7 +12,11 @@
     <p class="small text-white">
         @lang('pagination.Showing')
         @lang('pagination.all')
-        <span class="fw-semibold">{{ $paginator->total() }}</span>
+        <span class="fw-semibold">{{ isset($paginator) ? $paginator->total() : 0 }}</span>
         @lang('pagination.results')
+        @if (Request::get('search') != null)
+            @lang('pagination.with')
+            <b>{{ Request::get('search') }}</b>
+        @endif
     </p>
 @endif
