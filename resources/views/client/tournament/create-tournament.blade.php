@@ -79,7 +79,7 @@
                                                 </div>
                                                 <div class="avatar-preview">
                                                     <div id="imagePreview"
-                                                        style="background-image: url('https://e7.pngegg.com/pngimages/914/512/png-clipart-icloud-clip-cart-upload-computer-icons-computer-file-icon-drawing-upload-miscellaneous-blue-thumbnail.png');">
+                                                        style="background-image: url('https://cdn.dribbble.com/users/1787323/screenshots/6087799/attachments/1306352/sport2-02.png?compress=1&resize=400x300&vertical=top');">
                                                     </div>
                                                 </div>
                                                 <label id="label-image" class="col d-flex justify-content-start mt-2">

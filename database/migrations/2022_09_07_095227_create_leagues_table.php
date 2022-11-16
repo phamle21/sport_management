@@ -22,6 +22,7 @@ return new class extends Migration
             $table->datetime('end');
             $table->text('prize');
             $table->unsignedBigInteger('league_type_id');
+            $table->unsignedBigInteger('user_id');
             $table->timestamps();
         });
     }

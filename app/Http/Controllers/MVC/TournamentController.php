@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\League;
 use App\Models\LeagueType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class TournamentController extends Controller
@@ -80,6 +81,7 @@ class TournamentController extends Controller
             'end' => date('Y-m-d', strtotime($request->end)),
             'prize' => $request->prize,
             'league_type_id' => $type,
+            'user_id' => Auth::user()->id,
         ]);
 
         if ($new_tournament) {
