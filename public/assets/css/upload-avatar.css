@@ -37,7 +37,7 @@
 }
 
 .avatar-upload .avatar-edit input+label:after {
-    content: "\f093";
+    content: "\f0ee";
     font-family: 'FontAwesome';
     border-color: #7b7b7b;
     color: #444444;

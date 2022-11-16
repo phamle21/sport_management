@@ -64,13 +64,61 @@
                                 <li><a href="/about">{{ __('message.header.about') }}</a></li>
                                 <li><a href="/contact">{{ __('message.header.contact') }}</a></li>
                             </ul>
-                            <a href="login" class="login">
-                                <i class="icofont-user"></i>
-                                <span>{{ __('message.login') }}</span>
-                            </a>
-                            <a href="signup" class="signup">
-                                <i class="icofont-users"></i>
-                                <span>{{ __('message.register') }}</span></a>
+
+
+
+                            @if (Auth::check())
+                                <style>
+                                    #avatar-user {
+                                        border-style: none;
+                                        width: 4rem;
+                                        height: 4rem;
+                                        border: 5px solid rgba(255, 255, 255, .1);
+                                        border-radius: 30px;
+                                    }
+
+                                    .dropdown-menu {
+                                        border: 1px solid rgba(255, 255, 255, .1);
+                                        border-radius: 4px;
+                                        box-shadow: 0px 2px 4px 0px rgb(0 0 0 / 6%);
+                                        background: rgba(35, 42, 92, .5);
+                                        color: #fff;
+                                        padding: 0;
+                                    }
+
+                                    .dropdown-menu li:hover {
+                                        color: rgb(77, 77, 77) !important;
+                                    }
+                                </style>
+                                <div class="dropdown">
+                                    <a href="javascript:;" id="dropdownUser" data-bs-toggle="dropdown"
+                                        aria-expanded="false">
+                                        <img class="mx-2" src="{{ Auth::user()->avatar }}" alt=""
+                                            id="avatar-user">
+                                        <b>{{ Auth::user()->name }} <i class="fa-solid fa-caret-down"></i></b>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-light" aria-labelledby="dropdownUser">
+                                        <li><a class="dropdown-item text-white"
+                                                href="/my-profile">{{ __('message.header.user.profile') }}</a>
+                                        </li>
+
+                                        <hr class="dropdown-divider m-0">
+                                        <li><a class="dropdown-item text-white"
+                                                href="/logout">{{ __('message.header.user.logout') }}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            @else
+                                <a href="/login" class="login">
+                                    <i class="icofont-user"></i>
+                                    <span>{{ __('message.login') }}</span>
+                                </a>
+                                <a href="/register" class="signup">
+                                    <i class="icofont-users"></i>
+                                    <span>{{ __('message.register') }}</span></a>
+                            @endif
+
+
 
                             <!-- toggle icons -->
                             <div class="header-bar d-lg-none">
