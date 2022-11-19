@@ -58,6 +58,8 @@ return [
     'tournament.details.collection-about' => 'Giới thiệu',
     'tournament.details.collection-notify' => 'Thông báo',
     'tournament.details.collection-stage' => 'Giai đoạn',
+    'tournament.details.collection-group' => 'Bảng đấu',
+    'tournament.details.collection-bracket' => 'Bracket',
     'tournament.details.about-head-sub-1' => 'Giới thiệu',
     'tournament.details.about-head-1' => 'Giới thiệu về giải đấu',
     'tournament.details.about-head-sub-2' => 'Đồng hành cùng chúng tôi',
@@ -73,5 +75,17 @@ return [
     'tournament.details.total-team' => 'Đội',
     'tournament.details.total-group' => 'Bảng đấu',
     'tournament.details.total-match' => 'Trận đấu',
+
+    'tournament.details.stage.head-sub-1' => 'Giai đoạn',
+    'tournament.details.stage.head-1' => 'Tạo giai đoạn',
+    'tournament.details.stage.head-sub-2' => 'Giai đoạn',
+    'tournament.details.stage.head-2' => 'Tất cả giai đoạn',
+    'tournament.details.stage.create.frm-name' => 'Tên giai đoạn',
+    'tournament.details.stage.create.frm-order' => 'Thứ tự giai đoạn',
+    'tournament.details.stage.btn-send' => 'Bắt đầu',
+    'tournament.details.stage.create.total-stage' => 'Tổng số giai đoạn',
+    'tournament.details.stage.btn-add-total' => 'Thêm',
+    'tournament.details.stage.matches' => 'Trận đấu',
+    'tournament.details.stage.teams' => 'Đội đấu',
 
 ];

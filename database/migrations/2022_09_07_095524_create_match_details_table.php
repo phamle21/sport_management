@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('match_details', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('matches_id')->nullable();
-            $table->unsignedBigInteger('club_id')->nullable();
+            $table->unsignedBigInteger('team_id')->nullable();
             $table->text('indicators');
             $table->string('note');
             $table->timestamps();
@@ -25,8 +25,8 @@ return new class extends Migration
                 ->references('id')->on('matches')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->foreign('club_id')
-                ->references('id')->on('clubs')
+            $table->foreign('team_id')
+                ->references('id')->on('teams')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
         });

@@ -19,8 +19,6 @@
         }
     </style>
 
-    {{-- CKEditor CDN --}}
-    <script src="https://cdn.ckeditor.com/ckeditor5/23.0.0/classic/ckeditor.js"></script>
 
     <style>
         #form-group-ckeditor .ck-rounded-corners {

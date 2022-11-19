@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\MVC;
 
 use App\Http\Controllers\Controller;
+use App\Models\Group;
 use App\Models\League;
 use App\Models\LeagueType;
+use App\Models\Matches;
+use App\Models\Stage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -42,13 +45,13 @@ class TournamentController extends Controller
             }]
         ])->paginate(isset($request->pageSize) ? $request->pageSize : 10);
 
-        return view('client.tournament.find-tournament', compact('tournaments'));
+        return view('client.tournament.find', compact('tournaments'));
     }
 
     public function create()
     {
         $league_type_list = LeagueType::all();
-        return view('client.tournament.create-tournament', compact('league_type_list'));
+        return view('client.tournament.create', compact('league_type_list'));
     }
 
     public function store(Request $request)
@@ -131,17 +134,34 @@ class TournamentController extends Controller
         }
     }
 
-    public function show($id)
+    public function show($id, Request $request)
     {
         if (!League::whereId($id)->exists()) {
             return abort(404);
         }
         $tournament = League::find($id);
-        $tournament->total_stage = 0;
-        $tournament->total_group = 0;
-        $tournament->total_match = 0;
-        $tournament->total_team = 0;
+        $tournament->total_stage = $tournament->totalStage();
+        $tournament->total_group = $tournament->totalGroup();
+        $tournament->total_match = $tournament->totalMatch();
+        $tournament->total_team = $tournament->totalTeam();
 
-        return view('client.tournament.details-tournament', compact('tournament'));
+        $stages = Stage::where('league_id', $tournament->id)->get();
+
+        foreach ($stages as $v) {
+            $groups = Group::where('stage_id', $v->id)->get();
+
+            foreach ($groups as $group) {
+                $group->matches = Matches::where('group_id', $group->id)->get();
+            }
+            $v->groups = $groups;
+        }
+
+        if (isset($request->type_show) && $request->type_show != null) {
+            $tournament->type_show = $request->type_show;
+        } else {
+            $tournament->type_show = 'about';
+        }
+
+        return view('client.tournament.details', compact('tournament', 'stages'));
     }
 }

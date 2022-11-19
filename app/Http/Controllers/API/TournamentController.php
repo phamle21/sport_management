@@ -119,13 +119,12 @@ class TournamentController extends Controller
         $tournament->typeName = $tournament->type()->name;
         $tournament->start = date('d/m/Y', strtotime($tournament->start));
         $tournament->end = date('d/m/Y', strtotime($tournament->end));
-        $tournament->totalStage = 0;
-        $tournament->totalGroup = 0;
-        $tournament->totalMatch = 0;
-        $tournament->totalTeam = 0;
+        $tournament->totalStage = $tournament->totalStage();
+        $tournament->totalGroup = $tournament->totalGroup();
+        $tournament->totalMatch = $tournament->totalMatch();
+        $tournament->totalTeam = $tournament->totalTeam();
 
         return response()->json($tournament);
         return view('client.tournament.details-tournament', compact('tournament'));
     }
-
 }

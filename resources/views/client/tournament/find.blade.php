@@ -109,10 +109,10 @@
                                 <div class="row align-items-center">
                                     <div class="col-lg-5 col-12">
                                         <div class="thumb text-center">
-                                            <div class="pro-thumb " id="modal-tour-logo">
+                                            <a href="{{ route('tournament.details', ['id' => $tournament->id]) }}" class="pro-thumb " id="modal-tour-logo">
                                                 <img src="https://media-exp1.licdn.com/dms/image/C5612AQFp-16zT8z5-Q/article-inline_image-shrink_1000_1488/0/1575902798333?e=1673481600&v=beta&t=raXSeTkzkKPVao-ddfdzW1Uz1ns0lN7g894tgGzutLo"
                                                     alt="shop">
-                                            </div>
+                                            </a>
                                         </div>
                                     </div>
                                     <div class="col-lg-7">

@@ -8,6 +8,7 @@ use App\Http\Controllers\MVC\OptionController;
 use App\Http\Controllers\MVC\ContactController;
 use App\Http\Controllers\MVC\FacebookController;
 use App\Http\Controllers\MVC\GoogleController;
+use App\Http\Controllers\MVC\StageController;
 use App\Http\Controllers\MVC\TournamentController;
 use Illuminate\Support\Facades\Auth;
 
@@ -71,3 +72,6 @@ Route::controller(GoogleController::class)->group(function () {
     Route::get('auth/google', 'redirectToGoogle')->name('auth.google');
     Route::get('auth/google/callback', 'handleGoogleCallback');
 });
+
+// Stage
+Route::post('/stages', [StageController::class, 'store'])->name('stage.create');

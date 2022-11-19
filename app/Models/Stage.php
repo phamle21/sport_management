@@ -11,8 +11,8 @@ class Stage extends Model
 
     protected $fillable = [
         'name',
-        'address',
-        'price',
+        'order',
+        'league_id',
     ];
 
     protected $hidden = [

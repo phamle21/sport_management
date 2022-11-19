@@ -58,6 +58,8 @@ return [
     'tournament.details.collection-about' => 'About',
     'tournament.details.collection-notify' => 'Notification',
     'tournament.details.collection-stage' => 'Stages',
+    'tournament.details.collection-group' => 'Groups',
+    'tournament.details.collection-bracket' => 'Bracket',
     'tournament.details.about-head-sub-1' => 'About',
     'tournament.details.about-head-1' => 'About tournament',
     'tournament.details.about-head-sub-2' => 'WE OUR PARTNERS',
@@ -73,5 +75,17 @@ return [
     'tournament.details.total-team' => 'Teams',
     'tournament.details.total-group' => 'Groups',
     'tournament.details.total-match' => 'Matches',
+
+    'tournament.details.stage.head-sub-1' => 'Stage',
+    'tournament.details.stage.head-1' => 'Create Stage',
+    'tournament.details.stage.head-sub-2' => 'Stage',
+    'tournament.details.stage.head-2' => 'All Stage',
+    'tournament.details.stage.create.frm-name' => 'Name Stage',
+    'tournament.details.stage.create.frm-order' => 'Order Stage',
+    'tournament.details.stage.btn-send' => 'Start',
+    'tournament.details.stage.create.total-stage' => 'Total stage',
+    'tournament.details.stage.btn-add-total' => 'Add',
+    'tournament.details.stage.matches' => 'Matches',
+    'tournament.details.stage.teams' => 'Teams',
 
 ];

@@ -13,19 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('club_groups', function (Blueprint $table) {
+        Schema::create('player_teams', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('group_id')->nullable();
-            $table->unsignedBigInteger('club_id')->nullable();
-            $table->string('indicators');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('team_id')->nullable();
             $table->timestamps();
 
-            $table->foreign('group_id')
-                ->references('id')->on('groups')
+            $table->foreign('user_id')
+                ->references('id')->on('users')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->foreign('club_id')
-                ->references('id')->on('clubs')
+            $table->foreign('team_id')
+                ->references('id')->on('teams')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
         });
@@ -38,6 +37,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('club_groups');
+        Schema::dropIfExists('player_clubs');
     }
 };

@@ -2,11 +2,11 @@
 
 namespace App\Imports;
 
-use App\Models\Club;
+use App\Models\Team;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 
-class ClubsImport implements ToModel, WithStartRow
+class TeamsImport implements ToModel, WithStartRow
 {
     public function startRow(): int
     {
@@ -15,7 +15,7 @@ class ClubsImport implements ToModel, WithStartRow
 
     public function model(array $row)
     {
-        return new Club([
+        return new Team([
             //
         ]);
     }

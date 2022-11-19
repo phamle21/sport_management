@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('participates', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('club_id')->nullable();
+            $table->unsignedBigInteger('team_id')->nullable();
             $table->unsignedBigInteger('league_id')->nullable();
             $table->timestamps();
 
-            $table->foreign('club_id')
-                ->references('id')->on('clubs')
+            $table->foreign('team_id')
+                ->references('id')->on('teams')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
             $table->foreign('league_id')

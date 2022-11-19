@@ -21,6 +21,8 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->text('indicators');
             $table->unsignedBigInteger('group_id')->nullable();
+            $table->unsignedBigInteger('team_id')->nullable();
+            $table->unsignedBigInteger('team_opposing_id')->nullable();
             $table->timestamps();
 
             $table->foreign('group_id')
@@ -29,6 +31,14 @@ return new class extends Migration
                 ->onUpdate('cascade');
             $table->foreign('user_id')
                 ->references('id')->on('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->foreign('team_id')
+                ->references('id')->on('teams')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->foreign('team_opposing_id')
+                ->references('id')->on('teams')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
         });

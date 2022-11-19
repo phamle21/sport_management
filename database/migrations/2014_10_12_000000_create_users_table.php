@@ -43,16 +43,15 @@ return new class extends Migration
         Schema::dropIfExists('booking_gournds');
         Schema::dropIfExists('player_histories');
         Schema::dropIfExists('match_details');
-        Schema::dropIfExists('club_groups');
         Schema::dropIfExists('group_stages');
         Schema::dropIfExists('participates');
         Schema::dropIfExists('league_seasons');
-        Schema::dropIfExists('player_clubs');
+        Schema::dropIfExists('player_teams');
         Schema::dropIfExists('permission_roles');
         Schema::dropIfExists('user_roles');
 
         Schema::dropIfExists('permissions');
-        Schema::dropIfExists('clubs');
+        Schema::dropIfExists('teams');
         Schema::dropIfExists('matches');
         Schema::dropIfExists('seasons');
         Schema::dropIfExists('users');
