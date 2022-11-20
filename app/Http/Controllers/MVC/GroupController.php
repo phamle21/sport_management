@@ -19,4 +19,8 @@ class GroupController extends Controller
         return redirect(route('tournament.details', ['id' => $request->league_id, 'type_show' => 'stage']))
             ->with('success', 'Đã thêm một bảng đấu cho giai đoạn ' . Stage::find($request->stage_id)->name);
     }
+
+    public function processing(Request $request){
+        
+    }
 }

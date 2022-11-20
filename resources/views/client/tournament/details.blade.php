@@ -161,7 +161,7 @@
                                                 </div>
                                             </div>
                                             <div class="text-center mt-5">
-                                                <a href="partners.html"
+                                                <a href="{{ route('sponsor.index', ['order_number' => $tournament->id]) }}"
                                                     class="default-button"><span>{{ __('message.tournament.details.about-btn-susponsor') }}
                                                         <i class="icofont-circled-right"></i></span> </a>
                                             </div>
@@ -1115,7 +1115,8 @@
                         <input type="hidden" readonly id="inputStageId" name="stage_id">
                         <div class="form-group">
                             <label for="groupName">Group name *:</label>
-                            <input type="text" class="text-white" id="groupName" name="name" value="" required>
+                            <input type="text" class="text-white" id="groupName" name="name" value=""
+                                required>
                         </div>
                     </form>
                 </div>
