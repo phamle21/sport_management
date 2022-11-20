@@ -10,27 +10,24 @@ use Illuminate\Support\Facades\Mail;
 class ContactController extends Controller
 {
 
-    public function __construct()
+    protected function sendMail($subject, $title, $body, $view)
     {
-        function sendMail($subject, $title, $body, $view)
-        {
-            $mailData = [
-                'view' => $view,
-                'subject' => $subject,
-                'title' => $title,
-                'body' => $body,
-            ];
+        $mailData = [
+            'view' => $view,
+            'subject' => $subject,
+            'title' => $title,
+            'body' => $body,
+        ];
 
-            $to = env('MAIL_LIST_CONFIRM');
+        $to = env('MAIL_LIST_CONFIRM');
 
-            $list_send_mail = explode(',', $to);
+        $list_send_mail = explode(',', $to);
 
-            foreach ($list_send_mail as $email) {
-                $check = Mail::to($email)->send(new SendMail($mailData));
-            }
-
-            return $check;
+        foreach ($list_send_mail as $email) {
+            $check = Mail::to($email)->send(new SendMail($mailData));
         }
+
+        return $check;
     }
 
     public function index()
@@ -54,7 +51,7 @@ class ContactController extends Controller
             'send_message' => $send_message,
         ];
 
-        $send = sendMail($send_subject, 'Contact', $body, 'sendContact');
+        $send = $this->sendMail($send_subject, 'Contact', $body, 'sendContact');
 
         if ($send) {
             return redirect('/contact')->with('success', 'Gửi liên hệ thành công.');

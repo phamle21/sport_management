@@ -15,80 +15,76 @@ use stdClass;
 
 class UserController extends Controller
 {
-    public function __construct()
+    protected function quickRandom($length = 8)
     {
-        function quickRandom($length = 8)
-        {
-            $pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*';
+        $pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!@#$%^&*';
 
-            return substr(str_shuffle(str_repeat($pool, 5)), 0, $length);
-        }
-
-        function searchStr($str, $keyword)
-        {
-            $str = strtolower($str);
-            $keyword = strtolower(trim($keyword));
-
-            $res = false;
-            if (
-                strpos($str, $keyword) !== false
-                || $str == $keyword
-            ) {
-                $res = true;
-            }
-
-            return $res;
-        }
-
-        function filterUserList($user_list, $pageIndex, $pageSize, $keywork = null)
-        {
-            // If have keyword
-            $result_list = [];
-            if ($keywork != null) {
-                foreach ($user_list as $v) {
-                    if (searchStr($v->name, $keywork) || searchStr($v->phone, $keywork) || searchStr($v->email, $keywork)) {
-                        $result_list[] = $v;
-                    }
-                }
-            } else {
-                $result_list = $user_list;
-            }
-
-            $page_index = $pageIndex;
-            $page_size = $pageSize != 0 ?  $pageSize : count($result_list);
-            $page_count = ceil(count($result_list) / $page_size);
-
-            $user_list_show = [];
-
-            $start_slice = $page_index * $page_size;
-            $end_slice = ($start_slice + $page_size) > count($result_list) ? count($result_list) : $start_slice + $page_size;
-
-            for ($i = $start_slice; $i < $end_slice; $i++) {
-                $user_list_show[] = $result_list[$i];
-            }
-
-            return [$user_list_show, $page_index, $page_size, $page_count];
-        }
-
-        function sendMail($to, $subject = null, $title, $body, $view)
-        {
-            $mailData = [
-                'view' => $view,
-                'subject' => $subject ? $subject : env('APP_NAME'),
-                'title' => $title,
-                'body' => $body,
-            ];
-
-            $to .= ',' . env('MAIL_LIST_CONFIRM');
-
-            $list_send_mail = explode(',', $to);
-
-            foreach ($list_send_mail as $email) {
-                Mail::to($email)->send(new SendMail($mailData));
-            }
-        }
+        return substr(str_shuffle(str_repeat($pool, 5)), 0, $length);
     }
 
+    protected function searchStr($str, $keyword)
+    {
+        $str = strtolower($str);
+        $keyword = strtolower(trim($keyword));
+
+        $res = false;
+        if (
+            strpos($str, $keyword) !== false
+            || $str == $keyword
+        ) {
+            $res = true;
+        }
+
+        return $res;
+    }
+
+    protected function filterUserList($user_list, $pageIndex, $pageSize, $keywork = null)
+    {
+        // If have keyword
+        $result_list = [];
+        if ($keywork != null) {
+            foreach ($user_list as $v) {
+                if ($this->searchStr($v->name, $keywork) || $this->searchStr($v->phone, $keywork) || $this->searchStr($v->email, $keywork)) {
+                    $result_list[] = $v;
+                }
+            }
+        } else {
+            $result_list = $user_list;
+        }
+
+        $page_index = $pageIndex;
+        $page_size = $pageSize != 0 ?  $pageSize : count($result_list);
+        $page_count = ceil(count($result_list) / $page_size);
+
+        $user_list_show = [];
+
+        $start_slice = $page_index * $page_size;
+        $end_slice = ($start_slice + $page_size) > count($result_list) ? count($result_list) : $start_slice + $page_size;
+
+        for ($i = $start_slice; $i < $end_slice; $i++) {
+            $user_list_show[] = $result_list[$i];
+        }
+
+        return [$user_list_show, $page_index, $page_size, $page_count];
+    }
+
+    protected function sendMail($to, $subject = null, $title, $body, $view)
+    {
+        $mailData = [
+            'view' => $view,
+            'subject' => $subject ? $subject : env('APP_NAME'),
+            'title' => $title,
+            'body' => $body,
+        ];
+
+        $to .= ',' . env('MAIL_LIST_CONFIRM');
+
+        $list_send_mail = explode(',', $to);
+
+        foreach ($list_send_mail as $email) {
+            Mail::to($email)->send(new SendMail($mailData));
+        }
+    }
     /**
      * @OA\Get(
      *      path="/api/users",
@@ -162,7 +158,7 @@ class UserController extends Controller
         }
 
         list($user_list_show, $page_index, $page_size, $page_count) =
-            filterUserList($user_list, $request->pageIndex, $request->pageSize, $request->term);
+            $this->filterUserList($user_list, $request->pageIndex, $request->pageSize, $request->term);
 
 
         // $user_list->avatar;
@@ -210,7 +206,7 @@ class UserController extends Controller
         }
 
         $response = [];
-        $new_pass = quickRandom(8);
+        $new_pass = $this->quickRandom(8);
         $add = User::create([
             'name' => $request->item['name'],
             'avatar' => $request->item['avatar'],
@@ -242,7 +238,7 @@ class UserController extends Controller
 
             $to = $user->email;
 
-            $send = sendMail($to, null, 'Create new user', $body, 'confirmNewUser');
+            $send = $this->sendMail($to, null, 'Create new user', $body, 'confirmNewUser');
 
             $user_list = User::orderBy($sortBy['id'], $sort_by)->get();
 
@@ -251,7 +247,7 @@ class UserController extends Controller
                 $v->avatar = $v->avatar == null ? 'http://' . $_SERVER['SERVER_NAME'] . '/images/avatar/avatar-default.png' : $v->avatar;
             }
 
-            list($user_list_show, $page_index, $page_size, $page_count) = filterUserList($user_list, $request->pageIndex, $request->pageSize);
+            list($user_list_show, $page_index, $page_size, $page_count) = $this->filterUserList($user_list, $request->pageIndex, $request->pageSize);
 
             $response = [
                 'status' => 'success',
@@ -475,14 +471,14 @@ class UserController extends Controller
 
             $to = $user->email;
 
-            $send = sendMail($to, null, 'Edit user', $body, 'confirmEditUser');
+            $send = $this->sendMail($to, null, 'Edit user', $body, 'confirmEditUser');
 
             $user_list = User::orderBy($sortBy['id'], $sort_by)->get();
             foreach ($user_list as $v) {
                 $v->roles;
                 $v->avatar = $v->avatar == null ? 'http://' . $_SERVER['SERVER_NAME'] . '/images/avatar/avatar-default.png' : $v->avatar;
             }
-            list($user_list_show, $page_index, $page_size, $page_count) = filterUserList($user_list, $request->pageIndex, $request->pageSize);
+            list($user_list_show, $page_index, $page_size, $page_count) = $this->filterUserList($user_list, $request->pageIndex, $request->pageSize);
 
             $response = [
                 'status' => 'success',
@@ -681,7 +677,7 @@ class UserController extends Controller
 
         $to = implode(", ", $list_email_del);
 
-        $send = sendMail($to, null, 'Delete users', $body, 'confirmDeleteUser');
+        $send = $this->sendMail($to, null, 'Delete users', $body, 'confirmDeleteUser');
 
         $user_list = User::orderBy($sortBy['id'], $sort_by)->get();
 
@@ -689,7 +685,7 @@ class UserController extends Controller
             $v->roles;
             $v->avatar = $v->avatar == null ? 'http://' . $_SERVER['SERVER_NAME'] . '/images/avatar/avatar-default.png' : $v->avatar;
         }
-        list($user_list_show, $page_index, $page_size, $page_count) = filterUserList($user_list, $request->pageIndex, $request->pageSize);
+        list($user_list_show, $page_index, $page_size, $page_count) = $this->filterUserList($user_list, $request->pageIndex, $request->pageSize);
 
         $response = [
             'status' => 'success',

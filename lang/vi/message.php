@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'title' => 'Các giải đấu thể thao',
+    'title' => 'Quản lý các giải đấu',
     'login' => 'Đăng nhập',
     'register' => 'Đăng ký',
     'logout' => 'Đăng xuất',

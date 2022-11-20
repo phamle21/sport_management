@@ -9,9 +9,6 @@ use Illuminate\Http\Request;
 
 class StageController extends Controller
 {
-    public function index()
-    {
-    }
 
     public function store(Request $request)
     {
@@ -34,5 +31,11 @@ class StageController extends Controller
         } else {
             return redirect(route('tournament.details', ['id' => $request->league_id, 'type_show' => 'stage']))->with('error', 'Thêm giai đoạn thất bại');
         }
+    }
+
+    public function destroy($id, Request $request)
+    {
+        Stage::find($id)->delete();
+        return redirect(route('tournament.details', ['id' => $request->league_id, 'type_show' => 'stage']))->with('success', 'Đã xóa một giai đoạn');
     }
 }

@@ -1,5 +1,4 @@
-<div
-    style="
+<div style="
             height: auto !important;
             max-width: 600px !important;
             font-family: Helvetica, Arial, sans-serif !important;
@@ -8,8 +7,7 @@
             margin-right: auto;
           ">
     <div style="margin-bottom: 100px">
-        <div
-            style="
+        <div style="
                 border-top-left-radius: 30px;
                 border-top-right-radius: 30px;
                 background-image: linear-gradient(#efff00,#fefff4);
@@ -22,8 +20,7 @@
         ">
             <h1>Quản lý các giải đấu</h1>
         </div>
-        <table
-            style="
+        <table style="
                 max-width: 600px;
                 background-color: #fdffdefd;
                 border: 2px;
@@ -49,11 +46,11 @@
                         <br />
                         <h6
                             style="width: 536px; display: inline-block; font-size: 20px; margin: 10px 0; font-weight: 500; text-align: center;">
-                            <b>Người dùng mới</b>
+                            <b>Liên hệ từ người dùng</b>
                         </h6>
                         <div>
                             <p>
-                                Có người dùng được chỉnh sửa
+                                Có người dùng liên hệ
                             </p>
                             <p style=" display: inline-block; font-size: 15px; margin: 10px 0; font-weight: 500; ">
                                 Thông tin:
@@ -76,29 +73,10 @@
                                 </li>
                                 <li>
                                     <p>
-                                        Loại người dung: <b>
-                                            @foreach ($mailData['body']['roles'] as $role)
-                                                <span
-                                                    style="
-                                                    margin-right:0.5rem;
-                                                    border:1px solid rgb(61, 61, 228);
-                                                    border-radius: 30px;
-                                                    color: black;
-                                                    padding: 0.2rem 0.4rem 0.2rem;
-                                                ">
-                                                    {{ $role->name }}
-                                                </span>
-                                            @endforeach
-                                        </b>
+                                        Nội dung: <b>{{ $mailData['body']['send_message'] }}</b>
                                     </p>
                                 </li>
-                                <li>
-                                    <p>
-                                        Mật khẩu: <b>{{ $mailData['body']['password'] }} </b>
-                                    </p>
-                                </li>
-                                <li><small><i>Hãy đăng nhập và thay đổi mật khẩu
-                                            nhé!</i></small></li>
+
                             </ul>
 
                             <p style="margin-top: 50px;">Cám ơn bạn đã xem.</p>

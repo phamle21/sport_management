@@ -49,11 +49,11 @@
                         <br />
                         <h6
                             style="width: 536px; display: inline-block; font-size: 20px; margin: 10px 0; font-weight: 500; text-align: center;">
-                            <b>Người dùng mới</b>
+                            <b>Xóa người dùng</b>
                         </h6>
                         <div>
                             <p>
-                                Có người dùng được chỉnh sửa
+                                Có người dùng đã được xóa
                             </p>
                             <p style=" display: inline-block; font-size: 15px; margin: 10px 0; font-weight: 500; ">
                                 Thông tin:
@@ -92,13 +92,7 @@
                                         </b>
                                     </p>
                                 </li>
-                                <li>
-                                    <p>
-                                        Mật khẩu: <b>{{ $mailData['body']['password'] }} </b>
-                                    </p>
-                                </li>
-                                <li><small><i>Hãy đăng nhập và thay đổi mật khẩu
-                                            nhé!</i></small></li>
+
                             </ul>
 
                             <p style="margin-top: 50px;">Cám ơn bạn đã xem.</p>

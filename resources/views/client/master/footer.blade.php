@@ -45,7 +45,8 @@
             </div>
         </div>
     </div>
-    <div class="footer-middle padding-top padding-bottom" style="background-image: url(assets/images/footer/bg.jpg);">
+    <div class="footer-middle padding-top padding-bottom"
+        style="background-image: url({{ asset('assets/images/footer/bg.jpg') }});">
         <div class="container">
             <div class="row padding-lg-top justify-content-around">
                 <div class="col-lg-4 col-md-6 col-12">

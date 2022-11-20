@@ -8,6 +8,7 @@ use App\Http\Controllers\MVC\OptionController;
 use App\Http\Controllers\MVC\ContactController;
 use App\Http\Controllers\MVC\FacebookController;
 use App\Http\Controllers\MVC\GoogleController;
+use App\Http\Controllers\MVC\GroupController;
 use App\Http\Controllers\MVC\StageController;
 use App\Http\Controllers\MVC\TournamentController;
 use Illuminate\Support\Facades\Auth;
@@ -75,3 +76,7 @@ Route::controller(GoogleController::class)->group(function () {
 
 // Stage
 Route::post('/stages', [StageController::class, 'store'])->name('stage.create');
+Route::delete('/stages/{id}', [StageController::class, 'destroy'])->name('stage.delete');
+
+// Group
+Route::post('/groups', [GroupController::class, 'store'])->name('group.create');

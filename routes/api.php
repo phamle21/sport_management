@@ -18,7 +18,6 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 /** Club */
-Route::resource('clubs', CourseController::class);
 
 /** User */
 Route::resource('users', UserController::class);

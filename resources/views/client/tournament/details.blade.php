@@ -47,6 +47,14 @@
         .accordion-button::after {
             content: none !important;
         }
+
+        .accordion-item-add :hover {
+            background: rgb(0, 255, 17) !important;
+        }
+
+        .accordion-button-add :hover {
+            background: rgb(0, 87, 150) !important;
+        }
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/2.3.1/css/flag-icon.min.css">
     <link rel="stylesheet/less" type="text/css" href="/assets/css/tournament-bracket.less" />
@@ -244,7 +252,31 @@
                                 @foreach ($stages as $stage)
                                     <div class="col-12 col-lg border m-3 py-3 order-{{ $stage->order }}"
                                         style="border-radius: 30px">
-                                        <h5 class="my-2 text-center">{{ $stage->order }} - {{ $stage->name }} </h5>
+                                        <div class="row justify-content-center align-items-center px-3">
+                                            <div class="col-2">
+                                                <button class="bg-transparent btn text-white fs-6">
+                                                    <i class="fa-duotone fa-pen-to-square"></i>
+                                                </button>
+                                            </div>
+                                            <div class="col">
+                                                <h5 class="my-2 text-center">
+                                                    {{ $stage->order }} - {{ $stage->name }}
+                                                </h5>
+                                            </div>
+                                            <div class="col-2">
+                                                <form action="{{ route('stage.delete', ['id' => $stage->id]) }}"
+                                                    id="frmDeleteStage-{{ $stage->id }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <input type="hidden" name="league_id"
+                                                        value="{{ $tournament->id }}">
+                                                    <button class="bg-transparent btn text-white fs-6" type="button"
+                                                        onclick="deleteStage({{ $stage->id }})">
+                                                        <i class="fa-duotone fa-trash"></i>
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
                                         <hr>
                                         @foreach ($stage->groups as $group)
                                             <div class="col-12 px-3 my-2">
@@ -264,6 +296,25 @@
                                                 </div>
                                             </div>
                                         @endforeach
+                                        <div class="col-12 px-3 my-2">
+                                            <div class="accordion-item d-flex product-action-link">
+                                                <a data-bs-toggle="modal" data-bs-target="#new_group"
+                                                    data-bs-whatever="{{ $stage->id }}" style="cursor: pointer;"
+                                                    class="accordion-header w-100 view-modal">
+                                                    <div
+                                                        class="accordion-button accordion-button-2 accordion-button-new collapsed">
+                                                        <span
+                                                            class="accor-header-inner d-flex flex-wrap align-items-center">
+                                                            <span class="accor-thumb">
+                                                                <img src="https://www.freepnglogos.com/uploads/plus-icon/plus-icon-plus-svg-png-icon-download-1.png"
+                                                                    alt="partner-thumb">
+                                                            </span>
+                                                            <span class="accor-title">Add new group</span>
+                                                        </span>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
                                     </div>
                                 @endforeach
                             </div>
@@ -1047,11 +1098,63 @@
         </div>
     </section>
 
+    {{-- =================================MODAL===================================== --}}
+    <!-- Modal New Group-->
+    <div class="modal fade text-white" id="new_group" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="background: rgba(35, 42, 92);">
+                <div class="modal-header ">
+                    <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">New Group for tournament</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-white">
+                    <form action="{{ route('group.create') }}" id="frmNewGroup" method="POST">
+                        @csrf
+                        <input type="hidden" name="league_id" value="{{ $tournament->id }}">
+                        <input type="hidden" readonly id="inputStageId" name="stage_id">
+                        <div class="form-group">
+                            <label for="groupName">Group name *:</label>
+                            <input type="text" class="text-white" id="groupName" name="name" value="" required>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" form="frmNewGroup" class="btn btn-primary">Add new group</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- =================================/MODAL===================================== --}}
+
+
+    {{-- =================================/Hidden===================================== --}}
+    <form action="/test" id="frmDeleteStage" method="POST">
+        @csrf
+        <input type="hidden" name="league_id" value="">
+    </form>
     <input type="hidden" id="collection-type" value="{{ $tournament->type_show }}">
+    {{-- =================================/Hidden===================================== --}}
+
+
     <!-- ===========Collection Section Ends Here========== -->
 @endsection
 
 @section('js')
+    <script>
+        const newGroupModal = document.getElementById('new_group')
+        newGroupModal.addEventListener('show.bs.modal', event => {
+
+            const button = event.relatedTarget
+
+            const recipient = button.getAttribute('data-bs-whatever')
+
+            const modelInputStageId = newGroupModal.querySelector('.modal-body input[name=stage_id]')
+
+            modelInputStageId.value = recipient
+        })
+    </script>
     <script>
         $(window).on('load', function() {
             const typeCollection = $('#collection-type').val();
@@ -1067,5 +1170,23 @@
                 filter: `.collection-${typeCollection}`
             });
         })
+
+        function deleteStage(id) {
+
+            Swal.fire({
+                title: 'Bạn muốn xóa giai đoạn này?',
+                iconHtml: '<img src="https://i.pinimg.com/originals/ff/fa/9b/fffa9b880767231e0d965f4fc8651dc2.gif" style="max-width: 12rem" alt="icon-delete"/>',
+                showDenyButton: true,
+                showCancelButton: true,
+                showConfirmButton: false,
+                denyButtonText: `Xóa`,
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isDenied) {
+                    $('#frmDeleteStage-' + id).submit();
+                }
+            })
+
+        }
     </script>
 @endsection
