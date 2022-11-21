@@ -19,6 +19,11 @@ return new class extends Migration
             $table->integer('order');
             $table->unsignedBigInteger('league_id');
             $table->timestamps();
+            
+            $table->foreign('league_id')
+                ->references('id')->on('leagues')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
     }
 

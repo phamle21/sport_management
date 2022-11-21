@@ -84,4 +84,5 @@ Route::delete('/stages/{id}', [StageController::class, 'destroy'])->name('stage.
 Route::post('/groups', [GroupController::class, 'store'])->name('group.create');
 
 // Sponsor
-Route::get('/sponsors', [SponsorController::class, 'index'])->name('sponsor.index');
+Route::get('/sponsors/{league_id}', [SponsorController::class, 'index'])->name('sponsor.index');
+Route::post('/sponsors', [SponsorController::class, 'processing'])->name('sponsor.processing');

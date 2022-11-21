@@ -19,6 +19,11 @@ return new class extends Migration
             $table->unsignedBigInteger('stage_id');
 
             $table->timestamps();
+
+            $table->foreign('stage_id')
+                ->references('id')->on('stages')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
     }
 

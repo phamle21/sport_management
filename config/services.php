@@ -42,4 +42,8 @@ return [
         'redirect' => env('APP_URL') . '/auth/google/callback',
     ],
 
+    'stripe' => [
+        'secret' => env('STRIPE_SECRET'),
+    ],
+
 ];

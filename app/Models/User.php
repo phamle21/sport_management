@@ -109,4 +109,16 @@ class User extends Authenticatable implements JWTSubject
 
         return $img;
     }
+
+    public function sponsors()
+    {
+        return $this->hasManyThrough(
+            Sponsor::class,
+            UserSponsor::class,
+            'user_id',
+            'id',
+            'id',
+            'sponsor_id',
+        );
+    }
 }

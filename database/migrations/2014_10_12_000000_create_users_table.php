@@ -41,6 +41,7 @@ return new class extends Migration
     public function down()
     {
         Schema::dropIfExists('booking_gournds');
+        Schema::dropIfExists('sponsorships');
         Schema::dropIfExists('player_histories');
         Schema::dropIfExists('match_details');
         Schema::dropIfExists('group_stages');
@@ -49,8 +50,10 @@ return new class extends Migration
         Schema::dropIfExists('player_teams');
         Schema::dropIfExists('permission_roles');
         Schema::dropIfExists('user_roles');
+        Schema::dropIfExists('league_types');
 
         Schema::dropIfExists('permissions');
+        Schema::dropIfExists('sponsor');
         Schema::dropIfExists('teams');
         Schema::dropIfExists('matches');
         Schema::dropIfExists('seasons');

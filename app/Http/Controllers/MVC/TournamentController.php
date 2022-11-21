@@ -7,6 +7,7 @@ use App\Models\Group;
 use App\Models\League;
 use App\Models\LeagueType;
 use App\Models\Matches;
+use App\Models\Sponsorship;
 use App\Models\Stage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -162,6 +163,15 @@ class TournamentController extends Controller
             $tournament->type_show = 'about';
         }
 
-        return view('client.tournament.details', compact('tournament', 'stages'));
+        $sponsorship_list = Sponsorship::where('league_id', $id)->get();
+        $sponsor_list = [];
+        foreach ($sponsorship_list as $v) {
+            $v->sponsors;
+            $sponsor_list[] = $v->sponsors;
+        }
+        $sponsor_list = array_unique($sponsor_list);
+
+
+        return view('client.tournament.details', compact('tournament', 'stages', 'sponsor_list'));
     }
 }

@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('logo');
             $table->string('introduce');
             $table->timestamps();
+
         });
     }
 

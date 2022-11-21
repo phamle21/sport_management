@@ -20,7 +20,19 @@ return new class extends Migration
             $table->string('sponsor_oder_id');
             $table->string('sponsor_status');
             $table->string('sponsor_link');
+            $table->string('sponsor_method');
+            $table->unsignedBigInteger('sponsor_id')->nullable();
+            $table->unsignedBigInteger('league_id')->nullable();
             $table->timestamps();
+
+            $table->foreign('sponsor_id')
+                ->references('id')->on('sponsors')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->foreign('league_id')
+                ->references('id')->on('leagues')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
     }
 

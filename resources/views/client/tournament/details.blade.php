@@ -149,19 +149,22 @@
                                         <div class="section-wrapper">
                                             <div
                                                 class="row g-5 justify-content-center row-cols-xl-5 row-cols-md-3 row-cols-2">
-                                                <div class="col">
-                                                    <div class="sponsor-item">
-                                                        <div class="sponsor-inner">
-                                                            <div class="sponsor-thumb text-center">
-                                                                <img src="{{ asset('assets/images/sponsor/01.png') }}"
-                                                                    alt="sponsor-thumb">
+                                                @foreach ($sponsor_list as $v)
+                                                    <div class="col">
+                                                        <a href="#abc" class="sponsor-item">
+                                                            <div class="sponsor-inner">
+                                                                <div class="sponsor-thumb text-center">
+                                                                    <img src="{{ asset($v->logo) }}" alt="sponsor-thumb">
+                                                                </div>
                                                             </div>
-                                                        </div>
+                                                        </a>
                                                     </div>
-                                                </div>
+                                                @endforeach
+
+
                                             </div>
                                             <div class="text-center mt-5">
-                                                <a href="{{ route('sponsor.index', ['order_number' => $tournament->id]) }}"
+                                                <a href="{{ route('sponsor.index', ['league_id' => $tournament->id]) }}"
                                                     class="default-button"><span>{{ __('message.tournament.details.about-btn-susponsor') }}
                                                         <i class="icofont-circled-right"></i></span> </a>
                                             </div>

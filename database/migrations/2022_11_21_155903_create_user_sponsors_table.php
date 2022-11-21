@@ -13,11 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('table_sponsor_infors', function (Blueprint $table) {
+        Schema::create('user_sponsors', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('sponsor_id');
-            $table->string('key')->nullable();
-            $table->string('value')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_sponsor_infors');
+        Schema::dropIfExists('user_sponsors');
     }
 };
