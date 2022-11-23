@@ -148,11 +148,15 @@ class TournamentController extends Controller
 
         $stages = Stage::where('league_id', $tournament->id)->get();
 
+        $list_all_group = [];
+
         foreach ($stages as $v) {
             $groups = Group::where('stage_id', $v->id)->get();
 
             foreach ($groups as $group) {
-                $group->matches = Matches::where('group_id', $group->id)->get();
+                $group->matches;
+                $group->stage;
+                $list_all_group[] = $group;
             }
             $v->groups = $groups;
         }
@@ -171,7 +175,6 @@ class TournamentController extends Controller
         }
         $sponsor_list = array_unique($sponsor_list);
 
-
-        return view('client.tournament.details', compact('tournament', 'stages', 'sponsor_list'));
+        return view('client.tournament.details', compact('tournament', 'stages', 'sponsor_list', 'list_all_group'));
     }
 }

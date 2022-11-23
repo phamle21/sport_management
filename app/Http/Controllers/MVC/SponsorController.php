@@ -73,7 +73,7 @@ class SponsorController extends Controller
         // Month: 04
         // Year: 2024
         // CVV: 123
-        
+
         if ($request->select_status == "new") {
             // kiểm tra có files sẽ xử lý
             if ($request->hasFile('sponsor_logo')) {
@@ -114,6 +114,7 @@ class SponsorController extends Controller
                 'name' => $request->sponsor_name,
                 'logo' => $path_logo,
                 'introduce' => $request->sponsor_introduce,
+                'link' => $request->sponsor_link,
                 'user_id' => Auth::user()->id,
             ]);
 
@@ -148,16 +149,19 @@ class SponsorController extends Controller
 
         Sponsorship::create([
             'user_id' => Auth::user()->id,
-            'sponsor_amount' => $amount,
-            'sponsor_oder_id' => $payment->id,
-            'sponsor_status' => $payment->status,
-            'sponsor_link' => $payment->receipt_url,
-            'sponsor_method' => $payment->payment_method_details->card->brand,
+            'sponsor_payment_amount' => $amount,
+            'sponsor_payment_oder_id' => $payment->id,
+            'sponsor_payment_status' => $payment->status,
+            'sponsor_payment_link' => $payment->receipt_url,
+            'sponsor_payment_method' => $payment->payment_method_details->card->brand,
             'sponsor_id' => $sponsor_id,
             'league_id' => $request->league_id,
         ]);
 
-        Session::flash('success', __('sponsor.payment.payment-success') . "<br> Receipt: <a href='$payment->receipt_url' target='_blacnk'>$payment->receipt_url</a>");
+        Session::flash('success', "<div class='d-flex flex-column'>
+        <div class='col d-flex justify-content-center w-100'>".__('sponsor.payment.payment-success')."</div>
+        <div class='col'>Receipt: <a href='$payment->receipt_url' target='_blacnk'>$payment->receipt_url</a></div>
+        </div>");
 
         return back();
     }

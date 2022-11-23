@@ -18,8 +18,9 @@ return [
     'payment.payment-err' => 'Error',
 
     'info.sponsor-name' => 'Sponsor name',
+    'info.sponsor-link' => 'Sponsor link',
     'info.sponsor-introduce' => 'Sponsor introduce',
     'info.sponsor-amount' => 'Sponsor amount',
     'info.sponsor-amount-type' => 'Sponsor amount type',
-    'info.sponsor-select-label' => 'Select sponsor',
+    'info.sponsor-select-label' => 'Select your sponsor',
 ];

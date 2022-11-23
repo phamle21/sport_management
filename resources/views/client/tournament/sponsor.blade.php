@@ -50,8 +50,7 @@
                 - {{ $tournament->name }} -
             </h3>
             <form role="form" action="{{ route('sponsor.processing') }}" method="post" class="require-validation"
-                data-cc-on-file="false" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form"
-                onsubmit="return false; testSubmit(this)">
+                data-cc-on-file="false" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form" enctype='multipart/form-data'>
                 @csrf
                 <input type="hidden" name="league_id" value={{ $tournament->id }}>
                 <div class="col-md-6 col-md-offset-3 m-auto mb-5 mt-3 p-5 border border-white rounded-4">
@@ -77,7 +76,7 @@
                                         <label for="imageUpload"></label>
                                     </div>
                                     <div class="avatar-preview">
-                                        <div id="imagePreview" style="background-image: url('');">
+                                        <div id="imagePreview" onclick="triggerInputFile()" style="background-image: url('');">
                                         </div>
                                     </div>
                                     <label id="label-image" class="col d-flex justify-content-start mt-2">
@@ -108,6 +107,16 @@
                                 <label for="sponsor_introduce">{{ __('sponsor.info.sponsor-introduce') }}</label>
                                 <textarea id="sponsor_introduce" name="sponsor_introduce" class="select_sponsor-new text-white" cols="30"
                                     rows="10" placeholder="{{ __('sponsor.info.sponsor-introduce') }}" required></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center align-items-center w-100 select_sponsor-new">
+                        <div class="col-12 my-1 text-white">
+                            <div class="form-group w-100">
+                                <label for="sponsor_link">{{ __('sponsor.info.sponsor-link') }}</label>
+                                <input type="text" id="sponsor_link" name="sponsor_link" class="select_sponsor-new"
+                                    required placeholder="Ex: https://fb.com/phamle21">
                             </div>
                         </div>
                     </div>
@@ -288,6 +297,9 @@
         $("#imageUpload").change(function() {
             readURL(this);
         });
+        function triggerInputFile(){
+            $("#imageUpload").trigger('click');
+        }
     </script>
 
     <script>
@@ -373,11 +385,5 @@
             $('#imagePreview').hide();
             $('#imagePreview').fadeIn(650);
         };
-
-        function testSubmit(frm) {
-            console.log(frm.sponsor_logo)
-            console.log(frm.sponsor_logo)
-            return false;
-        }
     </script>
 @endsection

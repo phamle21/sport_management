@@ -18,9 +18,10 @@ return [
     'payment.payment-err' => 'Dữ liệu gửi đi không phù hợp',
 
     'info.sponsor-name' => 'Tên nhà tài trợ',
+    'info.sponsor-link' => 'Địa chỉ liên kết nhà tài trợ',
     'info.sponsor-introduce' => 'Giới thiệu về nhà tài trợ',
     'info.sponsor-amount' => 'Số tiền tài trợ',
     'info.sponsor-amount-type' => 'Loại tiền',
-    'info.sponsor-select-label' => 'Chọn nhà tài trợ',
+    'info.sponsor-select-label' => 'Chọn nhà tài trợ của bạn',
 
 ];

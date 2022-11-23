@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->unsignedBigInteger('user_id')->nullable();// Coach
             $table->string('status')->defulat(1);
+            $table->string('logo')->nullable();
             $table->string('info')->nullable();
             $table->softDeletes();
             $table->timestamps();

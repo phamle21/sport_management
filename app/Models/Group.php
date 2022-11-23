@@ -18,4 +18,11 @@ class Group extends Model
         'created_at',
         'updated_at',
     ];
+
+    public function matches(){
+        return $this->hasMany(Matches::class, 'group_id');
+    }
+    public function stage(){
+        return $this->belongsTo(Stage::class);
+    }
 }

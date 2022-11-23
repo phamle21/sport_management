@@ -11,8 +11,13 @@ class Matches extends Model
 
     protected $fillable = [
         'name',
-        'address',
-        'price',
+        'location',
+        'match_date',
+        'user_id',
+        'indicators',
+        'group_id',
+        'team_id',
+        'team_opposing_id',
     ];
 
     protected $hidden = [

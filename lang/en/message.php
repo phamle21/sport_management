@@ -88,4 +88,9 @@ return [
     'tournament.details.stage.matches' => 'Matches',
     'tournament.details.stage.teams' => 'Teams',
 
+    'tournament.details.group.head-sub-1' => 'Bảng đấu',
+    'tournament.details.group.head-1' => 'Danh sách các bảng đấu',
+
+    'tournament.details.group.match-not-found' => 'Match not found',
+
 ];

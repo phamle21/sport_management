@@ -16,9 +16,10 @@ return new class extends Migration
         Schema::create('matches', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('location');
+            $table->string('location')->nullable();
             $table->string('match_date');
             $table->unsignedBigInteger('user_id')->nullable();
+            $table->unsignedBigInteger('ground_id')->nullable();
             $table->text('indicators');
             $table->unsignedBigInteger('group_id')->nullable();
             $table->unsignedBigInteger('team_id')->nullable();
@@ -39,6 +40,10 @@ return new class extends Migration
                 ->onUpdate('cascade');
             $table->foreign('team_opposing_id')
                 ->references('id')->on('teams')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->foreign('ground_id')
+                ->references('id')->on('grounds')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
         });

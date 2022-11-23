@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('logo');
-            $table->string('introduce');
+            $table->string('introduce')->nullable();
+            $table->string('link')->default('#');
             $table->timestamps();
-
         });
     }
 

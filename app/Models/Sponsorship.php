@@ -11,11 +11,11 @@ class Sponsorship extends Model
 
     protected $fillable = [
         'user_id',
-        'sponsor_amount',
-        'sponsor_oder_id',
-        'sponsor_status',
-        'sponsor_link',
-        'sponsor_method',
+        'sponsor_payment_amount',
+        'sponsor_payment_oder_id',
+        'sponsor_payment_status',
+        'sponsor_payment_link',
+        'sponsor_payment_method',
         'sponsor_id',
         'league_id',
     ];

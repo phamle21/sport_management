@@ -9,10 +9,13 @@ use App\Http\Controllers\MVC\ContactController;
 use App\Http\Controllers\MVC\FacebookController;
 use App\Http\Controllers\MVC\GoogleController;
 use App\Http\Controllers\MVC\GroupController;
+use App\Http\Controllers\MVC\MatchesController;
 use App\Http\Controllers\MVC\SponsorController as MVCSponsorController;
 use App\Http\Controllers\MVC\StageController;
 use App\Http\Controllers\MVC\TournamentController;
 use App\Http\Controllers\MVC\SponsorController;
+use App\Http\Controllers\MVC\TeamController;
+use App\Models\Group;
 use Illuminate\Support\Facades\Auth;
 
 // Goto admin page ReactJs
@@ -83,6 +86,19 @@ Route::delete('/stages/{id}', [StageController::class, 'destroy'])->name('stage.
 // Group
 Route::post('/groups', [GroupController::class, 'store'])->name('group.create');
 
+// Matches
+Route::get('/matches', [MatchesController::class, 'list'])->name('matches.list');
+Route::post('/matches', [MatchesController::class, 'store'])->name('matches.create');
+
+// Teams
+Route::get('/teams', [TeamController::class, 'list'])->name('team.list');
+Route::post('/teams', [TeamController::class, 'store'])->name('team.create');
+
 // Sponsor
 Route::get('/sponsors/{league_id}', [SponsorController::class, 'index'])->name('sponsor.index');
 Route::post('/sponsors', [SponsorController::class, 'processing'])->name('sponsor.processing');
+
+
+Route::get('/test', function(){
+    return Group::find(1)->matches;
+});
