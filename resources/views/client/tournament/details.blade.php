@@ -310,7 +310,7 @@
                             </div>
                             <div class="d-flex flex-nowrap bd-highlight">
                                 @foreach ($stages as $stage)
-                                    <div class="col-12 col-lg border m-3 py-3 order-{{ $stage->order + 1 }}"
+                                    <div class="col-12 col-lg border m-3 py-3 order-{{ $stage->order }}"
                                         style="border-radius: 30px">
                                         <div class="row justify-content-center align-items-center px-3">
                                             <div class="col-2">
@@ -320,7 +320,7 @@
                                             </div>
                                             <div class="col">
                                                 <h5 class="my-2 text-center">
-                                                    {{ $stage->order }} - {{ $stage->name }}
+                                                    {{ $stage->order + 1 }} - {{ $stage->name }}
                                                 </h5>
                                             </div>
                                             <div class="col-2">
@@ -395,7 +395,8 @@
                             @foreach ($list_all_group as $group)
                                 <div class="col-lg-5 border rounded-3 m-3">
                                     <div class="upcome-matches">
-                                        <h3 class="upcome-match-header text-warning">{{ $group->name }}</h3>
+                                        <h3 class="upcome-match-header text-warning">{{ $group->name }} -
+                                            {{ $group->stage->name }}</h3>
                                         <div class="row g-3">
                                             @if (count($group->matches) < 1)
                                                 <h2 class="text-white">
@@ -436,15 +437,19 @@
                                                                     </div>
                                                                     <div class="col-md-8 order-md-2 mt-4 mt-md-0">
                                                                         <div class="match-game-info text-center">
-                                                                            <h4><a href="team-single.html">call of duty
-                                                                                    TOURNAMENT</a>
+                                                                            <h4>
+                                                                                <a href="team-single.html">
+                                                                                    {{ $match->name }}
+                                                                                </a>
                                                                             </h4>
                                                                             <p
                                                                                 class="d-flex flex-wrap justify-content-center">
-                                                                                <span class="match-date">30
-                                                                                    April 2021 </span><span
-                                                                                    class="match-time">Time:
-                                                                                    08:30PM</span>
+                                                                                <span class="match-date">
+                                                                                    {{ date('d/m/Y', strtotime($match->match_date)) }}
+                                                                                </span>
+                                                                                <span class="match-time">
+                                                                                    {{ date('H:m A', strtotime($match->match_date)) }}
+                                                                                </span>
                                                                             </p>
                                                                         </div>
                                                                     </div>
@@ -460,8 +465,8 @@
                                                     class="accordion-header w-100 view-modal">
                                                     <div class="match-item-2 item-layer">
                                                         <div class="match-inner">
-                                                            <div
-                                                                class="d-flex justidy-content-center match-content gradient-bg-{{ \Illuminate\Support\Arr::random(['blue', 'pink', 'orange', 'yellow']) }}">
+                                                            <div class="d-flex justidy-content-center match-content"
+                                                                style="background-image: -webkit-radial-gradient(50% 50%, circle closest-side, white 100%, #c2c2c2 340%);">
                                                                 <i class="fa-duotone fa-plus text-dark fs-1"></i>
                                                                 <span class="text-dark fs-4 ms-2">New Matches</span>
                                                             </div>
@@ -579,6 +584,93 @@
                                                 </table>
                                             </div>
                                         </li>
+
+                                        <li class="tournament-bracket__item">
+                                            <div class="tournament-bracket__match" tabindex="0">
+                                                <table class="tournament-bracket__table">
+                                                    <caption class="tournament-bracket__caption">
+                                                        <time datetime="1998-02-18">18 February 1998</time>
+                                                    </caption>
+                                                    <thead class="sr-only">
+                                                        <tr>
+                                                            <th>Country</th>
+                                                            <th>Score</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="tournament-bracket__content">
+                                                        <tr
+                                                            class="tournament-bracket__team tournament-bracket__team--winner">
+                                                            <td class="tournament-bracket__country">
+                                                                <abbr class="tournament-bracket__code"
+                                                                    title="Finland">FIN</abbr>
+                                                                <span
+                                                                    class="tournament-bracket__flag flag-icon flag-icon-fi"
+                                                                    aria-label="Flag"></span>
+                                                            </td>
+                                                            <td class="tournament-bracket__score">
+                                                                <span class="tournament-bracket__number">2</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="tournament-bracket__team">
+                                                            <td class="tournament-bracket__country">
+                                                                <abbr class="tournament-bracket__code"
+                                                                    title="Sweden">SVE</abbr>
+                                                                <span
+                                                                    class="tournament-bracket__flag flag-icon flag-icon-se"
+                                                                    aria-label="Flag"></span>
+                                                            </td>
+                                                            <td class="tournament-bracket__score">
+                                                                <span class="tournament-bracket__number">1</span>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </li>
+
+                                        <li class="tournament-bracket__item">
+                                            <div class="tournament-bracket__match" tabindex="0">
+                                                <table class="tournament-bracket__table">
+                                                    <caption class="tournament-bracket__caption">
+                                                        <time datetime="1998-02-18">18 February 1998</time>
+                                                    </caption>
+                                                    <thead class="sr-only">
+                                                        <tr>
+                                                            <th>Country</th>
+                                                            <th>Score</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="tournament-bracket__content">
+                                                        <tr
+                                                            class="tournament-bracket__team tournament-bracket__team--winner">
+                                                            <td class="tournament-bracket__country">
+                                                                <abbr class="tournament-bracket__code"
+                                                                    title="Russia">RUS</abbr>
+                                                                <span
+                                                                    class="tournament-bracket__flag flag-icon flag-icon-ru"
+                                                                    aria-label="Flag"></span>
+                                                            </td>
+                                                            <td class="tournament-bracket__score">
+                                                                <span class="tournament-bracket__number">4</span>
+                                                            </td>
+                                                        </tr>
+                                                        <tr class="tournament-bracket__team">
+                                                            <td class="tournament-bracket__country">
+                                                                <abbr class="tournament-bracket__code"
+                                                                    title="Belarus">BEL</abbr>
+                                                                <span
+                                                                    class="tournament-bracket__flag flag-icon flag-icon-by"
+                                                                    aria-label="Flag"></span>
+                                                            </td>
+                                                            <td class="tournament-bracket__score">
+                                                                <span class="tournament-bracket__number">1</span>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </li>
+
                                         <li class="tournament-bracket__item">
                                             <div class="tournament-bracket__match" tabindex="0">
                                                 <table class="tournament-bracket__table">
@@ -908,12 +1000,15 @@
                 <div class="modal-body text-white">
                     <form action="{{ route('matches.create') }}" id="frmNewMatches" method="POST">
                         @csrf
+                        <input type="hidden" readonly id="league_id" name="league_id" value="{{ $tournament->id }}">
                         <input type="hidden" readonly id="inputStageId" name="group_id">
-
+                        <i class="text-warning">
+                            Bạn có thể đặt sân cho trận đấu thông qua thanh toán online:
+                            <a href="#">Đặt sân</a>
+                        </i>
                         <div class="form-group my-3">
                             <label for="matchesName">Match date *:</label>
-                            <input type="text" class="text-white" id="matchesName" name="name" value=""
-                                required>
+                            <input type="datetime-local" class="text-white" id="matchesName" name="match_date" required>
                         </div>
 
                         <div class="form-group my-3">
@@ -924,16 +1019,18 @@
 
                         <div class="form-group my-3">
                             <label for="opposing-team">Opposing team *:</label>
-                            <select name="opposing_team_id" id="opposing-team">
+                            <select name="team_opposing_id" id="opposing-team">
                             </select>
-                            <small><i>Nếu không có team nào hãy thêm team cho mùa giải của bạn</i></small>
+                            <small><i>Nếu không có team nào hãy thêm team cho mùa giải của bạn: <u><a href="#">Tạo
+                                            team</a></u></i></small>
                         </div>
 
                         <div class="form-group my-3">
-                            <label for="ground">Location *:</label>
-                            <select name="ground_id" id="ground">
-                            </select>
+                            <label for="location">Location :</label>
+                            <input type="text" class="text-white" id="location" name="location">
                         </div>
+
+
                     </form>
                 </div>
                 <div class="modal-footer">

@@ -5,16 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Team extends Model
+class ScheduleGround extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'user_id',
-        'logo',
+        'date_time',
+        'ground_id',
+        'price',
         'status',
-        'info',
     ];
 
     protected $hidden = [

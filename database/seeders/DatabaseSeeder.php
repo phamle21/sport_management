@@ -5,9 +5,11 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Imports\GroundsImport;
+use App\Imports\GroupsImport;
 use App\Imports\LeaguesImport;
 use App\Imports\LeagueTypesImport;
 use App\Imports\OptionsImport;
+use App\Imports\StagesImport;
 use App\Imports\UsersImport;
 use App\Models\Image;
 use App\Models\Option;
@@ -97,6 +99,8 @@ class DatabaseSeeder extends Seeder
         Excel::import(new LeagueTypesImport, public_path('data-import/league_types.xlsx'));
         Excel::import(new GroundsImport, public_path('data-import/grounds.xlsx'));
         Excel::import(new LeaguesImport, public_path('data-import/leagues.xlsx'));
+        Excel::import(new StagesImport, public_path('data-import/stages.xlsx'));
+        Excel::import(new GroupsImport, public_path('data-import/groups.xlsx'));
 
     }
 }

@@ -16,6 +16,7 @@ class Matches extends Model
         'user_id',
         'indicators',
         'group_id',
+        'ground_id',
         'team_id',
         'team_opposing_id',
     ];

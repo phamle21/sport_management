@@ -49,6 +49,15 @@ return new class extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
         });
+
+        Schema::table('schedule_grounds', function (Blueprint $table) {
+            $table->unsignedBigInteger('ground_id')->nullable();
+
+            $table->foreign('ground_id')
+                ->references('id')->on('grounds')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+        });
     }
 
     /**
