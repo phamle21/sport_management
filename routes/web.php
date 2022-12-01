@@ -10,12 +10,16 @@ use App\Http\Controllers\MVC\FacebookController;
 use App\Http\Controllers\MVC\GoogleController;
 use App\Http\Controllers\MVC\GroupController;
 use App\Http\Controllers\MVC\MatchesController;
-use App\Http\Controllers\MVC\SponsorController as MVCSponsorController;
 use App\Http\Controllers\MVC\StageController;
 use App\Http\Controllers\MVC\TournamentController;
 use App\Http\Controllers\MVC\SponsorController;
 use App\Http\Controllers\MVC\TeamController;
-use App\Models\Group;
+use App\Models\User;
+use App\Notifications\SMSNotification;
+use App\Notifications\UserNotification;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 // Goto admin page ReactJs
@@ -64,6 +68,9 @@ Route::get('/create-tournament', [TournamentController::class, 'create'])->name(
 Route::post('/create-tournament', [TournamentController::class, 'store'])->name('tournament.create');
 Route::get('/tournament/{id}/details', [TournamentController::class, 'show'])->name('tournament.details');
 
+// Bracket
+Route::post('/tournament-bracket', [TournamentController::class, 'bracket']);
+
 // Ckeditor
 Route::post('image-upload', [TournamentController::class, 'storeImage'])->name('image.upload');
 
@@ -89,16 +96,35 @@ Route::post('/groups', [GroupController::class, 'store'])->name('group.create');
 // Matches
 Route::get('/matches', [MatchesController::class, 'list'])->name('matches.list');
 Route::post('/matches', [MatchesController::class, 'store'])->name('matches.create');
+Route::get('/matches/{id}', [MatchesController::class, 'show'])->name('matches.details');
 
 // Teams
-Route::get('/teams', [TeamController::class, 'list'])->name('team.list');
-Route::post('/teams', [TeamController::class, 'store'])->name('team.create');
+Route::get('/teams/list', [TeamController::class, 'list'])->name('team.list');
+Route::get('/create-team', [TeamController::class, 'create'])->name('team.create');
+Route::post('/create-team', [TeamController::class, 'store'])->name('team.store');
 
 // Sponsor
 Route::get('/sponsors/{league_id}', [SponsorController::class, 'index'])->name('sponsor.index');
 Route::post('/sponsors', [SponsorController::class, 'processing'])->name('sponsor.processing');
 
 
-Route::get('/test', function(){
-    return Group::find(1)->matches;
+Route::get('/test', function () {
+    User::find(1)->sendEmailVerificationNotification();
 });
+
+// Verify email
+Route::get('/email/verify', function () {
+    return view('verify.verify');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');

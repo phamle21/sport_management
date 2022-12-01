@@ -10,9 +10,8 @@ class PlayerTeam extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'address',
-        'price',
+        'user_id',
+        'team_id',
     ];
 
     protected $hidden = [

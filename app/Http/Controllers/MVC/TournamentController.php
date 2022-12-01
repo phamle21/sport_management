@@ -9,6 +9,7 @@ use App\Models\LeagueType;
 use App\Models\Matches;
 use App\Models\Sponsorship;
 use App\Models\Stage;
+use App\Models\Team;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -18,7 +19,7 @@ class TournamentController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except(['index', 'show']);
+        $this->middleware(['verified', 'auth'])->except(['index', 'show', 'bracket']);
     }
 
     public function index(Request $request)
@@ -176,5 +177,82 @@ class TournamentController extends Controller
         $sponsor_list = array_unique($sponsor_list);
 
         return view('client.tournament.details', compact('tournament', 'stages', 'sponsor_list', 'list_all_group'));
+    }
+
+    public function bracket(Request $request)
+    {
+        $data = [];
+        $rounds = [];
+
+        $tournament = League::find($request->league_id);
+        $tournament->total_stage = $tournament->totalStage();
+        $tournament->total_group = $tournament->totalGroup();
+        $tournament->total_match = $tournament->totalMatch();
+        $tournament->total_team = $tournament->totalTeam();
+
+        $stages = Stage::where('league_id', $tournament->id)->get();
+
+        $list_all_group = [];
+        $count = 1;
+
+        foreach ($stages as $k => $v) {
+            $rounds[] = $v->name;
+            $data[$k] = [];
+
+            $groups = Group::where('stage_id', $v->id)->get();
+
+            foreach ($groups as $k_group => $group) {
+                $group->matches;
+                $group->stage;
+                $list_all_group[] = $group;
+
+                if (count($group->matches) > 0) :
+
+                    foreach ($group->matches as $match) {
+                        $data[$k][] = [
+                            [
+                                "name" => $match->team_id ? Team::find($match->team_id)->name : '',
+                                "id" => "team-" . $match->team_id,
+                                "score" => $count
+                            ],
+                            [
+                                "name" => $match->team_opposing_id ? Team::find($match->team_opposing_id)->name : '',
+                                "id" => "team-" . $match->team_opposing_id,
+                                "score" => $count + 1
+                            ],
+                        ];
+
+                        $count += 2;
+                    }
+                else :
+                    $data[$k][] = [[
+                        "name" => 'Undefine',
+                        "id" => '',
+                        "score" => ''
+                    ], [
+                        "name" => 'Undefine',
+                        "id" => '',
+                        "score" => ''
+                    ]];
+                endif;
+            }
+            $v->groups = $groups;
+        }
+
+        $rounds[] = "W I N";
+        $data[] = [
+            [
+                [
+                    "name" => 'Team Win',
+                    "id" => 'team-win',
+                    "score" => ''
+                ]
+            ]
+        ];
+
+        return response()->json([
+            'rounds' => $rounds,
+            'data' => $data,
+        ]);
     }
 }

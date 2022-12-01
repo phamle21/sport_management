@@ -10,9 +10,8 @@ class Participate extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'address',
-        'price',
+        'team_id',
+        'league_id',
     ];
 
     protected $hidden = [

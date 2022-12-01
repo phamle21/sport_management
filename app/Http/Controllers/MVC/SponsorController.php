@@ -17,7 +17,7 @@ class SponsorController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['verified', 'auth']);
     }
 
     public function index($league_id)
@@ -159,7 +159,7 @@ class SponsorController extends Controller
         ]);
 
         Session::flash('success', "<div class='d-flex flex-column'>
-        <div class='col d-flex justify-content-center w-100'>".__('sponsor.payment.payment-success')."</div>
+        <div class='col d-flex justify-content-center w-100'>" . __('sponsor.payment.payment-success') . "</div>
         <div class='col'>Receipt: <a href='$payment->receipt_url' target='_blacnk'>$payment->receipt_url</a></div>
         </div>");
 

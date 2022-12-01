@@ -4,6 +4,7 @@ namespace App\Http\Controllers\MVC;
 
 use App\Http\Controllers\Controller;
 use App\Models\Matches;
+use App\Models\Participate;
 use App\Models\Team;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,6 +21,29 @@ class MatchesController extends Controller
         $teamName = Team::find($request->team_id)->name;
         $teamOpposingName = Team::find($request->team_opposing_id)->name;
         $nameMatches = "$teamName vs $teamOpposingName";
+
+        if (
+            !Participate::where([
+                ['team_id', $request->team_id],
+                ['league_id', $request->league_id]
+            ])->exists()
+        ) {
+            Participate::create([
+                'team_id' => $request->team_id,
+                'league_id' => $request->league_id,
+            ]);
+        }
+        if (
+            !Participate::where([
+                ['team_id', $request->team_opposing_id],
+                ['league_id', $request->league_id]
+            ])->exists()
+        ) {
+            Participate::create([
+                'team_id' => $request->team_opposing_id,
+                'league_id' => $request->league_id,
+            ]);
+        }
 
         $add = Matches::create([
             'name' => $nameMatches,
@@ -42,5 +66,12 @@ class MatchesController extends Controller
     {
         $list = Matches::all();
         return response()->json($list);
+    }
+
+    public function show($id)
+    {
+        $matches = Matches::find($id);
+
+        return view();
     }
 }

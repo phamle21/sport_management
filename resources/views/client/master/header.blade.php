@@ -57,7 +57,7 @@
                                 <li>
                                     <a href="#0">{{ __('message.header.team') }}</a>
                                     <ul class="submenu">
-                                        <li><a href="/create-tournament">{{ __('message.header.create-team') }}</a></li>
+                                        <li><a href="/create-team">{{ __('message.header.create-team') }}</a></li>
                                     </ul>
                                 </li>
 

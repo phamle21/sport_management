@@ -90,7 +90,12 @@ return [
 
     'tournament.details.group.head-sub-1' => 'Bảng đấu',
     'tournament.details.group.head-1' => 'Danh sách các bảng đấu',
-
     'tournament.details.group.match-not-found' => 'Match not found',
+
+    'team.create.head' => 'Create new team',
+    'team.create.frm-name' => 'Team name',
+    'team.create.frm-league' => 'Tournament',
+    'team.create.frm-users' => 'Player\'s',
+    'team.create.btn-send' => 'Create team',
 
 ];

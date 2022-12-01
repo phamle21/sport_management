@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -10,7 +10,7 @@ use Laravel\Sanctum\HasApiTokens;
 use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 
 
-class User extends Authenticatable implements JWTSubject
+class User extends Authenticatable implements JWTSubject, MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -32,6 +32,7 @@ class User extends Authenticatable implements JWTSubject
         'password',
         'facebook_id',
         'google_id',
+        'email_verified_at',
     ];
 
     /**
@@ -121,4 +122,10 @@ class User extends Authenticatable implements JWTSubject
             'sponsor_id',
         );
     }
+
+    public function myTeams()
+    {
+        return $this->hasMany(Team::class);
+    }
+
 }
