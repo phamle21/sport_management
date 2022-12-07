@@ -56,7 +56,7 @@
                                 <img src="{{ asset('assets/images/logo/logo.png') }}" alt="logo">
                             </div>
                             <div class="fm-item-content">
-                                <p>Bạn có thể tự tạo và quản lý giải đấu của mình ở website chúng tôi!</p>
+                                <p>{{ __('message.footer.content-logo') }}</p>
                             </div>
                         </div>
                     </div>
@@ -70,13 +70,10 @@
                             <div class="fm-item-content">
 
                                 <p class="mb-4">
-                                    Chúng tôi sẽ lắng nghe và hỗ trợ các bạn ngay khi có thể và chúng tôi
-                                    cũng sẽ cố hết sức để các bạn các bạn có những trải nghiệm tốt nhất.
+                                    {{ __('message.footer.content-1') }}
                                 </p>
                                 <p class="mb-4">
-                                    Nếu bạn có điền gì muốn nói, chúng tối lắng nghe.
-                                    Nếu bạn muốn đóng góp ý kiến hãy liên hệ ngày cho chúng tôi.
-                                    Cảm ơn bạn rất nhiều.
+                                    {{ __('message.footer.content-2') }}
                                 </p>
 
                                 <a href="/contact" class="default-button"><span>{{ __('message.footer.btn-right') }} <i

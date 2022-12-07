@@ -25,6 +25,9 @@ return [
 
     'footer.head-right' => 'Cảm ơn',
     'footer.btn-right' => 'Gửi phản hồi',
+    'footer.content-logo' => 'Bạn có thể tự tạo và quản lý giải đấu của mình ở website chúng tôi!',
+    'footer.content-1' => 'Chúng tôi sẽ lắng nghe và hỗ trợ các bạn ngay khi có thể và chúng tôi cũng sẽ cố hết sức để các bạn các bạn có những trải nghiệm tốt nhất.',
+    'footer.content-2' => 'Nếu bạn có điền gì muốn nói, chúng tối lắng nghe. Nếu bạn muốn đóng góp ý kiến hãy liên hệ ngày cho chúng tôi. Cảm ơn bạn rất nhiều.',
 
     '404.head' => 'éc éc! Trang này không tồn tại',
     '404.head-sub' => 'Chúng tôi xin lỗi nhưng có vẻ trang bạn yêu cầu không tồn tại!',
@@ -97,5 +100,16 @@ return [
     'team.create.frm-league' => 'Giải đấu',
     'team.create.frm-users' => 'Người chơi',
     'team.create.btn-send' => 'Tạo đội',
+
+    'about.about-section.section-header' => 'VỀ CHÚNG TÔI',
+    'about.about-section.about-content' => 'Cung cấp cho người dùng quy trình tạo giải đấu linh hoạt, dễ dàng. Người chơi có thể theo dõi một bài tường thuật. Việc đầu tư cho giải sẽ công khai, minh bạch, chính xác và công bằng cho mọi người.',
+    'about.video-section.section-header' => 'KIỂM TRA PHÁT TRỰC TUYẾN TRỰC TIẾP',
+    'about.video-section.name-des-1' => 'Cầu thủ bóng đá',
+    'about.video-section.name-des-2' => 'Tuyển thủ cờ vua',
+    'about.video-section.name-des-3' => 'Cầu thủ bóng rỗ',
+    'about.video-section.testimonial-body-1' => 'Thành công không phải là ngẫu nhiên. Đó là sự chăm chỉ, kiên trì, học hỏi, nghiên cứu và hơn hết là tình yêu với công việc mình đang làm.',
+    'about.video-section.testimonial-body-2' => 'Không có yếu tố hưởng thụ thì không đáng để cố gắng trở nên xuất sắc trong bất cứ điều gì.',
+    'about.video-section.testimonial-body-3' => 'Bạn không thể hoàn thành được nhiều việc trong cuộc sống nếu bạn chỉ làm việc vào những ngày bạn cảm thấy tốt.',
+
 
 ];

@@ -25,6 +25,9 @@ return [
 
     'footer.head-right' => 'Thanks you',
     'footer.btn-right' => 'Send Massage',
+    'footer.content-logo' => 'You can create and manage your own tournaments at our website!',
+    'footer.content-1' => 'We will listen and support you as soon as possible and we will also do our best to give you the best experience.',
+    'footer.content-2' => 'If you have something to say, we listen. If you want to contribute comments, please contact us today. Thank you very much.',
 
     '404.head' => 'Oops! This Page Not Found',
     '404.head-sub' => 'We are Really Sorry But the Page you Requested is Missing',
@@ -97,5 +100,16 @@ return [
     'team.create.frm-league' => 'Tournament',
     'team.create.frm-users' => 'Player\'s',
     'team.create.btn-send' => 'Create team',
+
+    'about.about-section.section-header' => 'ABOUT US',
+    'about.about-section.about-content' => 'Provide users with a flexible, easy tournament creation process. Players can follow a narration. The investment for the prize will be open, transparent, accurate and fair for everyone.',
+    'about.video-section.section-header' => 'CHECK OUR LIVE STREAMING',
+    'about.video-section.name-des-1' => 'Football Player',
+    'about.video-section.name-des-2' => 'Chess Player',
+    'about.video-section.name-des-3' => 'Basketball Player',
+    'about.video-section.testimonial-body-1' => 'Success is no accident. It is hard work, perseverance, learning, studying, sacrifice and most of all, love of what you are doing.',
+    'about.video-section.testimonial-body-2' => 'Without the element of enjoyment, it is not worth trying to excel at anything.',
+    'about.video-section.testimonial-body-3' => 'You can’t get much done in life if you only work on the days when you feel good.',
+
 
 ];

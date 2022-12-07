@@ -6,7 +6,7 @@
         <div class="container">
             <div class="">
                 <div class="banner-content text-center">
-                    <h4 class="fw-normal theme-color mb-4">TODAY BIG MATCHE</h4>
+                    <h4 class="fw-normal theme-color mb-4">NƠI CÁC GIẢI ĐẤU BẮT ĐẦU</h4>
                     <img src="https://labartisan.net/demo/bigamer/assets/images/banner/01.png" alt="banner text thumb"
                         class="mb-4">
                     <p>Time : 08:30Pm - 30 December 2021</p>
@@ -35,70 +35,115 @@
     </section>
     <!-- ===========Banner Section Ends Here========== -->
 
-
-    <!-- ===========About Section start Here========== -->
-    <section class="about-section">
-        <div class="container">
-            <div class="section-wrapper padding-top">
-                <div class="row">
-                    <div class="col-lg-6 d-flex justify-content-center align-items-center">
-                        <div class="about-image ">
-                            <img src="{{ asset(\App\Models\Option::where('name', 'index_about_image')->first()->value) }}" style="width: 75vh;" alt="about-image">
+        <!-- ===========About Section start Here========== -->
+        <section class="about-section">
+            <div class="container">
+                <div class="section-wrapper padding-top">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="about-image">
+                                <img src="{{ asset('images/system/about.png') }}" alt="about-image">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-10">
+                            <div class="about-wrapper">
+                                <div class="section-header">
+                                    <h2>{{ __('message.about.about-section.section-header') }}</h2>
+                                </div>
+                                <div class="about-content">
+                                    <p>{{ __('message.about.about-section.about-content') }}</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 col-md-10">
-                        <div class="about-wrapper">
-                            <div class="section-header">
-                                <p>who we are</p>
-                                <h2>we are professional team esport</h2>
-                            </div>
-                            <div class="about-content">
-                                <p>Distinctively provide acces mutfuncto users whereas transparent
-                                    proceses somes ncentivize eficient functionalities rather than an
-                                    extensible archtectur services and cross</p>
-                                <ul class="about-list">
-                                    <li class="about-item d-flex flex-wrap">
-                                        <div class="about-item-thumb">
-                                            <img src="https://labartisan.net/demo/bigamer/assets/images/about/icon-1.png"
-                                                alt="Icon">
+                </div>
+            </div>
+        </section>
+        <!-- ===========About Section Ends Here========== -->
+
+
+
+        <!-- ===========Video Section Start Here========== -->
+        <div class="video-section padding-top padding-bottom" style="background-image:url(assets/images/video/bg.jpg)">
+            <div class="container">
+                <div class="section-header">
+                    <h2>{{ __('home.says') }}</h2>
+                </div>
+                <div class="section-wrapper">
+                    <div class="row g-4">
+                        <div class="col-12">
+                            <div class="video-bottom">
+                                <div class="testimonial-slider overflow-hidden">
+                                    <div class="swiper-wrapper">
+                                        <div class="swiper-slide">
+                                            <div class="testimonial-item">
+                                                <div class="testimonial-inner">
+                                                    <div class="testimonial-head">
+                                                        <div class="testi-top">
+                                                            <div class="testimonial-thumb">
+                                                                <img src="{{ asset('images/system/Pele.jpg') }}" alt="Pele-image">
+                                                            </div>
+                                                            <div class="name-des">
+                                                                <h5>Pelé</h5>
+                                                                <p>{{ __('message.about.video-section.name-des-1') }}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="testimonial-body">
+                                                        <p>{{ __('message.about.video-section.testimonial-body-1') }}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="about-item-content">
-                                            <h5>103k Community Earning</h5>
-                                            <p>Distinctively provide acces mutfuncto users whereas
-                                                communicate leveraged services</p>
+                                        <div class="swiper-slide">
+                                            <div class="testimonial-item">
+                                                <div class="testimonial-inner">
+                                                    <div class="testimonial-head">
+                                                        <div class="testi-top">
+                                                            <div class="testimonial-thumb">
+                                                                <img src="{{ asset('images/system/Carlsen.jpg') }}" alt="Carlsen-image">
+                                                            </div>
+                                                            <div class="name-des">
+                                                                <h5>Magnus Carlsen</h5>
+                                                                <p>{{ __('message.about.video-section.name-des-2') }}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="testimonial-body">
+                                                        <p>{{ __('message.about.video-section.testimonial-body-2') }}</p>
+                                                    </div>
+                                                 </div>
+                                            </div>
                                         </div>
-                                    </li>
-                                    <li class="about-item d-flex flex-wrap">
-                                        <div class="about-item-thumb">
-                                            <img src="https://labartisan.net/demo/bigamer/assets/images/about/icon-2.png"
-                                                alt="Icon">
+                                        <div class="swiper-slide">
+                                            <div class="testimonial-item">
+                                                <div class="testimonial-inner">
+                                                    <div class="testimonial-head">
+                                                        <div class="testi-top">
+                                                            <div class="testimonial-thumb">
+                                                                <img src="{{ asset('images/system/jerry.jpg') }}" alt="jerry-image">
+                                                            </div>
+                                                            <div class="name-des">
+                                                                <h5>Jerry West</h5>
+                                                                <p>{{ __('message.about.video-section.name-des-3') }}</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="testimonial-body">
+                                                        <p>{{ __('message.about.video-section.testimonial-body-3') }} </p>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="about-item-content">
-                                            <h5>34m+ Registered Players</h5>
-                                            <p>Distinctively provide acces mutfuncto users whereas
-                                                communicate leveraged services</p>
-                                        </div>
-                                    </li>
-                                    <li class="about-item d-flex flex-wrap">
-                                        <div class="about-item-thumb">
-                                            <img src="https://labartisan.net/demo/bigamer/assets/images/about/icon-3.png"
-                                                alt="Icon">
-                                        </div>
-                                        <div class="about-item-content">
-                                            <h5>240k Streams Complete</h5>
-                                            <p>Distinctively provide acces mutfuncto users whereas
-                                                communicate leveraged services</p>
-                                        </div>
-                                    </li>
-                                </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-    <!-- ===========About Section Ends Here========== -->
+        <!-- ===========Video Section Ends Here========== -->
 
 
     <!-- ===========match schedule Section start Here========== -->
