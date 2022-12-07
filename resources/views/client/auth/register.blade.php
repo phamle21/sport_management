@@ -5,33 +5,33 @@
     <div class="login-section padding-top padding-bottom">
         <div class=" container">
             <div class="account-wrapper">
-                <h3 class="title">Đăng ký ngay</h3>
+                <h3 class="title">{{ __('register.register') }}</h3>
                 <form class="account-form" method="POST" action="{{ route('register.submit') }}">
                     <div class="form-group">
-                        <input type="text" placeholder="Họ và tên" name="name">
+                        <input type="text" placeholder="{{ __('register.name') }}" name="name">
                     </div>
                     <div class="form-group">
-                        <input type="text" placeholder="Email" onchange="checkEmail(this.value)" name="email">
+                        <input type="text" placeholder="{{ __('register.check-email') }}" onchange="checkEmail(this.value)" name="email">
                         <p id="err-email" class="text-danger"></p>
                     </div>
                     <div class="form-group">
-                        <input type="text" placeholder="Số điện thoại" onchange="checkPhone(this.value)" name="phone">
+                        <input type="text" placeholder="{{ __('register.phone') }}" onchange="checkPhone(this.value)" name="phone">
                         <p id="err-phone" class="text-danger"></p>
                     </div>
                     <div class="form-group">
-                        <input type="password" placeholder="Mật khẩu" name="password">
+                        <input type="password" placeholder="{{ __('register.password') }}" name="password">
                     </div>
                     <div class="form-group">
-                        <input type="password" id="password" onkeyup="checkRePass(this.val)" placeholder="Xác nhận mật khẩu"
+                        <input type="password" id="password" onkeyup="checkRePass(this.val)" placeholder="{{ __('register.re-password') }}"
                             name="password">
                         <p id="err-repass" class="text-danger"></p>
                     </div>
                     <div class="form-group">
-                        <button class="d-block default-button"><span>Bắt đầu ngay</span></button>
+                        <button class="d-block default-button"><span>{{ __('register.submit') }}</span></button>
                     </div>
                 </form>
                 <div class="account-bottom">
-                    <span class="d-block cate pt-10">Nếu bạn đã có tài khoản? <a href="/login">Đăng nhập</a></span>
+                    <span class="d-block cate pt-10">{{ __('register.text') }} <a href="/login">{{ __('register.login') }}</a></span>
                     <span class="or"><span>or</span></span>
                     <ul class="match-social-list d-flex flex-wrap align-items-center justify-content-center mt-4">
                         <li>

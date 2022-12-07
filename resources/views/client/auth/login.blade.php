@@ -5,13 +5,13 @@
     <div class="login-section padding-top padding-bottom">
         <div class=" container">
             <div class="account-wrapper">
-                <h3 class="title">Login</h3>
+                <h3 class="title">{{ __('login.login') }}</h3>
                 <form class="account-form" method="POST" action="{{ route('login.submit') }}">
                     <div class="form-group">
-                        <input type="text" placeholder="Email or Phone number" name="username">
+                        <input type="text" placeholder="{{ __('login.email-sdt') }}" name="username">
                     </div>
                     <div class="form-group">
-                        <input type="password" placeholder="Password" name="password">
+                        <input type="password" placeholder="{{ __('login.password') }}" name="password">
                     </div>
                     <div class="form-group">
                         <div class="d-flex justify-content-between flex-wrap pt-sm-2">
@@ -23,11 +23,11 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <button class="d-block default-button"><span>Submit Now</span></button>
+                        <button class="d-block default-button"><span>{{ __('login.submit') }}</span></button>
                     </div>
                 </form>
                 <div class="account-bottom">
-                    <span class="d-block cate pt-10">Don’t Have any Account? <a href="/register"> Sign Up</a></span>
+                    <span class="d-block cate pt-10">{{ __('login.text') }} <a href="/register"> {{ __('login.sign-up') }}</a></span>
                     <span class="or"><span>or</span></span>
                     <ul class="match-social-list d-flex flex-wrap align-items-center justify-content-center mt-4">
                         <li>
