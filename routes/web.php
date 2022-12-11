@@ -7,6 +7,7 @@ use App\Http\Controllers\MVC\UserController;
 use App\Http\Controllers\MVC\OptionController;
 use App\Http\Controllers\MVC\ContactController;
 use App\Http\Controllers\MVC\FacebookController;
+use App\Http\Controllers\MVC\ForgotPasswordController;
 use App\Http\Controllers\MVC\GoogleController;
 use App\Http\Controllers\MVC\GroupController;
 use App\Http\Controllers\MVC\MatchesController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\MVC\StageController;
 use App\Http\Controllers\MVC\TournamentController;
 use App\Http\Controllers\MVC\SponsorController;
 use App\Http\Controllers\MVC\TeamController;
+use App\Http\Controllers\PayPalPaymentController;
 use App\Models\User;
 use App\Notifications\SMSNotification;
 use App\Notifications\UserNotification;
@@ -27,7 +29,6 @@ Route::get('/sport-admin', function () {
     return redirect()->to('http://localhost:2104/admin');
 });
 
-
 // Change languages
 Route::get('/languages/{language}', function ($language) {
     if (!in_array($language, ['en', 'vi'])) {
@@ -39,16 +40,12 @@ Route::get('/languages/{language}', function ($language) {
     return redirect()->back();
 })->name('settings.change-language');
 
-
 // Home
 Route::get('/', [HomeController::class, 'index'])->name('home');
-
 Route::get('/login', [HomeController::class, 'login'])->name('login');
 Route::post('/login', [HomeController::class, 'loginSubmit'])->name('login.submit');
-
 Route::get('/register', [HomeController::class, 'register'])->name('register');
 Route::post('/register', [HomeController::class, 'registerSubmit'])->name('register.submit');
-
 Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
 
 // About
@@ -106,25 +103,31 @@ Route::post('/create-team', [TeamController::class, 'store'])->name('team.store'
 // Sponsor
 Route::get('/sponsors/{league_id}', [SponsorController::class, 'index'])->name('sponsor.index');
 Route::post('/sponsors', [SponsorController::class, 'processing'])->name('sponsor.processing');
+Route::post('/sponsors/stripe', [SponsorController::class, 'processStripe'])->name('sponsor.processing.stripe');
 
-
-Route::get('/test', function () {
-    User::find(1)->sendEmailVerificationNotification();
-});
+// Paypal
+Route::get('handle-payment', [PayPalPaymentController::class, 'handlePayment'])->name('make.payment');
+Route::get('cancel-payment', [PayPalPaymentController::class, 'paymentCancel'])->name('cancel.payment');
+Route::get('payment-success', [PayPalPaymentController::class, 'paymentSuccess'])->name('success.payment');
 
 // Verify email
 Route::get('/email/verify', function () {
     return view('verify.verify');
 })->middleware('auth')->name('verification.notice');
-
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
 
     return redirect('/');
 })->middleware(['auth', 'signed'])->name('verification.verify');
-
 Route::post('/email/verification-notification', function (Request $request) {
     $request->user()->sendEmailVerificationNotification();
 
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+
+// Forget password
+Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
+Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post');
+Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
+Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');

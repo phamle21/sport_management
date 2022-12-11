@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\MVC;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -35,9 +36,11 @@ class HomeController extends Controller
 
     public function loginSubmit(Request $request)
     {
+        $remember = (request()->remember) ? true : false;
+
         $login_email = [
             'email' =>  $request->username,
-            'password' => $request->password,
+            'password' => $request->password
         ];
 
         $login_phone = [
@@ -45,7 +48,8 @@ class HomeController extends Controller
             'password' => $request->password
         ];
 
-        if ((Auth::attempt($login_email) || Auth::attempt($login_phone))) {
+
+        if ((Auth::attempt($login_email, $remember) || Auth::attempt($login_phone, $remember))) {
             return back();
         } else {
             return back()->with('error', 'Tài khoản hoặc mật khẩu sai!');
@@ -54,6 +58,9 @@ class HomeController extends Controller
 
     public function register()
     {
+        if (Auth::check()) {
+            return redirect()->route('home');
+        }
         return view('client.auth.register');
     }
 
@@ -65,14 +72,14 @@ class HomeController extends Controller
             ->get();
 
         if (count($checkTK) > 0) {
-            return back()->with('notify_fail', 'Sđt hoặc email đã tồn tại!');
+            return back()->with('error', 'Sđt hoặc email đã tồn tại!');
         }
 
         if ($request->password != $request->repass) {
-            return back()->with('notify_fail', 'Mật khẩu xác nhận không chính xác');
+            return back()->with('error', 'Mật khẩu xác nhận không chính xác');
         }
 
-        $createTK = DB::table('users')->insert([
+        $createTK = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'phone' => $request->phone,
@@ -80,9 +87,10 @@ class HomeController extends Controller
         ]);
 
         if ($createTK) {
-            return back()->with('notify_success', 'Tạo tài khoản thành công!!!');
+            Auth::login($createTK);
+            return back()->with('success', 'Tạo tài khoản thành công!!!');
         } else {
-            return back()->with('notify_fail', 'Lỗi tạo tài khoản không thành công!!!');
+            return back()->with('error', 'Lỗi tạo tài khoản không thành công!!!');
         }
     }
 

@@ -23,4 +23,5 @@ return [
     'info.sponsor-amount' => 'Sponsor amount',
     'info.sponsor-amount-type' => 'Sponsor amount type',
     'info.sponsor-select-label' => 'Select your sponsor',
+    'info.sponsor-payment-method' => 'Payment method',
 ];

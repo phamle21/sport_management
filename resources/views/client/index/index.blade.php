@@ -7,11 +7,9 @@
             <div class="">
                 <div class="banner-content text-center">
                     <h4 class="fw-normal theme-color mb-4">NƠI CÁC GIẢI ĐẤU BẮT ĐẦU</h4>
-                    <img src="https://labartisan.net/demo/bigamer/assets/images/banner/01.png" alt="banner text thumb"
-                        class="mb-4">
-                    <p>Time : 08:30Pm - 30 December 2021</p>
+                    <img src="{{ asset('assets/images/logo.png') }}" alt="banner text thumb" class="mb-4"><br>
                     <a href="https://www.youtube.com/embed/g5eQgEuiFC8" class="default-button reverse-effect"
-                        data-rel="lightcase"><span>Watch Now <i class="icofont-play-alt-1"></i></span> </a>
+                        data-rel="lightcase"><span>Khám phá<i class="icofont-play-alt-1"></i></span> </a>
                 </div>
                 <div
                     class="banner-thumb d-flex flex-wrap justify-content-center justify-content-between align-items-center align-items-lg-end">
@@ -35,103 +33,105 @@
     </section>
     <!-- ===========Banner Section Ends Here========== -->
 
-        <!-- ===========About Section start Here========== -->
-        <section class="about-section">
-            <div class="container">
-                <div class="section-wrapper padding-top">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <div class="about-image">
-                                <img src="{{ asset('images/system/about.png') }}" alt="about-image">
-                            </div>
+    <!-- ===========About Section start Here========== -->
+    <section class="about-section">
+        <div class="container">
+            <div class="section-wrapper padding-top">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="about-image">
+                            <img src="{{ asset('images/system/about.png') }}" alt="about-image">
                         </div>
-                        <div class="col-lg-6 col-md-10">
-                            <div class="about-wrapper">
-                                <div class="section-header">
-                                    <h2>{{ __('message.about.about-section.section-header') }}</h2>
-                                </div>
-                                <div class="about-content">
-                                    <p>{{ __('message.about.about-section.about-content') }}</p>
-                                </div>
+                    </div>
+                    <div class="col-lg-6 col-md-10">
+                        <div class="about-wrapper">
+                            <div class="section-header">
+                                <h2>{{ __('message.about.about-section.section-header') }}</h2>
+                            </div>
+                            <div class="about-content">
+                                <p>{{ __('message.about.about-section.about-content') }}</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- ===========About Section Ends Here========== -->
+        </div>
+    </section>
+    <!-- ===========About Section Ends Here========== -->
 
 
 
-        <!-- ===========Video Section Start Here========== -->
-        <div class="video-section padding-top padding-bottom" style="background-image:url(assets/images/video/bg.jpg)">
-            <div class="container">
-                <div class="section-header">
-                    <h2>{{ __('home.says') }}</h2>
-                </div>
-                <div class="section-wrapper">
-                    <div class="row g-4">
-                        <div class="col-12">
-                            <div class="video-bottom">
-                                <div class="testimonial-slider overflow-hidden">
-                                    <div class="swiper-wrapper">
-                                        <div class="swiper-slide">
-                                            <div class="testimonial-item">
-                                                <div class="testimonial-inner">
-                                                    <div class="testimonial-head">
-                                                        <div class="testi-top">
-                                                            <div class="testimonial-thumb">
-                                                                <img src="{{ asset('images/system/Pele.jpg') }}" alt="Pele-image">
-                                                            </div>
-                                                            <div class="name-des">
-                                                                <h5>Pelé</h5>
-                                                                <p>{{ __('message.about.video-section.name-des-1') }}</p>
-                                                            </div>
+    <!-- ===========Video Section Start Here========== -->
+    <div class="video-section padding-top padding-bottom" style="background-image:url(assets/images/video/bg.jpg)">
+        <div class="container">
+            <div class="section-header">
+                <h2>{{ __('home.says') }}</h2>
+            </div>
+            <div class="section-wrapper">
+                <div class="row g-4">
+                    <div class="col-12">
+                        <div class="video-bottom">
+                            <div class="testimonial-slider overflow-hidden">
+                                <div class="swiper-wrapper">
+                                    <div class="swiper-slide">
+                                        <div class="testimonial-item">
+                                            <div class="testimonial-inner">
+                                                <div class="testimonial-head">
+                                                    <div class="testi-top">
+                                                        <div class="testimonial-thumb">
+                                                            <img src="{{ asset('images/system/Pele.jpg') }}"
+                                                                alt="Pele-image">
+                                                        </div>
+                                                        <div class="name-des">
+                                                            <h5>Pelé</h5>
+                                                            <p>{{ __('message.about.video-section.name-des-1') }}</p>
                                                         </div>
                                                     </div>
-                                                    <div class="testimonial-body">
-                                                        <p>{{ __('message.about.video-section.testimonial-body-1') }}</p>
-                                                    </div>
+                                                </div>
+                                                <div class="testimonial-body">
+                                                    <p>{{ __('message.about.video-section.testimonial-body-1') }}</p>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="swiper-slide">
-                                            <div class="testimonial-item">
-                                                <div class="testimonial-inner">
-                                                    <div class="testimonial-head">
-                                                        <div class="testi-top">
-                                                            <div class="testimonial-thumb">
-                                                                <img src="{{ asset('images/system/Carlsen.jpg') }}" alt="Carlsen-image">
-                                                            </div>
-                                                            <div class="name-des">
-                                                                <h5>Magnus Carlsen</h5>
-                                                                <p>{{ __('message.about.video-section.name-des-2') }}</p>
-                                                            </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="testimonial-item">
+                                            <div class="testimonial-inner">
+                                                <div class="testimonial-head">
+                                                    <div class="testi-top">
+                                                        <div class="testimonial-thumb">
+                                                            <img src="{{ asset('images/system/Carlsen.jpg') }}"
+                                                                alt="Carlsen-image">
+                                                        </div>
+                                                        <div class="name-des">
+                                                            <h5>Magnus Carlsen</h5>
+                                                            <p>{{ __('message.about.video-section.name-des-2') }}</p>
                                                         </div>
                                                     </div>
-                                                    <div class="testimonial-body">
-                                                        <p>{{ __('message.about.video-section.testimonial-body-2') }}</p>
-                                                    </div>
-                                                 </div>
+                                                </div>
+                                                <div class="testimonial-body">
+                                                    <p>{{ __('message.about.video-section.testimonial-body-2') }}</p>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="swiper-slide">
-                                            <div class="testimonial-item">
-                                                <div class="testimonial-inner">
-                                                    <div class="testimonial-head">
-                                                        <div class="testi-top">
-                                                            <div class="testimonial-thumb">
-                                                                <img src="{{ asset('images/system/jerry.jpg') }}" alt="jerry-image">
-                                                            </div>
-                                                            <div class="name-des">
-                                                                <h5>Jerry West</h5>
-                                                                <p>{{ __('message.about.video-section.name-des-3') }}</p>
-                                                            </div>
+                                    </div>
+                                    <div class="swiper-slide">
+                                        <div class="testimonial-item">
+                                            <div class="testimonial-inner">
+                                                <div class="testimonial-head">
+                                                    <div class="testi-top">
+                                                        <div class="testimonial-thumb">
+                                                            <img src="{{ asset('images/system/jerry.jpg') }}"
+                                                                alt="jerry-image">
+                                                        </div>
+                                                        <div class="name-des">
+                                                            <h5>Jerry West</h5>
+                                                            <p>{{ __('message.about.video-section.name-des-3') }}</p>
                                                         </div>
                                                     </div>
-                                                    <div class="testimonial-body">
-                                                        <p>{{ __('message.about.video-section.testimonial-body-3') }} </p>
-                                                    </div>
+                                                </div>
+                                                <div class="testimonial-body">
+                                                    <p>{{ __('message.about.video-section.testimonial-body-3') }} </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -143,7 +143,8 @@
                 </div>
             </div>
         </div>
-        <!-- ===========Video Section Ends Here========== -->
+    </div>
+    <!-- ===========Video Section Ends Here========== -->
 
 
     <!-- ===========match schedule Section start Here========== -->
@@ -706,7 +707,6 @@
         </div>
     </div> --}}
     <!-- ===========Sponsor Section Ends Here========== -->
-
 @endsection
 
 @section('js')

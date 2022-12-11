@@ -39,6 +39,7 @@ return [
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
+            'remember' => 1*7*24*60*60 // week * day7 * hour24 * minutes60 * seconds60
         ],
         'api' => [
             'driver' => 'jwt',

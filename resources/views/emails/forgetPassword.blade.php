@@ -49,35 +49,13 @@
                         <br />
                         <h6
                             style="width: 536px; display: inline-block; font-size: 20px; margin: 10px 0; font-weight: 500; text-align: center;">
-                            <b>Thông tin tài trợ cho giải đấu</b>
+                            <b>Quên mật khẩu</b>
                         </h6>
                         <div>
                             <p>
-                                <b>{{ \App\Models\User::find($infor_sponsorship->user_id)->name }}</b> đã tài trợ cho
-                                giải đấu {{ \App\Models\League::find($infor_sponsorship->league_id)->name }}
+                                {{ __('email.link-reset-password') }}
+                                <a href="{{ route('reset.password.get', ['token' => $token, 'email' => $email]) }}">{{ __('email.reset-password') }}</a>
                             </p>
-                            <p style=" display: inline-block; font-size: 15px; margin: 10px 0; font-weight: 500; ">
-                                Thông tin tài trợ:
-                            </p>
-                            <ul style="list-style: none">
-                                <li>
-                                    <p>
-                                        Số tiền tài trợ:
-                                        <b>{{ number_format($infor_sponsorship->sponsor_payment_amount)}} VNĐ</b>
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        Loại thanh toán: <b>{{ $infor_sponsorship->sponsor_payment_method }}</b>
-                                    </p>
-                                </li>
-                                <li>
-                                    <p>
-                                        Thanh toán vào lúc: <b>{{ $infor_sponsorship->time }}</b>
-                                    </p>
-                                </li>
-
-                            </ul>
 
                             <p style="margin-top: 50px;">Cám ơn bạn đã xem.</p>
 

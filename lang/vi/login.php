@@ -7,6 +7,8 @@ return [
     'submit' => 'Đăng nhập',
     'text' => 'Nếu bạn chưa có tài khoảng?',
     'sign-up' => 'Đăng Ký',
+    'remember' => 'Ghi nhớ tôi',
+    'forgot' => 'Quên mật khẩu?',
 
 
 

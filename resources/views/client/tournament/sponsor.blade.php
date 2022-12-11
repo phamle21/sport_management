@@ -50,7 +50,8 @@
                 - {{ $tournament->name }} -
             </h3>
             <form role="form" action="{{ route('sponsor.processing') }}" method="post" class="require-validation"
-                data-cc-on-file="false" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form" enctype='multipart/form-data'>
+                data-cc-on-file="false" data-stripe-publishable-key="{{ env('STRIPE_KEY') }}" id="payment-form"
+                enctype='multipart/form-data'>
                 @csrf
                 <input type="hidden" name="league_id" value={{ $tournament->id }}>
                 <div class="col-md-6 col-md-offset-3 m-auto mb-5 mt-3 p-5 border border-white rounded-4">
@@ -76,7 +77,8 @@
                                         <label for="imageUpload"></label>
                                     </div>
                                     <div class="avatar-preview">
-                                        <div id="imagePreview" onclick="triggerInputFile()" style="background-image: url('');">
+                                        <div id="imagePreview" onclick="triggerInputFile()"
+                                            style="background-image: url('');">
                                         </div>
                                     </div>
                                     <label id="label-image" class="col d-flex justify-content-start mt-2">
@@ -139,88 +141,43 @@
                     <div class="row justify-content-center align-items-center w-100">
                         <div class="col-12 my-1 text-white">
                             <div class="form-group w-100">
-                                <label for="sponsor_amount_input">{{ __('sponsor.info.sponsor-amount') }}</label>
-                                <input type="number" id="sponsor_amount_input" name="sponsor_amount_input" min="1"
-                                    required placeholder="{{ __('sponsor.info.sponsor-amount') }}">
-                                <p id="sponsor_amount_show"></p>
-                                <input type="hidden" readonly id="sponsor_amount" name="sponsor_amount" min="1"
-                                    placeholder="{{ __('sponsor.info.sponsor-amount') }}">
+                                <label for="sponsor_amount_show">{{ __('sponsor.info.sponsor-amount') }} (VND)</label>
+                                <input type="text" id="sponsor_amount_show" name="sponsor_amount_show" min="1"
+                                    required placeholder="{{ __('sponsor.info.sponsor-amount') }}"
+                                    onkeyup="inputAmount(this.value)">
+
+                                <input type="hidden" id="sponsor_amount" name="sponsor_amount" min="1">
+
                             </div>
                         </div>
+                    </div>
+
+                    <div class="row justify-content-center align-items-center w-100">
                         <div class="col-12 my-1 text-white">
-                            <label for="">{{ __('sponsor.info.sponsor-amount-type') }}</label>
-                            <div class="row">
-                                <div class="form-group col">
-                                    <input type="radio" id="amount_type_usd" class="w-auto" name="sponsor_amount_type"
-                                        value="usd">
-                                    <label for="amount_type_usd"> USD</label>
+                            <div class="form-group w-100">
+                                <label for="">{{ __('sponsor.info.sponsor-payment-method') }}</label>
+                                <div>
+                                    <input type="radio" id="method_stripe" checked class="w-auto"
+                                        name="payment_method" value="stripe" required>
+                                    <label for="method_stripe">Stripe</label>
                                 </div>
-                                <div class="form-group col">
-                                    <input type="radio" id="amount_type_vnd" checked class="w-auto"
-                                        name="sponsor_amount_type" value="vnd">
-                                    <label for="amount_type_vnd"> VND</label>
+                                <div>
+                                    <input type="radio" id="method_paypal" class="w-auto" name="payment_method"
+                                        value="paypal" required>
+                                    <label for="method_paypal">Paypal (bảo trì)</label>
                                 </div>
+
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-md-6 col-md-offset-3 m-auto mb-5 mt-3 p-5 border border-white"
-                    style="border-radius: 30px">
-                    <div class="panel panel-default credit-card-box">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <h3>{{ __('sponsor.payment-card') }}</h3>
-                            </div>
-                        </div>
-                        <div class="panel-body">
-                            <br>
-
-                            <div class='form-row row my-2'>
-                                <div class='col-xs-12 col-md-6 form-group required'>
-                                    <label class='control-label'>{{ __('sponsor.payment.name-of-card') }}</label>
-                                    <input class='form-control' size='4' type='text' placeholder="">
-                                </div>
-                                <div class='col-xs-12 col-md-6 form-group required'>
-                                    <label class='control-label'>{{ __('sponsor.payment.card-number') }}</label>
-                                    <input autocomplete='off' maxlength="16" class='form-control card-number' required
-                                        size='20' type='text' placeholder="Ex: 4111 1111 1111 1111">
-                                </div>
-                            </div>
-                            <div class='form-row row my-2'>
-                                <div class='col-xs-12 col-md-4 form-group cvc required'>
-                                    <label class='control-label'>{{ __('sponsor.payment.CVC') }}</label>
-                                    <input autocomplete='off' class='form-control card-cvc' placeholder='ex. 311'
-                                        required size='4' maxlength="4" type='text'>
-                                </div>
-                                <div class='col-xs-12 col-md-4 form-group expiration required'>
-                                    <label class='control-label'>{{ __('sponsor.payment.expiration-month') }}</label>
-                                    <input class='form-control card-expiry-month' placeholder='MM' size='2'
-                                        maxlength="2" type='text'>
-                                </div>
-                                <div class='col-xs-12 col-md-4 form-group expiration required'>
-                                    <label class='control-label'>{{ __('sponsor.payment.expiration-year') }}</label>
-                                    <input class='form-control card-expiry-year' placeholder='YYYY' size='4'
-                                        required maxlength="4" type='text'>
-                                </div>
-                            </div>
-
-                            <div class='form-row row'>
-                                <div class='col-md-12 error form-group d-none'>
-                                    <div class='text-danger text-italic'>Please correct the errors and try
-                                        again.</div>
-                                </div>
-                            </div>
-
-                            <div class="form-row row mt-4">
-                                <div class="col-xs-12 ">
-                                    <button class="btn btn-primary btn-lg btn-block"
-                                        type="submit">{{ __('sponsor.payment.btn-submit') }}</button>
-                                </div>
-                            </div>
-
+                    <div class="form-row row mt-4">
+                        <div class="col-xs-12 ">
+                            <button class="btn btn-primary btn-lg btn-block" type="submit" form="payment-form"
+                                type="submit">{{ __('sponsor.payment.btn-submit') }}</button>
                         </div>
                     </div>
+
                 </div>
             </form>
         </div>
@@ -229,58 +186,6 @@
 @endsection
 
 @section('js')
-    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-    <script type="text/javascript">
-        $(function() {
-            var $form = $(".require-validation");
-            $('form.require-validation').bind('submit', function(e) {
-                var $form = $(".require-validation"),
-                    inputSelector = ['input[type=email]', 'input[type=password]',
-                        'input[type=text]', 'input[type=file]',
-                        'textarea'
-                    ].join(', '),
-                    $inputs = $form.find('.required').find(inputSelector),
-                    $errorMessage = $form.find('div.error'),
-                    valid = true;
-                $errorMessage.addClass('d-none');
-                $('.has-error').removeClass('has-error');
-                $inputs.each(function(i, el) {
-                    var $input = $(el);
-                    if ($input.val() === '') {
-                        $input.parent().addClass('has-error');
-                        $errorMessage.removeClass('d-none');
-                        e.preventDefault();
-                    }
-                });
-                if (!$form.data('cc-on-file')) {
-                    e.preventDefault();
-                    Stripe.setPublishableKey($form.data('stripe-publishable-key'));
-                    Stripe.createToken({
-                        number: $('.card-number').val(),
-                        cvc: $('.card-cvc').val(),
-                        exp_month: $('.card-expiry-month').val(),
-                        exp_year: $('.card-expiry-year').val()
-                    }, stripeResponseHandler);
-                }
-            });
-
-            function stripeResponseHandler(status, response) {
-                if (response.error) {
-                    $('.error')
-                        .removeClass('d-none')
-                        .find('.alert')
-                        .text(response.error.message);
-                } else {
-                    /* token contains id, last4, and card type */
-                    var token = response['id'];
-                    $form.find('input[type=text]').empty();
-                    $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
-                    $form.get(0).submit();
-                }
-            }
-        });
-    </script>
-
     {{-- Upload logo --}}
     <script>
         function readURL(input) {
@@ -297,66 +202,17 @@
         $("#imageUpload").change(function() {
             readURL(this);
         });
-        function triggerInputFile(){
+
+        function triggerInputFile() {
             $("#imageUpload").trigger('click');
         }
     </script>
 
     <script>
-        function convert(val, type) {
-            if (type == 'vnd') {
-                $.ajax({
-                    method: 'GET',
-                    url: 'https://api.fastforex.io/convert',
-                    data: jQuery.param({
-                        api_key: "fb51c50a6b-ffbce0b7a3-rlonwu",
-                        from: "USD",
-                        to: "VND",
-                        amount: 1,
-                    }),
-                    contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-                    success: function(res) {
-                        console.log(res);
-                        const val = Number($('#sponsor_amount_input').val())
-                        const rate = res.result.rate
-                        const amountConvert = (val / rate).toFixed(2)
-
-                        $('#sponsor_amount').val(amountConvert)
-                        $('#sponsor_amount_show').html(`<i>${val} VND = $${amountConvert}</i>`)
-                    },
-                    error: function(error) {
-                        console.log("error: ", error);
-                    }
-                })
-            } else {
-                const val = Number($('#sponsor_amount_input').val())
-                $('#sponsor_amount').val(val)
-                $('#sponsor_amount_show').html("$" + val)
-
-            }
-        }
-        $('#sponsor_amount_input').change(function() {
-            if ($('#amount_type_vnd').is(':checked')) {
-                const val = Number($('#sponsor_amount_input').val())
-                convert(val, 'vnd')
-            } else {
-                const val = Number($('#sponsor_amount_input').val())
-                convert(val, 'usd')
-            }
-
-        })
-        $('#amount_type_vnd').click(function() {
-            const val = Number($('#sponsor_amount_input').val())
-            convert(val, 'vnd')
-        })
-        $('#amount_type_usd').click(function() {
-            const val = Number($('#sponsor_amount_input').val())
-            convert(val, 'usd')
-        })
-    </script>
-    <script>
         $('.select_sponsor-new').removeClass('d-none')
         $('.select_sponsor-old').addClass('d-none')
+        $('.select_sponsor-new').attr('disabled', false)
+        $('.select_sponsor-old').attr('disabled', true)
 
         function changeStatusSponsor(value) {
             if (value == "new") {
@@ -385,5 +241,28 @@
             $('#imagePreview').hide();
             $('#imagePreview').fadeIn(650);
         };
+    </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.2.6/jquery.inputmask.bundle.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#sponsor_amount_show").inputmask({
+                alias: "currency",
+                prefix: ' VNĐ ',
+                digits: 0,
+            });
+        });
+    </script>
+    <script>
+        function inputAmount(value) {
+            console.log(value)
+            $('#sponsor_amount').val(value)
+            $("#sponsor_amount").inputmask({
+                alias: "currency",
+                prefix: ' VNĐ ',
+                digits: 0,
+            });
+            $('#sponsor_amount').inputmask('remove');
+        }
     </script>
 @endsection

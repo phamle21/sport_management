@@ -23,5 +23,6 @@ return [
     'info.sponsor-amount' => 'Số tiền tài trợ',
     'info.sponsor-amount-type' => 'Loại tiền',
     'info.sponsor-select-label' => 'Chọn nhà tài trợ của bạn',
+    'info.sponsor-payment-method' => 'Phương thức thanh toán',
 
 ];

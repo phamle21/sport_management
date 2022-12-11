@@ -197,6 +197,8 @@ return [
 
         Maatwebsite\Excel\ExcelServiceProvider::class,
 
+        Srmklive\PayPal\Providers\PayPalServiceProvider::class,
+
     ],
 
     /*
@@ -213,6 +215,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        'PayPal' => Srmklive\PayPal\Facades\PayPal::class,
     ])->toArray(),
 
 ];

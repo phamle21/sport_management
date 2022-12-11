@@ -4,8 +4,152 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ad48162a25cadd8444431059a3d919c6",
+    "content-hash": "b0c687f4a74585f545697afc544f6f0d",
     "packages": [
+        {
+            "name": "bmatovu/laravel-mtn-momo",
+            "version": "v4.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mtvbrianking/laravel-mtn-momo.git",
+                "reference": "cb09c9c86f520c44654a62e71bc5148ea822394b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mtvbrianking/laravel-mtn-momo/zipball/cb09c9c86f520c44654a62e71bc5148ea822394b",
+                "reference": "cb09c9c86f520c44654a62e71bc5148ea822394b",
+                "shasum": ""
+            },
+            "require": {
+                "bmatovu/oauth-negotiator": "^2.0",
+                "ext-json": "*",
+                "guzzlehttp/guzzle": "^7.0",
+                "illuminate/console": "^8.0|^9.0",
+                "illuminate/container": "^8.0|^9.0",
+                "illuminate/contracts": "^8.0|^9.0",
+                "illuminate/database": "^8.0|^9.0",
+                "illuminate/support": "^8.0|^9.0",
+                "nesbot/carbon": "^2.53.1",
+                "php": "^7.3|^8.0",
+                "ramsey/uuid": "^4.2.2"
+            },
+            "require-dev": {
+                "code-lts/doctum": "^5.3",
+                "friendsofphp/php-cs-fixer": "^3.0",
+                "mockery/mockery": "^1.4.2",
+                "orchestra/testbench": "^6.0|^7.0",
+                "phpunit/phpunit": "^9.3"
+            },
+            "suggest": {
+                "monolog/monolog": "For more comprehensive logging."
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Bmatovu\\MtnMomo\\MtnMomoServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/Support/helpers.php"
+                ],
+                "psr-4": {
+                    "Bmatovu\\MtnMomo\\": "src/",
+                    "Bmatovu\\MtnMomo\\Database\\Factories\\": "database/factories/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Brian Matovu",
+                    "email": "mtvbrianking@gmail.com",
+                    "homepage": "http://bmatovu.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel MTN MOMO integration.",
+            "homepage": "https://github.com/mtvbrianking/laravel-mtn-momo",
+            "keywords": [
+                "api",
+                "laravel",
+                "momo",
+                "mtn",
+                "package"
+            ],
+            "support": {
+                "issues": "https://github.com/mtvbrianking/laravel-mtn-momo/issues",
+                "source": "https://github.com/mtvbrianking/laravel-mtn-momo/tree/v4.2.1"
+            },
+            "time": "2022-08-22T14:54:30+00:00"
+        },
+        {
+            "name": "bmatovu/oauth-negotiator",
+            "version": "v2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mtvbrianking/oauth-negotiator.git",
+                "reference": "54d2987312cfb9d86ccc1d0b97ac3c85b44bfebd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mtvbrianking/oauth-negotiator/zipball/54d2987312cfb9d86ccc1d0b97ac3c85b44bfebd",
+                "reference": "54d2987312cfb9d86ccc1d0b97ac3c85b44bfebd",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "guzzlehttp/guzzle": "^7.0",
+                "php": "^7.2.5 || ^8.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.4",
+                "mockery/mockery": "^1.4",
+                "phpunit/phpunit": "^8.5.5"
+            },
+            "suggest": {
+                "monolog/monolog": "For comprehensive logging."
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/Support/helpers.php"
+                ],
+                "psr-4": {
+                    "Bmatovu\\OAuthNegotiator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Brian Matovu",
+                    "email": "mtvbrianking@gmail.com",
+                    "homepage": "http://bmatovu.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "OAuth2 client token manager.",
+            "homepage": "https://github.com/mtvbrianking/oauth-negotiator",
+            "keywords": [
+                "Guzzle",
+                "middleware",
+                "oauth",
+                "oauth2",
+                "package"
+            ],
+            "support": {
+                "issues": "https://github.com/mtvbrianking/oauth-negotiator/issues",
+                "source": "https://github.com/mtvbrianking/oauth-negotiator/tree/v2.1.0"
+            },
+            "time": "2022-03-26T13:30:16+00:00"
+        },
         {
             "name": "brick/math",
             "version": "0.10.2",
@@ -4205,6 +4349,65 @@
             "time": "2022-11-05T23:03:38+00:00"
         },
         {
+            "name": "srmklive/paypal",
+            "version": "1.10.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/srmklive/laravel-paypal.git",
+                "reference": "188bb21f06f58aa3ad3dd6a25e91a1fc34bff68c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/srmklive/laravel-paypal/zipball/188bb21f06f58aa3ad3dd6a25e91a1fc34bff68c",
+                "reference": "188bb21f06f58aa3ad3dd6a25e91a1fc34bff68c",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "~6.0|~7.0",
+                "illuminate/support": "~5.1|~5.2|~5.3|~5.4|~5.5|~5.6|~5.7|~5.8|~6.0|~7.0|~8.0|~9.0",
+                "nesbot/carbon": "~1.0|~2.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Srmklive\\PayPal\\Providers\\PayPalServiceProvider"
+                    ],
+                    "aliases": {
+                        "PayPal": "Srmklive\\PayPal\\Facades\\PayPal"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Srmklive\\PayPal\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Raza Mehdi",
+                    "email": "srmk@outlook.com"
+                }
+            ],
+            "description": "Laravel plugin For Processing Payments Through Paypal Express Checkout. Can Be Used Independently With Other Applications.",
+            "keywords": [
+                "http",
+                "laravel paypal",
+                "paypal",
+                "rest",
+                "web service"
+            ],
+            "support": {
+                "issues": "https://github.com/srmklive/laravel-paypal/issues",
+                "source": "https://github.com/srmklive/laravel-paypal/tree/1.10.0"
+            },
+            "time": "2022-03-12T11:36:35+00:00"
+        },
+        {
             "name": "stella-maris/clock",
             "version": "0.1.6",
             "source": {
@@ -4253,16 +4456,16 @@
         },
         {
             "name": "stripe/stripe-php",
-            "version": "v10.0.0",
+            "version": "v10.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/stripe/stripe-php.git",
-                "reference": "a895466e5208cc7974bc3bed80abe825418ce0b0"
+                "reference": "9b69abcc40bce97712df01ba40c93bcae8e1f272"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/a895466e5208cc7974bc3bed80abe825418ce0b0",
-                "reference": "a895466e5208cc7974bc3bed80abe825418ce0b0",
+                "url": "https://api.github.com/repos/stripe/stripe-php/zipball/9b69abcc40bce97712df01ba40c93bcae8e1f272",
+                "reference": "9b69abcc40bce97712df01ba40c93bcae8e1f272",
                 "shasum": ""
             },
             "require": {
@@ -4308,9 +4511,9 @@
             ],
             "support": {
                 "issues": "https://github.com/stripe/stripe-php/issues",
-                "source": "https://github.com/stripe/stripe-php/tree/v10.0.0"
+                "source": "https://github.com/stripe/stripe-php/tree/v10.1.0"
             },
-            "time": "2022-11-16T20:15:30+00:00"
+            "time": "2022-12-06T20:44:58+00:00"
         },
         {
             "name": "swagger-api/swagger-ui",

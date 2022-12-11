@@ -7,6 +7,7 @@
             <div class="account-wrapper">
                 <h3 class="title">{{ __('login.login') }}</h3>
                 <form class="account-form" method="POST" action="{{ route('login.submit') }}">
+                    @csrf
                     <div class="form-group">
                         <input type="text" placeholder="{{ __('login.email-sdt') }}" name="username">
                     </div>
@@ -15,11 +16,11 @@
                     </div>
                     <div class="form-group">
                         <div class="d-flex justify-content-between flex-wrap pt-sm-2">
-                            {{-- <div class="checkgroup">
+                            <div class="checkgroup">
                                 <input type="checkbox" name="remember" id="remember">
-                                <label for="remember">Remember Me</label>
-                            </div> --}}
-                            {{-- <a href="#">Forget Password?</a> --}}
+                                <label for="remember">{{ __('login.remember') }}</label>
+                            </div>
+                            <a href="{{ route('forget.password.get') }}">{{ __('login.forgot') }}</a>
                         </div>
                     </div>
                     <div class="form-group">
@@ -27,7 +28,8 @@
                     </div>
                 </form>
                 <div class="account-bottom">
-                    <span class="d-block cate pt-10">{{ __('login.text') }} <a href="/register"> {{ __('login.sign-up') }}</a></span>
+                    <span class="d-block cate pt-10">{{ __('login.text') }} <a href="/register">
+                            {{ __('login.sign-up') }}</a></span>
                     <span class="or"><span>or</span></span>
                     <ul class="match-social-list d-flex flex-wrap align-items-center justify-content-center mt-4">
                         <li>

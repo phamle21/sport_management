@@ -212,11 +212,13 @@
 
 
                                             </div>
-                                            <div class="text-center mt-5">
-                                                <a href="{{ route('sponsor.index', ['league_id' => $tournament->id]) }}"
-                                                    class="default-button"><span>{{ __('message.tournament.details.about-btn-susponsor') }}
-                                                        <i class="icofont-circled-right"></i></span> </a>
-                                            </div>
+                                            @if ($tournament->user_id != Auth::user()->id)
+                                                <div class="text-center mt-5">
+                                                    <a href="{{ route('sponsor.index', ['league_id' => $tournament->id]) }}"
+                                                        class="default-button"><span>{{ __('message.tournament.details.about-btn-susponsor') }}
+                                                            <i class="icofont-circled-right"></i></span> </a>
+                                                </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -252,54 +254,54 @@
                     {{-- ============================Stage=================================================================== --}}
                     <div class="gameListItem collection-stage">
                         {{-- ===========Add Stage========== --}}
+                        @if ($tournament->user_id == Auth::user()->id)
+                            <div class="row my-2 mb-4">
+                                <div class="section-header">
+                                    <p>{{ __('message.tournament.details.stage.head-sub-1') }}</p>
+                                    <h2 class="mb-3">{{ __('message.tournament.details.stage.head-1') }}</h2>
+                                </div>
 
-                        <div class="row my-2 mb-4">
-                            <div class="section-header">
-                                <p>{{ __('message.tournament.details.stage.head-sub-1') }}</p>
-                                <h2 class="mb-3">{{ __('message.tournament.details.stage.head-1') }}</h2>
+                                <form class="contact-form justify-content-center" action="{{ route('stage.create') }}"
+                                    id="frmCreateStage" name="frmCreateStage" method="POST" enctype="multipart/form-data">
+                                    @csrf
+
+                                    <input type="hidden" name="league_id" value="{{ $tournament->id }}">
+
+                                    <div class="row justify-content-center align-items-center w-100 my-2">
+                                        <div class="col-md-3 col-12">
+                                            <div class="form-group w-100 m-0">
+                                                <select name="order" id="frm-order_stage" class="text-white" required>
+                                                    <option disabled selected value="-1">
+                                                        {{ __('message.tournament.details.stage.create.frm-order') }} *
+                                                    </option>
+                                                    <option value="0">1</option>
+                                                    <option value="1">2</option>
+                                                    <option value="2">3</option>
+                                                    <option value="3">4</option>
+                                                    <option value="4">5</option>
+                                                    <option value="5">6</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-9 col-12">
+                                            <div class="form-group w-100 m-0">
+                                                <input type="text" id="frm-name_stage" name="name" required
+                                                    placeholder="{{ __('message.tournament.details.stage.create.frm-name') }} *">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group w-100 text-center mt-4">
+                                        <button class="default-button" id="btn-frmCreateStage" from="frmCreateStage"
+                                            type="submit">
+                                            <span>{{ __('message.tournament.details.stage.btn-send') }}
+                                                <i class="icofont-circled-right"></i>
+                                            </span>
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
-
-                            <form class="contact-form justify-content-center" action="{{ route('stage.create') }}"
-                                id="frmCreateStage" name="frmCreateStage" method="POST" enctype="multipart/form-data">
-                                @csrf
-
-                                <input type="hidden" name="league_id" value="{{ $tournament->id }}">
-
-                                <div class="row justify-content-center align-items-center w-100 my-2">
-                                    <div class="col-md-3 col-12">
-                                        <div class="form-group w-100 m-0">
-                                            <select name="order" id="frm-order_stage" class="text-white" required>
-                                                <option disabled selected value="-1">
-                                                    {{ __('message.tournament.details.stage.create.frm-order') }} *
-                                                </option>
-                                                <option value="0">1</option>
-                                                <option value="1">2</option>
-                                                <option value="2">3</option>
-                                                <option value="3">4</option>
-                                                <option value="4">5</option>
-                                                <option value="5">6</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-9 col-12">
-                                        <div class="form-group w-100 m-0">
-                                            <input type="text" id="frm-name_stage" name="name" required
-                                                placeholder="{{ __('message.tournament.details.stage.create.frm-name') }} *">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="form-group w-100 text-center mt-4">
-                                    <button class="default-button" id="btn-frmCreateStage" from="frmCreateStage"
-                                        type="submit">
-                                        <span>{{ __('message.tournament.details.stage.btn-send') }}
-                                            <i class="icofont-circled-right"></i>
-                                        </span>
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-
+                        @endif
                         {{-- ===========/Add Stage========== --}}
 
                         {{-- ===========Show Stage========== --}}
@@ -314,28 +316,30 @@
                                         style="border-radius: 30px">
                                         <div class="row justify-content-center align-items-center px-3">
                                             <div class="col-2">
-                                                <button class="bg-transparent btn text-white fs-6">
+                                                {{-- <button class="bg-transparent btn text-white fs-6">
                                                     <i class="fa-duotone fa-pen-to-square"></i>
-                                                </button>
+                                                </button> --}}
                                             </div>
                                             <div class="col">
                                                 <h5 class="my-2 text-center">
                                                     {{ $stage->order + 1 }} - {{ $stage->name }}
                                                 </h5>
                                             </div>
-                                            <div class="col-2">
-                                                <form action="{{ route('stage.delete', ['id' => $stage->id]) }}"
-                                                    id="frmDeleteStage-{{ $stage->id }}" method="POST">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <input type="hidden" name="league_id"
-                                                        value="{{ $tournament->id }}">
-                                                    <button class="bg-transparent btn text-white fs-6" type="button"
-                                                        onclick="deleteStage({{ $stage->id }})">
-                                                        <i class="fa-duotone fa-trash"></i>
-                                                    </button>
-                                                </form>
-                                            </div>
+                                            @if ($tournament->user_id == Auth::user()->id)
+                                                <div class="col-2">
+                                                    <form action="{{ route('stage.delete', ['id' => $stage->id]) }}"
+                                                        id="frmDeleteStage-{{ $stage->id }}" method="POST">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <input type="hidden" name="league_id"
+                                                            value="{{ $tournament->id }}">
+                                                        <button class="bg-transparent btn text-white fs-6" type="button"
+                                                            onclick="deleteStage({{ $stage->id }})">
+                                                            <i class="fa-duotone fa-trash"></i>
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            @endif
                                         </div>
                                         <hr>
                                         @foreach ($stage->groups as $group)
@@ -356,24 +360,27 @@
                                                 </div>
                                             </div>
                                         @endforeach
-                                        <div class="col-12 px-3 my-2">
-                                            <div class="accordion-item d-flex product-action-link">
-                                                <a data-bs-toggle="modal" data-bs-target="#new_group"
-                                                    data-bs-whatever="{{ $stage->id }}" style="cursor: pointer;"
-                                                    class="accordion-header w-100 view-modal">
-                                                    <div
-                                                        class="accordion-button accordion-button-2 accordion-button-new collapsed">
-                                                        <span class="accor-header-inner d-flex align-items-center">
-                                                            <span class="accor-thumb d-flex align-items-center"
-                                                                style="width: fit-content">
-                                                                <i class="fa-duotone fa-plus-large fs-1 text-white"></i>
+                                        @if ($tournament->user_id == Auth::user()->id)
+                                            <div class="col-12 px-3 my-2">
+                                                <div class="accordion-item d-flex product-action-link">
+                                                    <a data-bs-toggle="modal" data-bs-target="#new_group"
+                                                        data-bs-whatever="{{ $stage->id }}" style="cursor: pointer;"
+                                                        class="accordion-header w-100 view-modal">
+                                                        <div
+                                                            class="accordion-button accordion-button-2 accordion-button-new collapsed">
+                                                            <span class="accor-header-inner d-flex align-items-center">
+                                                                <span class="accor-thumb d-flex align-items-center"
+                                                                    style="width: fit-content">
+                                                                    <i
+                                                                        class="fa-duotone fa-plus-large fs-1 text-white"></i>
+                                                                </span>
+                                                                <span class="accor-title fs-4">Bảng đấu mới</span>
                                                             </span>
-                                                            <span class="accor-title fs-4">New group</span>
-                                                        </span>
-                                                    </div>
-                                                </a>
+                                                        </div>
+                                                    </a>
+                                                </div>
                                             </div>
-                                        </div>
+                                        @endif
                                     </div>
                                 @endforeach
                             </div>
@@ -459,22 +466,23 @@
                                                     </div>
                                                 </div>
                                             @endforeach
-                                            <div class="col-12">
-                                                <a data-bs-toggle="modal" data-bs-target="#new-matches"
-                                                    data-bs-whatever="{{ $group->id }}" style="cursor: pointer;"
-                                                    class="accordion-header w-100 view-modal">
-                                                    <div class="match-item-2 item-layer">
-                                                        <div class="match-inner">
-                                                            <div class="d-flex justidy-content-center match-content"
-                                                                style="background-image: -webkit-radial-gradient(50% 50%, circle closest-side, white 100%, #c2c2c2 340%);">
-                                                                <i class="fa-duotone fa-plus text-dark fs-1"></i>
-                                                                <span class="text-dark fs-4 ms-2">New Matches</span>
+                                            @if ($tournament->user_id == Auth::user()->id)
+                                                <div class="col-12">
+                                                    <a data-bs-toggle="modal" data-bs-target="#new-matches"
+                                                        data-bs-whatever="{{ $group->id }}" style="cursor: pointer;"
+                                                        class="accordion-header w-100 view-modal">
+                                                        <div class="match-item-2 item-layer">
+                                                            <div class="match-inner">
+                                                                <div class="d-flex justidy-content-center match-content"
+                                                                    style="background-image: -webkit-radial-gradient(50% 50%, circle closest-side, white 100%, #c2c2c2 340%);">
+                                                                    <i class="fa-duotone fa-plus text-dark fs-1"></i>
+                                                                    <span class="text-dark fs-4 ms-2">New Matches</span>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </a>
-
-                                            </div>
+                                                    </a>
+                                                </div>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

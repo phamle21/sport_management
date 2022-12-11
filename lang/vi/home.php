@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'says' => 'CÂU NỐI HAY',
+    'says' => 'Những câu nói hay',
 
 
 
