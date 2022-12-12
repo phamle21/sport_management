@@ -61,9 +61,15 @@ Route::get('/import-options', [OptionController::class, 'import']);
 
 // Tournament
 Route::get('/find-tournament', [TournamentController::class, 'index'])->name('tournament.find');
+Route::get('/find-my-tournament/{id}', [TournamentController::class, 'myindex'])->name('tournament.my.find');
 Route::get('/create-tournament', [TournamentController::class, 'create'])->name('tournament.frmCreate');
 Route::post('/create-tournament', [TournamentController::class, 'store'])->name('tournament.create');
 Route::get('/tournament/{id}/details', [TournamentController::class, 'show'])->name('tournament.details');
+Route::get('/tournament/{id}/matches/{match_id}', [TournamentController::class, 'showMatches'])->name('tournament.matches');
+Route::post('/matches/{match_id}/delete-key/{key}', [TournamentController::class, 'deleteKeyMatch'])->name('keymatch.delete');
+Route::post('/matches/{match_id}/new-key', [TournamentController::class, 'newKeyMatch'])->name('keymatch.create');
+Route::post('/matches/{match_id}/new-key-team', [TournamentController::class, 'newKeyTeam'])->name('keyteam.create');
+Route::post('/matches/{match_id}/delete-key-team/{key}', [TournamentController::class, 'deleteKeyTeam'])->name('keyteam.delete');
 
 // Bracket
 Route::post('/tournament-bracket', [TournamentController::class, 'bracket']);

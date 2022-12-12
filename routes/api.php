@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\DashboardController;
 use App\Http\Controllers\API\OptionController;
 use App\Http\Controllers\API\RoleController;
 use App\Http\Controllers\API\SeasonController;
@@ -17,7 +18,8 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('me', 'me');
 });
 
-/** Club */
+/** Dashboard */
+Route::get('/dashboard', [DashboardController::class, 'index']);
 
 /** User */
 Route::resource('users', UserController::class);

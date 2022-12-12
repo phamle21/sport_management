@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Group;
 use App\Models\League;
 use App\Models\LeagueType;
+use App\Models\MatchDetail;
 use App\Models\Matches;
 use App\Models\Sponsorship;
 use App\Models\Stage;
@@ -19,13 +20,42 @@ class TournamentController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['verified', 'auth'])->except(['index', 'show', 'bracket']);
+        $this->middleware(['verified', 'auth'])->except(['index', 'show', 'bracket', 'showMatches']);
     }
 
     public function index(Request $request)
     {
         $tournaments = League::where([
             ['name', '!=', Null],
+            [function ($query) use ($request) {
+                if (($s = $request->search)) {
+                    $types = LeagueType::where('name', 'LIKE', '%' . $s . '%')->get();
+                    if (count($types) > 0) {
+                        foreach ($types as $type) {
+                            $query->orWhere('name', 'LIKE', '%' . $s . '%')
+                                ->orWhere('start', 'LIKE', '%' . $s . '%')
+                                ->orWhere('end', 'LIKE', '%' . $s . '%')
+                                ->orWhere('league_type_id', 'LIKE', '%' . $type->id . '%')
+                                ->get();
+                        }
+                    } else {
+                        $query->orWhere('name', 'LIKE', '%' . $s . '%')
+                            ->orWhere('start', 'LIKE', '%' . $s . '%')
+                            ->orWhere('end', 'LIKE', '%' . $s . '%')
+                            ->get();
+                    }
+                }
+            }]
+        ])->paginate(isset($request->pageSize) ? $request->pageSize : 10);
+
+        return view('client.tournament.find', compact('tournaments'));
+    }
+
+    public function myindex(Request $request, $id)
+    {
+        $tournaments = League::where([
+            ['name', '!=', Null],
+            ['user_id', '=', $id],
             [function ($query) use ($request) {
                 if (($s = $request->search)) {
                     $types = LeagueType::where('name', 'LIKE', '%' . $s . '%')->get();
@@ -209,6 +239,32 @@ class TournamentController extends Controller
                 if (count($group->matches) > 0) :
 
                     foreach ($group->matches as $match) {
+                        // $team1 = MatchDetail::where([
+                        //     ['match_id', $match->id],
+                        //     ['team_id', $match->team_id]
+                        // ])->first();
+                        // $diem1 = 0;
+                        // if (is_array($team1->indicators)) {
+                        //     foreach ($team1->indicators as $v) {
+                        //         if ($v['key'] == "Điểm") {
+                        //             $diem1 = $v['value'];
+                        //         }
+                        //     }
+                        // }
+
+                        // $team2 = MatchDetail::where([
+                        //     ['match_id', $match->id],
+                        //     ['team_id', $match->team_opposing_id]
+                        // ])->first();
+                        // $diem2 = 0;
+                        // if (is_array($team2->indicators)) {
+                        //     foreach ($team2->indicators as $v) {
+                        //         if ($v['key'] == "Điểm") {
+                        //             $diem2 = $v['value'];
+                        //         }
+                        //     }
+                        // }
+
                         $data[$k][] = [
                             [
                                 "name" => $match->team_id ? Team::find($match->team_id)->name : '',
@@ -240,6 +296,7 @@ class TournamentController extends Controller
         }
 
         $rounds[] = "W I N";
+
         $data[] = [
             [
                 [
@@ -254,5 +311,132 @@ class TournamentController extends Controller
             'rounds' => $rounds,
             'data' => $data,
         ]);
+    }
+
+    public function showMatches($id, $match_id)
+    {
+        $tournament = League::find($id);
+        $match = Matches::find($match_id);
+        $team1 = Team::find($match->team_id);
+        $team2 = Team::find($match->team_opposing_id);
+
+        if (!isset($match->indicators)) {
+            Matches::whereId($match_id)->update([
+                'indicators' => serialize([]),
+            ]);
+        }
+        $match->indicators = unserialize($match->indicators);
+
+
+        $team1_details = MatchDetail::where([
+            ['matches_id', $match->id],
+            ['team_id', $team1->id]
+        ])->first();
+
+        if (!$team1_details) {
+            $team1_details->indicators = [];
+        }
+        $team1_details->indicators = unserialize($team1_details->indicators);
+
+
+        $team2_details = MatchDetail::where([
+            ['matches_id', $match->id],
+            ['team_id', $team2->id]
+        ])->first();
+
+        if (!$team2_details) {
+            $team2_details->indicators = [];
+        }
+        $team2_details->indicators = unserialize($team2_details->indicators);
+
+
+        return view('client.tournament.matches', compact(
+            'tournament',
+            'match',
+            'team1',
+            'team2',
+            'team1_details',
+            'team2_details',
+        ));
+    }
+
+    public function deleteKeyMatch($match_id, $key)
+    {
+        $match = Matches::find($match_id);
+
+        $indicator_old = unserialize($match->indicators);
+
+        foreach ($indicator_old as $k => $v) {
+            if ($v['key'] == $key) {
+                unset($indicator_old[$k]);
+            }
+        }
+        Matches::whereId($match_id)->update([
+            'indicators' => serialize($indicator_old),
+        ]);
+        return back()->with('success', 'Đã xóa một chỉ số');
+    }
+
+    public function newKeyMatch($match_id, Request $request)
+    {
+
+        $match = Matches::find($match_id);
+
+        $indicator_old = unserialize($match->indicators);
+
+        $indicator_old[] = [
+            'key' => $request->key_indicator,
+            'value' => $request->value_indicator,
+        ];
+
+        Matches::whereId($match_id)->update([
+            'indicators' => serialize($indicator_old),
+        ]);
+
+        return back()->with('success', 'Thêm thành công chỉ số mới');
+    }
+
+    public function newKeyTeam($match_id, Request $request)
+    {
+
+        $team_detail = MatchDetail::where([
+            ['matches_id', $match_id],
+            ['team_id', $request->team_id]
+        ])->first();
+
+        $indicator_old = unserialize($team_detail->indicators);
+
+        $indicator_old[] = [
+            'key' => $request->key_indicator,
+            'value' => $request->value_indicator,
+        ];
+
+        MatchDetail::where([
+            ['matches_id', $match_id],
+            ['team_id', $request->team_id]
+        ])->update([
+            'indicators' => serialize($indicator_old),
+        ]);
+
+        return back()->with('success', 'Thêm thành công chỉ số mới');
+    }
+
+    public function deleteKeyTeam($match_id, $key,  Request $request)
+    {
+        $team_detail = MatchDetail::find($request->team_id);
+
+        $indicator_old = unserialize($team_detail->indicators);
+
+        foreach ($indicator_old as $k => $v) {
+            if ($v['key'] == $key) {
+                unset($indicator_old[$k]);
+            }
+        }
+
+        MatchDetail::whereId($request->team_id)->update([
+            'indicators' => serialize($indicator_old),
+        ]);
+
+        return back()->with('success', 'Đã xóa một chỉ số');
     }
 }

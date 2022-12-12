@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\MVC;
 
 use App\Http\Controllers\Controller;
+use App\Models\MatchDetail;
 use App\Models\Matches;
 use App\Models\Participate;
 use App\Models\Team;
@@ -53,9 +54,39 @@ class MatchesController extends Controller
             'group_id' => $request->group_id,
             'team_id' => $request->team_id,
             'team_opposing_id' => $request->team_opposing_id,
+            'indicators' => serialize([
+                [
+                    'key' => 'Đội chiến thắng',
+                    'value' => 'Chưa có'
+                ],
+                [
+                    'key' => 'Trạng thái',
+                    'value' => 'Chưa kêt thúc'
+                ],
+            ]),
         ]);
 
         if ($add) {
+            MatchDetail::create([
+                'matches_id' => $add->id,
+                'team_id' => $add->team_id,
+                'indicators' => serialize([
+                    [
+                        'key' => 'Điểm',
+                        'value' => 0
+                    ]
+                ]),
+            ]);
+            MatchDetail::create([
+                'matches_id' => $add->id,
+                'team_id' => $add->team_opposing_id,
+                'indicators' => serialize([
+                    [
+                        'key' => 'Điểm',
+                        'value' => 0
+                    ]
+                ]),
+            ]);
             return redirect(route('tournament.details', ['id' => $request->league_id, 'type_show' => 'group']))->with('success', 'Đã thêm 1 trận đấu mới');
         } else {
             return redirect(route('tournament.details', ['id' => $request->league_id, 'type_show' => 'group']))->with('error', 'Thêm trận đấu thất bại');

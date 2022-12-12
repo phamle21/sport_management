@@ -158,6 +158,9 @@
                                         <p class="desc">
                                             {!! $tournament->description !!}
                                         </p>
+                                        <span class="">
+                                            Liên hệ: {{ \App\Models\User::find($tournament->user_id)->email }}
+                                        </span>
                                     </div>
                                     <ul class="d-flex flex-wrap justify-content-center player-meta mb-0">
                                         <li class="d-flex align-items-center">
@@ -424,7 +427,7 @@
                                                                 <div class="row align-items-center justify-content-center">
                                                                     <div class="col-md-2 col-5 p-0">
                                                                         <div class="match-team-thumb text-center">
-                                                                            <a href="team-single.html"
+                                                                            <a href={{ route('tournament.matches', ['id' => $tournament->id, 'match_id' => $match->id]) }}
                                                                                 class="text-center"><img
                                                                                     src="{{ asset('assets/images/match/teamsm/teamsm-1.png') }}"
                                                                                     alt="team-img"></a>
@@ -437,7 +440,8 @@
                                                                     </div>
                                                                     <div class="col-md-2 col-5 order-md-3 p-0">
                                                                         <div class="match-team-thumb text-center">
-                                                                            <a href="team-single.html"><img
+                                                                            <a
+                                                                                href={{ route('tournament.matches', ['id' => $tournament->id, 'match_id' => $match->id]) }}><img
                                                                                     src="{{ asset('assets/images/match/teamsm/teamsm-2.png') }}"
                                                                                     alt="team-img"></a>
                                                                         </div>
@@ -445,7 +449,8 @@
                                                                     <div class="col-md-8 order-md-2 mt-4 mt-md-0">
                                                                         <div class="match-game-info text-center">
                                                                             <h4>
-                                                                                <a href="team-single.html">
+                                                                                <a
+                                                                                    href={{ route('tournament.matches', ['id' => $tournament->id, 'match_id' => $match->id]) }}>
                                                                                     {{ $match->name }}
                                                                                 </a>
                                                                             </h4>
@@ -476,7 +481,7 @@
                                                                 <div class="d-flex justidy-content-center match-content"
                                                                     style="background-image: -webkit-radial-gradient(50% 50%, circle closest-side, white 100%, #c2c2c2 340%);">
                                                                     <i class="fa-duotone fa-plus text-dark fs-1"></i>
-                                                                    <span class="text-dark fs-4 ms-2">New Matches</span>
+                                                                    <span class="text-dark fs-4 ms-2">Trận đấu mới</span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -517,7 +522,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content" style="background: rgba(35, 42, 92);">
                 <div class="modal-header ">
-                    <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">New Group for tournament</h1>
+                    <h1 class="modal-title fs-5 mt-0 text-white" id="exampleModalLabel">Bảng đấu mới</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-white">
@@ -526,15 +531,15 @@
                         <input type="hidden" name="league_id" value="{{ $tournament->id }}">
                         <input type="hidden" readonly id="inputStageId" name="stage_id">
                         <div class="form-group">
-                            <label for="groupName">Group name *:</label>
+                            <label for="groupName">Tên bảng đấu *:</label>
                             <input type="text" class="text-white" id="groupName" name="name" value=""
                                 required>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" form="frmNewGroup" class="btn btn-primary">Add new group</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="submit" form="frmNewGroup" class="btn btn-primary">Thêm bảng đấu</button>
                 </div>
             </div>
         </div>
@@ -545,7 +550,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content" style="background: rgba(35, 42, 92);">
                 <div class="modal-header ">
-                    <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">New matches for group</h1>
+                    <h1 class="modal-title mt-0 fs-5 text-white" id="exampleModalLabel">Trận đấu mới</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body text-white">
@@ -553,23 +558,23 @@
                         @csrf
                         <input type="hidden" readonly id="league_id" name="league_id" value="{{ $tournament->id }}">
                         <input type="hidden" readonly id="inputStageId" name="group_id">
-                        <i class="text-warning">
+                        {{-- <i class="text-warning">
                             Bạn có thể đặt sân cho trận đấu thông qua thanh toán online:
                             <a href="#">Đặt sân</a>
-                        </i>
+                        </i> --}}
                         <div class="form-group my-3">
-                            <label for="matchesName">Match date *:</label>
+                            <label for="matchesName">Ngày thi đấu *:</label>
                             <input type="datetime-local" class="text-white" id="matchesName" name="match_date" required>
                         </div>
 
                         <div class="form-group my-3">
-                            <label for="team">Team *:</label>
+                            <label for="team">Đội đấu *:</label>
                             <select name="team_id" id="team">
                             </select>
                         </div>
 
                         <div class="form-group my-3">
-                            <label for="opposing-team">Opposing team *:</label>
+                            <label for="opposing-team">Đội đối đầu *:</label>
                             <select name="team_opposing_id" id="opposing-team">
                             </select>
                             <small>
@@ -580,15 +585,15 @@
                         </div>
 
                         <div class="form-group my-3">
-                            <label for="location">Location :</label>
+                            <label for="location">Địa điểm :</label>
                             <input type="text" class="text-white" id="location" name="location">
                         </div>
 
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" form="frmNewMatches" class="btn btn-primary">Add new group</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    <button type="submit" form="frmNewMatches" class="btn btn-primary">Thêm trận đấu mới</button>
                 </div>
             </div>
         </div>
@@ -623,7 +628,7 @@
             modelInputStageId.value = recipient
         })
 
-        // New Group
+        // New Mathces
         const newMatchesModal = document.getElementById('new-matches')
         newMatchesModal.addEventListener('show.bs.modal', event => {
 

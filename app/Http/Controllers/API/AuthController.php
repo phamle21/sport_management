@@ -53,10 +53,6 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        if (Auth::check()) {
-            Auth::logout();
-        }
-
         $permissionLoginAdmin = ["Admin", "Team Manage"];
 
         if (isset($request->email)) {
@@ -74,8 +70,8 @@ class AuthController extends Controller
         }
 
         $credentials['status'] = "Active";
-        $remember = $request->remember ? true : false;
-        $token = Auth::attempt($credentials, $remember);
+        
+        $token = Auth::attempt($credentials);
 
         if (!$token) {
             return response()->json([
@@ -108,10 +104,12 @@ class AuthController extends Controller
         $user->phone = $user_temp->phone;
         $user->status = $user_temp->status;
         $user->roles = $user_temp->roles;
+
         return response()->json([
             'status' => 'success',
+            'msg' => 'Đăng nhập thành công',
             'user' => $user,
-            'authorisation' => [
+            'authorization' => [
                 'token' => $token,
                 'type' => 'bearer',
             ]
@@ -156,14 +154,7 @@ class AuthController extends Controller
 
     public function me()
     {
-        if (!Auth::check()) {
-            return response()->json([
-                'status' => 'expired',
-                'msg' => 'Xin lỗi bạn chưa đăng nhập, vui lòng đăng nhập lại'
-            ]);
-        }
-
-        $user_temp =  Auth::user();
+        $user_temp = Auth::user();
         $user = (object)[];
         $user->id = $user_temp->id;
         $user->name = $user_temp->name;
@@ -172,12 +163,6 @@ class AuthController extends Controller
         $user->phone = $user_temp->phone;
         $user->status = $user_temp->status;
         $user->roles = $user_temp->roles;
-
-        return response()->json([
-            'status' => 'success',
-            'msg' => 'Authentication',
-            'data' => $user
-        ]);
 
         return response()->json($user);
     }

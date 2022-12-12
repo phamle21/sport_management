@@ -10,9 +10,9 @@ class MatchDetail extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name',
-        'address',
-        'price',
+        'matches_id',
+        'team_id',
+        'indicators',
     ];
 
     protected $hidden = [

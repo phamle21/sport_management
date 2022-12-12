@@ -51,6 +51,11 @@
                                         <li><a
                                                 href="/create-tournament">{{ __('message.header.create-tournament') }}</a>
                                         </li>
+                                        @if (Auth::check())
+                                            <li><a href="/find-my-tournament/{{ Auth::user()->id }}">Giải đấu của
+                                                    tôi</a>
+                                            </li>
+                                        @endif
                                     </ul>
                                 </li>
 

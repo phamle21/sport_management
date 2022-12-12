@@ -29,7 +29,7 @@ class UserController extends Controller
 
         $res = false;
         if (
-            strpos($str, $keyword) !== false
+            strpos($str, $keyword)
             || $str == $keyword
         ) {
             $res = true;
@@ -40,11 +40,27 @@ class UserController extends Controller
 
     protected function filterUserList($user_list, $pageIndex, $pageSize, $keywork = null)
     {
+        function searchStr($str, $keyword)
+        {
+            $str = strtolower($str);
+            $keyword = strtolower(trim($keyword));
+
+            $res = false;
+            if (
+                strpos($str, $keyword)
+                || $str == $keyword
+            ) {
+                $res = true;
+            }
+
+            return $res;
+        }
+
         // If have keyword
         $result_list = [];
         if ($keywork != null) {
             foreach ($user_list as $v) {
-                if ($this->searchStr($v->name, $keywork) || $this->searchStr($v->phone, $keywork) || $this->searchStr($v->email, $keywork)) {
+                if (searchStr($v->name, $keywork) || searchStr($v->phone, $keywork) || searchStr($v->email, $keywork)) {
                     $result_list[] = $v;
                 }
             }
@@ -236,9 +252,9 @@ class UserController extends Controller
                 'password' => $new_pass,
             ];
 
-            $to = $user->email;
+            // $to = $user->email;
 
-            $send = $this->sendMail($to, null, 'Create new user', $body, 'confirmNewUser');
+            // $send = $this->sendMail($to, null, 'Create new user', $body, 'confirmNewUser');
 
             $user_list = User::orderBy($sortBy['id'], $sort_by)->get();
 
@@ -258,7 +274,7 @@ class UserController extends Controller
                 'pageSize' => $page_size,
                 'countItems' => count($user_list_show),
                 'newUser' => $user,
-                'sendMail' => $send,
+                // 'sendMail' => $send,
             ];
         } else {
             $response = [
@@ -469,9 +485,9 @@ class UserController extends Controller
                 'roles' => $user->roles,
             ];
 
-            $to = $user->email;
+            // $to = $user->email;
 
-            $send = $this->sendMail($to, null, 'Edit user', $body, 'confirmEditUser');
+            // $send = $this->sendMail($to, null, 'Edit user', $body, 'confirmEditUser');
 
             $user_list = User::orderBy($sortBy['id'], $sort_by)->get();
             foreach ($user_list as $v) {
@@ -488,7 +504,7 @@ class UserController extends Controller
                 'pageIndex' => $page_index,
                 'pageSize' => $page_size,
                 'countItems' => count($user_list_show),
-                'sendMail' => $send,
+                // 'sendMail' => $send,
             ];
         } else {
             $response = [
@@ -527,14 +543,36 @@ class UserController extends Controller
      *       }
      *     )
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
+        if (isset($request->sortBy)) {
+            $sortBy = $request->sortBy[0];
+            $sort_by = $sortBy['desc'] ? 'desc' : 'asc';
+        } else {
+            $sortBy = [];
+            $sortBy = [
+                'id' => 'name'
+            ];
+            $sort_by = 'asc';
+        }
         $user = User::find($id);
         $response = [];
         if ($user->delete()) {
+            $user_list = User::orderBy($sortBy['id'], $sort_by)->get();
+            foreach ($user_list as $v) {
+                $v->roles;
+                $v->avatar = $v->avatar == null ? 'http://' . $_SERVER['SERVER_NAME'] . '/images/avatar/avatar-default.png' : $v->avatar;
+            }
+            list($user_list_show, $page_index, $page_size, $page_count) = $this->filterUserList($user_list, $request->pageIndex, $request->pageSize);
+
             $response = [
                 'status' => 'success',
-                'msg' => 'Delete user completed'
+                'msg' => 'Lấy thành công danh sách ',
+                'items' => $user_list_show,
+                'pageCount' => $page_count,
+                'pageIndex' => $page_index,
+                'pageSize' => $page_size,
+                'countItems' => count($user_list_show),
             ];
         } else {
             $response = [

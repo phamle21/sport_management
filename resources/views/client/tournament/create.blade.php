@@ -77,8 +77,15 @@
                                                 </div>
                                                 <div class="avatar-preview">
                                                     <div id="imagePreview"
+                                                        onClick="triggerPle()"
                                                         style="background-image: url('https://cdn.dribbble.com/users/1787323/screenshots/6087799/attachments/1306352/sport2-02.png?compress=1&resize=400x300&vertical=top');">
                                                     </div>
+
+                                                    <script>
+                                                        function triggerPle() {
+                                                            $('#imageUpload').trigger('click')
+                                                        }
+                                                    </script>
                                                 </div>
                                                 <label id="label-image" class="col d-flex justify-content-start mt-2">
                                                     <p class="text-warning"></p>
